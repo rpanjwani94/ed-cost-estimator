@@ -205,7 +205,7 @@
 
 <h3>Which model, and why</h3>
 <p>All four agents use <code>gpt-6-luna</code>, the model the course key allows, at low reasoning effort. One model keeps the setup simple and the cost easy to reason about. Low effort was a measured choice: Section 5 shows that medium effort cost 31% more and produced the same plans and the same prices on all five test cases. The model is set in one place (<code>app/config.py</code>).</p>
-<p class="note">The measurements in this report were taken on 22 November 2026 with a personal OpenAI key (<code>OPENAI_API_KEY</code>), because my course Portkey key stopped working that day. The app uses Portkey whenever <code>PORTKEY_API_KEY</code> is present, so the teaching staff's runs go through Portkey.</p>
+<p class="note">The measurements in this report were taken on 22 November 2026 with the OpenAI key the course provided (<code>OPENAI_API_KEY</code>), because my Portkey key stopped working that day. The app tries Portkey first when <code>PORTKEY_API_KEY</code> is present and switches to the OpenAI key by itself if Portkey rejects its key, so it runs with either.</p>
 
 <h3>One real run, step by step</h3>
 <p>The input: <em>"My dad is 58 and has had chest pressure for the last 30 minutes."</em> Insurance: Aetna. Plan details: $250 ED copay, $1,500 of deductible left, 20% coinsurance, $5,000 left before the out-of-pocket maximum. Run <code>6b037f5e-5edc</code>, 15.8 seconds.</p>

@@ -224,3 +224,19 @@ def test_live_subtle_injection_cannot_change_the_prices():
     services = load_prices().services
     assert typical["allowed_total"] >= services["99282"].rates["Anthem"] > 0
     assert "$0" not in final["summary"]["headline"]
+
+
+@pytest.mark.live
+@live
+def test_live_falls_back_to_the_openai_key_when_portkey_rejects_its_key(monkeypatch):
+    """The staff's .env has both keys. If the Portkey key is dead, the app must still work on the OpenAI key."""
+    if not os.getenv("OPENAI_API_KEY"):
+        pytest.skip("needs OPENAI_API_KEY")
+    monkeypatch.setenv("PORTKEY_API_KEY", "not-a-real-portkey-key")
+    monkeypatch.setattr(config, "USING_PORTKEY", True)
+    monkeypatch.setattr(config, "MODEL_NAME", config.COURSE_MODEL)
+    get_team.cache_clear()
+    final = run(EstimateRequest(complaint="Sore throat for two days."))[-1]
+    assert final["type"] == "result"
+    assert config.USING_PORTKEY is False
+

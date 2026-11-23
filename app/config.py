@@ -69,6 +69,19 @@ PRICE_CACHED_INPUT_PER_M = float(os.getenv("PRICE_CACHED_INPUT_PER_M", "0"))
 PRICE_OUTPUT_PER_M = float(os.getenv("PRICE_OUTPUT_PER_M", "0"))
 
 
+def use_openai_fallback() -> bool:
+    """Portkey rejected its key. If an OpenAI key is also set, switch to it for the rest of this process.
+
+    The teaching staff's .env holds both keys, so the app works whichever one is live.
+    """
+    global USING_PORTKEY, MODEL_NAME
+    if USING_PORTKEY and os.getenv("OPENAI_API_KEY"):
+        USING_PORTKEY = False
+        MODEL_NAME = os.getenv("OPENAI_MODEL", COURSE_MODEL)
+        return True
+    return False
+
+
 def build_model():
     """The one model every agent uses: through Portkey if PORTKEY_API_KEY is set, else direct OpenAI."""
     from openai import AsyncOpenAI
@@ -77,7 +90,7 @@ def build_model():
 
     portkey_key = os.getenv("PORTKEY_API_KEY")
     openai_key = os.getenv("OPENAI_API_KEY")
-    if portkey_key:
+    if portkey_key and USING_PORTKEY:
         client = AsyncOpenAI(
             base_url=os.getenv("PORTKEY_BASE_URL", "https://api.portkey.ai/v1"),
             api_key="portkey",  # not a real key: Portkey reads the header below

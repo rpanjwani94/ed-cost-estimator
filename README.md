@@ -14,8 +14,10 @@ Needs Python 3.11 or newer. No Node, no database, no other services. Run every c
 
 ```
 PORTKEY_API_KEY=...     # course key; the app uses gpt-6-luna through Portkey
-OPENAI_API_KEY=...      # only if you are not using Portkey
+OPENAI_API_KEY=...      # used when there is no Portkey key, or if Portkey rejects its key
 ```
+
+If both are present the app tries Portkey first and falls back to the OpenAI key by itself.
 
 If a `.env` with `PORTKEY_API_KEY` already sits one folder above this repo, there is nothing to do.
 
@@ -97,7 +99,7 @@ To stop the app press `Ctrl+C` in the terminal. If port 8060 is busy, use anothe
 
 The hand-offs are fixed in `app/pipeline.py`. Models never do arithmetic: every dollar figure on the page is computed in `app/pricing.py` from the price file.
 
-All agents use `gpt-6-luna` through Portkey (`PORTKEY_API_KEY`). The model is set in one place, `app/config.py`.
+All agents use `gpt-6-luna`, through Portkey (`PORTKEY_API_KEY`) or directly with `OPENAI_API_KEY`. The model is set in one place, `app/config.py`.
 
 ## Data
 
@@ -131,7 +133,7 @@ Run the tests that show these working:
 
 ```bash
 .venv/bin/python -m pytest -v                       # 28 tests, no API key needed, 0 tokens
-RUN_LIVE_TESTS=1 .venv/bin/python -m pytest -v      # adds 3 tests that call the real model
+RUN_LIVE_TESTS=1 .venv/bin/python -m pytest -v      # adds 4 tests that call the real model
 ```
 
 (On Windows use `.venv\Scripts\python`; for the live tests run `$env:RUN_LIVE_TESTS=1` first.)

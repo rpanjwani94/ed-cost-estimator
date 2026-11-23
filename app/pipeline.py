@@ -213,7 +213,18 @@ async def run_estimate(req: EstimateRequest, client: str = "local") -> AsyncIter
     try:
         # 3. Triage agent
         yield step("triage", "start")
-        triage = await run_agent("triage", team.triage, patient_text)
+        try:
+            triage = await run_agent("triage", team.triage, patient_text)
+        except ModelAuthenticationError:
+            # Portkey rejected its key. If an OpenAI key is also configured, switch to it once and carry on.
+            if not config.use_openai_fallback():
+                raise
+            get_team.cache_clear()
+            team = get_team()
+            agents_used.clear()
+            record["model"] = config.MODEL_NAME
+            detail["key_note"] = "Portkey rejected its key; used OPENAI_API_KEY instead"
+            triage = await run_agent("triage", team.triage, patient_text)
         detail["screener"] = triage.model_dump()
         all_flags = list(dict.fromkeys(flags + triage.red_flags))
         emergency = bool(flags) or triage.urgency == "emergency"
