@@ -71,7 +71,7 @@ async function loadMeta() {
     }));
     if (meta.saves_text) {
       show($("save-notice"));
-      $("privacy-note").textContent = "Takes about 20 seconds. Test version: what you type is saved.";
+      $("privacy-note").textContent = "Takes about 20 seconds. What you type is saved.";
     }
     if (!meta.api_key_found) {
       showAlert("error", "No API key found", "Put PORTKEY_API_KEY in a .env file in this folder or the folder above it, then restart the app.");
