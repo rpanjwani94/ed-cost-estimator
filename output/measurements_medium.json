@@ -1,5 +1,5 @@
 {
-  "started": "2026-11-22 18:46:32",
+  "started": "2026-11-23 11:00:17",
   "model": "gpt-6-luna",
   "reasoning_effort": "medium",
   "via": "OpenAI direct",
@@ -8,51 +8,51 @@
       "case": "Twisted ankle",
       "outcome": "result",
       "stage": null,
-      "seconds": 21.62,
+      "seconds": 35.57,
       "agents": [
         {
           "agent": "triage",
           "requests": 1,
           "tool_calls": 0,
-          "input_tokens": 442,
+          "input_tokens": 694,
           "cached_input_tokens": 0,
           "output_tokens": 60,
-          "seconds": 1.29
+          "seconds": 2.41
         },
         {
           "agent": "clinical",
           "requests": 3,
           "tool_calls": 2,
-          "input_tokens": 3282,
+          "input_tokens": 3284,
           "cached_input_tokens": 0,
-          "output_tokens": 269,
-          "seconds": 5.59
+          "output_tokens": 309,
+          "seconds": 6.69
         },
         {
           "agent": "pricing",
           "requests": 4,
           "tool_calls": 3,
-          "input_tokens": 3085,
+          "input_tokens": 3079,
           "cached_input_tokens": 0,
-          "output_tokens": 149,
-          "seconds": 4.59
+          "output_tokens": 144,
+          "seconds": 6.49
         },
         {
           "agent": "advocate",
           "requests": 2,
           "tool_calls": 3,
-          "input_tokens": 2887,
-          "cached_input_tokens": 1167,
-          "output_tokens": 989,
-          "seconds": 9.85
+          "input_tokens": 3321,
+          "cached_input_tokens": 1328,
+          "output_tokens": 1754,
+          "seconds": 19.69
         }
       ],
       "totals": {
         "requests": 10,
         "tool_calls": 8,
-        "input_tokens": 9696,
-        "cached_input_tokens": 1167,
-        "output_tokens": 1467,
+        "input_tokens": 10378,
+        "cached_input_tokens": 1328,
+        "output_tokens": 2267,
         "cost_usd": null
       },
       "scenario_id": "ankle_injury",
@@ -86,23 +86,23 @@
       ],
       "emergency": false,
       "summary_fallback": false,
-      "headline": "The hospital would likely be paid about $985 for this visit; your share depends on your plan.",
+      "headline": "You might pay up to $985 for the hospital's bill.",
       "rejections": []
     },
     {
       "case": "Chest pain",
       "outcome": "result",
       "stage": null,
-      "seconds": 20.38,
+      "seconds": 30.25,
       "agents": [
         {
           "agent": "triage",
           "requests": 1,
           "tool_calls": 0,
-          "input_tokens": 441,
+          "input_tokens": 693,
           "cached_input_tokens": 0,
-          "output_tokens": 54,
-          "seconds": 1.12
+          "output_tokens": 63,
+          "seconds": 2.46
         },
         {
           "agent": "clinical",
@@ -110,8 +110,8 @@
           "tool_calls": 2,
           "input_tokens": 3349,
           "cached_input_tokens": 0,
-          "output_tokens": 375,
-          "seconds": 4.49
+          "output_tokens": 390,
+          "seconds": 6.05
         },
         {
           "agent": "pricing",
@@ -119,25 +119,25 @@
           "tool_calls": 3,
           "input_tokens": 3191,
           "cached_input_tokens": 0,
-          "output_tokens": 125,
-          "seconds": 3.57
+          "output_tokens": 134,
+          "seconds": 9.12
         },
         {
           "agent": "advocate",
           "requests": 2,
           "tool_calls": 3,
-          "input_tokens": 3089,
-          "cached_input_tokens": 1215,
-          "output_tokens": 1181,
-          "seconds": 11.19
+          "input_tokens": 3364,
+          "cached_input_tokens": 1376,
+          "output_tokens": 1136,
+          "seconds": 12.62
         }
       ],
       "totals": {
         "requests": 10,
         "tool_calls": 8,
-        "input_tokens": 10070,
-        "cached_input_tokens": 1215,
-        "output_tokens": 1735,
+        "input_tokens": 10597,
+        "cached_input_tokens": 1376,
+        "output_tokens": 1723,
         "cost_usd": null
       },
       "scenario_id": "chest_pain",
@@ -177,23 +177,23 @@
       ],
       "emergency": true,
       "summary_fallback": false,
-      "headline": "You might owe about $1,764 for the hospital's bill.",
+      "headline": "You might pay about $1,764 for the hospital's bill.",
       "rejections": []
     },
     {
       "case": "Belly pain",
       "outcome": "result",
       "stage": null,
-      "seconds": 22.73,
+      "seconds": 29.96,
       "agents": [
         {
           "agent": "triage",
           "requests": 1,
           "tool_calls": 0,
-          "input_tokens": 441,
+          "input_tokens": 693,
           "cached_input_tokens": 0,
-          "output_tokens": 75,
-          "seconds": 1.24
+          "output_tokens": 56,
+          "seconds": 2.41
         },
         {
           "agent": "clinical",
@@ -201,34 +201,34 @@
           "tool_calls": 2,
           "input_tokens": 3400,
           "cached_input_tokens": 0,
-          "output_tokens": 460,
-          "seconds": 5.41
+          "output_tokens": 409,
+          "seconds": 7.51
         },
         {
           "agent": "pricing",
           "requests": 4,
           "tool_calls": 3,
-          "input_tokens": 3136,
+          "input_tokens": 3063,
           "cached_input_tokens": 0,
-          "output_tokens": 205,
-          "seconds": 4.51
+          "output_tokens": 171,
+          "seconds": 9.39
         },
         {
           "agent": "advocate",
-          "requests": 3,
-          "tool_calls": 4,
-          "input_tokens": 5428,
-          "cached_input_tokens": 2968,
-          "output_tokens": 1134,
-          "seconds": 11.57
+          "requests": 2,
+          "tool_calls": 3,
+          "input_tokens": 3374,
+          "cached_input_tokens": 1385,
+          "output_tokens": 1022,
+          "seconds": 10.65
         }
       ],
       "totals": {
-        "requests": 11,
-        "tool_calls": 9,
-        "input_tokens": 12405,
-        "cached_input_tokens": 2968,
-        "output_tokens": 1874,
+        "requests": 10,
+        "tool_calls": 8,
+        "input_tokens": 10530,
+        "cached_input_tokens": 1385,
+        "output_tokens": 1658,
         "cost_usd": null
       },
       "scenario_id": "abdominal_pain",
@@ -268,58 +268,58 @@
       ],
       "emergency": false,
       "summary_fallback": false,
-      "headline": "The hospital would likely be paid about $1,323 for this visit; your share depends on your plan.",
+      "headline": "You might pay up to $1,323 for the hospital's bill.",
       "rejections": []
     },
     {
       "case": "Cut finger",
       "outcome": "result",
       "stage": null,
-      "seconds": 16.22,
+      "seconds": 21.46,
       "agents": [
         {
           "agent": "triage",
           "requests": 1,
           "tool_calls": 0,
-          "input_tokens": 439,
+          "input_tokens": 691,
           "cached_input_tokens": 0,
-          "output_tokens": 69,
-          "seconds": 1.37
+          "output_tokens": 62,
+          "seconds": 1.44
         },
         {
           "agent": "clinical",
-          "requests": 4,
-          "tool_calls": 3,
-          "input_tokens": 4800,
-          "cached_input_tokens": 1133,
-          "output_tokens": 302,
-          "seconds": 5.31
+          "requests": 3,
+          "tool_calls": 2,
+          "input_tokens": 3221,
+          "cached_input_tokens": 0,
+          "output_tokens": 292,
+          "seconds": 5.02
         },
         {
           "agent": "pricing",
           "requests": 2,
           "tool_calls": 1,
-          "input_tokens": 1322,
+          "input_tokens": 1310,
           "cached_input_tokens": 0,
-          "output_tokens": 102,
-          "seconds": 2.33
+          "output_tokens": 116,
+          "seconds": 5.62
         },
         {
           "agent": "advocate",
           "requests": 2,
           "tool_calls": 3,
-          "input_tokens": 3022,
-          "cached_input_tokens": 1173,
-          "output_tokens": 786,
-          "seconds": 7.21
+          "input_tokens": 3157,
+          "cached_input_tokens": 1305,
+          "output_tokens": 713,
+          "seconds": 9.38
         }
       ],
       "totals": {
-        "requests": 9,
-        "tool_calls": 7,
-        "input_tokens": 9583,
-        "cached_input_tokens": 2306,
-        "output_tokens": 1259,
+        "requests": 8,
+        "tool_calls": 6,
+        "input_tokens": 8379,
+        "cached_input_tokens": 1305,
+        "output_tokens": 1183,
         "cost_usd": null
       },
       "scenario_id": "laceration",
@@ -351,23 +351,23 @@
       ],
       "emergency": false,
       "summary_fallback": false,
-      "headline": "Without insurance, the hospital's cash price for this visit is about $1,340.",
+      "headline": "Without insurance, you would pay about $1,340 for the hospital's bill.",
       "rejections": []
     },
     {
       "case": "Cough and fever",
       "outcome": "result",
       "stage": null,
-      "seconds": 21.88,
+      "seconds": 33.43,
       "agents": [
         {
           "agent": "triage",
           "requests": 1,
           "tool_calls": 0,
-          "input_tokens": 443,
+          "input_tokens": 695,
           "cached_input_tokens": 0,
-          "output_tokens": 71,
-          "seconds": 1.48
+          "output_tokens": 67,
+          "seconds": 1.64
         },
         {
           "agent": "clinical",
@@ -375,34 +375,34 @@
           "tool_calls": 2,
           "input_tokens": 3318,
           "cached_input_tokens": 0,
-          "output_tokens": 407,
-          "seconds": 5.13
+          "output_tokens": 384,
+          "seconds": 6.07
         },
         {
           "agent": "pricing",
           "requests": 4,
           "tool_calls": 3,
-          "input_tokens": 3155,
+          "input_tokens": 3083,
           "cached_input_tokens": 0,
-          "output_tokens": 206,
-          "seconds": 4.5
+          "output_tokens": 133,
+          "seconds": 7.17
         },
         {
           "agent": "advocate",
           "requests": 2,
           "tool_calls": 3,
-          "input_tokens": 3409,
-          "cached_input_tokens": 1344,
-          "output_tokens": 1166,
-          "seconds": 10.76
+          "input_tokens": 3766,
+          "cached_input_tokens": 1503,
+          "output_tokens": 1676,
+          "seconds": 18.54
         }
       ],
       "totals": {
         "requests": 10,
         "tool_calls": 8,
-        "input_tokens": 10325,
-        "cached_input_tokens": 1344,
-        "output_tokens": 1850,
+        "input_tokens": 10862,
+        "cached_input_tokens": 1503,
+        "output_tokens": 2260,
         "cost_usd": null
       },
       "scenario_id": "cough_fever",
@@ -440,7 +440,7 @@
       ],
       "emergency": false,
       "summary_fallback": false,
-      "headline": "The hospital would likely be paid about $505 for this visit; your share depends on your plan.",
+      "headline": "You might pay up to $505 for the hospital's bill.",
       "rejections": []
     }
   ],
@@ -457,7 +457,7 @@
       "case": "Off-topic request",
       "outcome": "refused",
       "stage": "triage",
-      "tokens_spent": 480,
+      "tokens_spent": 739,
       "agents_run": [
         "triage"
       ],
@@ -466,10 +466,30 @@
           "agent": "triage",
           "requests": 1,
           "tool_calls": 0,
-          "input_tokens": 432,
+          "input_tokens": 684,
           "cached_input_tokens": 0,
-          "output_tokens": 48,
-          "seconds": 1.02
+          "output_tokens": 55,
+          "seconds": 1.37
+        }
+      ]
+    },
+    {
+      "case": "Diagnosis only",
+      "outcome": "need_more",
+      "stage": null,
+      "tokens_spent": 750,
+      "agents_run": [
+        "triage"
+      ],
+      "usage": [
+        {
+          "agent": "triage",
+          "requests": 1,
+          "tool_calls": 0,
+          "input_tokens": 681,
+          "cached_input_tokens": 0,
+          "output_tokens": 69,
+          "seconds": 1.57
         }
       ]
     }
@@ -477,6 +497,6 @@
   "repeat": {
     "case": "Cough and fever",
     "cached": true,
-    "seconds": 0.001
+    "seconds": 0.0
   }
 }

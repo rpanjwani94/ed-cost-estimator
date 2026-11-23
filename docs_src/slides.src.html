@@ -54,7 +54,7 @@
 <section class="title-slide">
   <div class="eyebrow">MGT 409 · AI Foundations for Managers · Final project</div>
   <h1>ED Cost Estimator</h1>
-  <p style="font-size:38px; max-width: 22em; line-height:1.25;">"How much am I going to get charged?" An answer in 16 seconds, from the hospital's own published prices.</p>
+  <p style="font-size:38px; max-width: 22em; line-height:1.25;">"How much am I going to get charged?" An answer in about 20 seconds, from the hospital's own published prices.</p>
   <p class="muted" style="margin-top:28px;">Reema Panjwani</p>
 </section>
 
@@ -86,7 +86,7 @@
         <li>Hospital and insurer estimators: you must already know which service you need.</li>
         <li>FAIR Health, Turquoise: built around a procedure, or area averages.</li>
         <li>Goodbill: only after the bill arrives.</li>
-        <li>A general AI model: asked the same price twice, it said <strong>$60</strong>, then <strong>$107</strong>. The hospital's file says <strong>$119</strong>.</li>
+        <li>A general AI model: asked the same price three times, it said <strong>$60</strong>, <strong>$107</strong> and <strong>$78</strong>. The hospital's file says <strong>$119</strong>.</li>
       </ul>
     </div>
     <div class="card dark">
@@ -95,8 +95,9 @@
         <li>You describe the problem in a sentence.</li>
         <li>It predicts the likely ED workup.</li>
         <li>It prices each line at <em>this</em> hospital's rate for <em>your</em> insurer.</li>
-        <li>It gives a low, likely and high figure, and says why.</li>
+        <li>It says what <em>you</em> pay: low, likely and high.</li>
         <li>It covers "what if I'm admitted?"</li>
+        <li>It tells you who to ask what.</li>
         <li>The AI cannot invent a number.</li>
       </ul>
     </div>
@@ -126,10 +127,10 @@
       <g font-size="9.5" fill="#4D5D52" text-anchor="middle"><text x="419" y="12">in scope</text><text x="545" y="12">plan</text><text x="663" y="12">estimate</text></g>
       <g stroke="#B23F26" stroke-width="1.3" fill="none" marker-end="url(#ar)" stroke-dasharray="4 3"><path d="M213 80V118"/><path d="M356 80V118"/></g>
       <rect x="150" y="120" width="126" height="40" rx="10" fill="#F5E3D9"/><text x="213" y="137" text-anchor="middle" font-size="10.5" font-weight="600" fill="#B23F26">Refused</text><text x="213" y="151" text-anchor="middle" font-size="9.5" fill="#4D5D52">no AI call made</text>
-      <rect x="296" y="120" width="120" height="40" rx="10" fill="#F5E3D9"/><text x="356" y="137" text-anchor="middle" font-size="10.5" font-weight="600" fill="#B23F26">Out of scope: stop</text><text x="356" y="151" text-anchor="middle" font-size="9.5" fill="#4D5D52">agents 2–4 never run</text>
+      <rect x="296" y="120" width="120" height="40" rx="10" fill="#F5E3D9"/><text x="356" y="137" text-anchor="middle" font-size="10.5" font-weight="600" fill="#B23F26">Off topic or too vague</text><text x="356" y="151" text-anchor="middle" font-size="9.5" fill="#4D5D52">stop: agents 2–4 never run</text>
       <g stroke="#6F8F4E" stroke-width="1.2" fill="none" marker-end="url(#ar)" marker-start="url(#ar)"><path d="M482 82V182"/><path d="M604 82V182"/><path d="M715 82V182"/></g>
-      <rect x="430" y="184" width="104" height="58" rx="10" fill="#F9FBF7" stroke="#B1C0A9"/><text x="482" y="203" text-anchor="middle" font-size="10.5" font-weight="600">17 clinical</text><text x="482" y="217" text-anchor="middle" font-size="10.5" font-weight="600">scenarios</text><text x="482" y="232" text-anchor="middle" font-size="9" fill="#4D5D52">+ service search</text>
-      <rect x="548" y="184" width="112" height="58" rx="10" fill="#F9FBF7" stroke="#B1C0A9"/><text x="604" y="203" text-anchor="middle" font-size="10.5" font-weight="600">Hospital price file</text><text x="604" y="218" text-anchor="middle" font-size="9" fill="#4D5D52">236 services, 20 DRGs</text><text x="604" y="231" text-anchor="middle" font-size="9" fill="#4D5D52">23 insurers · code math</text>
+      <rect x="430" y="184" width="104" height="58" rx="10" fill="#F9FBF7" stroke="#B1C0A9"/><text x="482" y="203" text-anchor="middle" font-size="10.5" font-weight="600">18 clinical</text><text x="482" y="217" text-anchor="middle" font-size="10.5" font-weight="600">scenarios</text><text x="482" y="232" text-anchor="middle" font-size="9" fill="#4D5D52">+ service search</text>
+      <rect x="548" y="184" width="112" height="58" rx="10" fill="#F9FBF7" stroke="#B1C0A9"/><text x="604" y="203" text-anchor="middle" font-size="10.5" font-weight="600">Hospital price file</text><text x="604" y="218" text-anchor="middle" font-size="9" fill="#4D5D52">240 services, 20 DRGs</text><text x="604" y="231" text-anchor="middle" font-size="9" fill="#4D5D52">23 insurers · code math</text>
       <rect x="674" y="184" width="82" height="58" rx="10" fill="#F9FBF7" stroke="#B1C0A9"/><text x="715" y="203" text-anchor="middle" font-size="10.5" font-weight="600">10 guidance</text><text x="715" y="217" text-anchor="middle" font-size="10.5" font-weight="600">notes</text><text x="715" y="232" text-anchor="middle" font-size="9" fill="#4D5D52">rights, billing</text>
       <path d="M715 242V268H560" stroke="#2F4A3A" stroke-width="1.4" fill="none" marker-end="url(#ar)"/>
       <rect x="416" y="250" width="142" height="40" rx="10" fill="#F2E6C7" stroke="#C9B36A"/><text x="487" y="267" text-anchor="middle" font-size="10.5" font-weight="600">Numbers guard (code)</text><text x="487" y="281" text-anchor="middle" font-size="9.5" fill="#4D5D52">every $ must come from tools</text>
@@ -146,9 +147,9 @@
   <h2>"My dad is 58 and has had chest pressure for 30 minutes"</h2>
   <div class="cols wide-right">
     <div>
-      <img src="report_assets/03_emergency.jpg" alt="Red banner telling the user to call 911 or go to the emergency department now">
-      <ul style="margin-top:22px;">
-        <li><strong>First:</strong> go now. The warning appears before any AI call.</li>
+      <img src="report_assets/03_emergency.jpg" alt="Red banner telling the user to call 911 or go to the emergency department now, then a Care first card">
+      <ul style="margin-top:18px;">
+        <li><strong>First:</strong> go now, and three reassurances. Shown before any AI call.</li>
         <li><strong>Then:</strong> about <strong>$1,764</strong> under his Aetna plan, from $1,392 to $2,015.</li>
         <li>If admitted: his share stops at the <strong>$5,000</strong> out-of-pocket maximum.</li>
       </ul>
@@ -159,16 +160,17 @@
 
 <!-- 6. Demo: showing the work -->
 <section>
-  <div class="eyebrow">Demo · showing the work</div>
-  <h2>Every step and every line is on the page</h2>
+  <div class="eyebrow">Demo · the detail is there when you want it</div>
+  <h2>Short by default; every step and line one click away</h2>
   <div class="cols">
     <div>
-      <img src="report_assets/05a_timeline_crop.jpg" alt="Agents at work panel showing the clinical planner's and pricing analyst's tool calls" style="max-height:415px; width:auto;">
-      <p class="small" style="margin-top:8px;">Each agent's tool calls and tokens. Here: the planner finds the chest pain scenario; the analyst matches Aetna and prices it.</p>
+      <img src="report_assets/07_meaning.jpg" alt="What this means: a short summary, questions for billing staff and questions for the doctor">
+      <p class="small" style="margin-top:8px;">What the patient reads: a few sentences, and who to ask what.</p>
+      <img src="report_assets/18_more_detail.jpg" alt="Six closed More detail rows" style="margin-top:10px; max-height:190px; width:auto;">
     </div>
     <div>
-      <img src="report_assets/09a_items_crop.jpg" alt="Itemized estimate table" style="max-height:415px; width:auto;">
-      <p class="small" style="margin-top:8px;">Each service: list price, Aetna's rate, and the range across 23 insurers.</p>
+      <img src="report_assets/05_timeline_tools.jpg" alt="How the AI worked: each agent and its tool calls" style="max-height:470px; width:auto;">
+      <p class="small" style="margin-top:8px;">"How the AI worked", opened: each agent and its tool calls.</p>
     </div>
   </div>
 </section>
@@ -178,18 +180,18 @@
   <div class="eyebrow">Cost to run · measured on five real cases</div>
   <h2>About one-eighth of a cent per estimate</h2>
   <div class="stats">
-    <div class="stat dark"><b>$0.00129</b><span>AI cost of one typical estimate</span></div>
-    <div class="stat"><b>10,423</b><span>tokens: 9,523 in (1,221 cached), 900 out</span></div>
-    <div class="stat"><b>15.6 s</b><span>average time, start to finish</span></div>
-    <div class="stat"><b>$26</b><span>a month for 10,000 users at 2 estimates each</span></div>
+    <div class="stat dark"><b>$0.00134</b><span>AI cost of one typical estimate</span></div>
+    <div class="stat"><b>11,437</b><span>tokens: 10,490 in (1,977 cached), 946 out</span></div>
+    <div class="stat"><b>22 s</b><span>median time, start to finish</span></div>
+    <div class="stat"><b>$27</b><span>a month for 10,000 users at 2 estimates each</span></div>
   </div>
   <div class="cols wide-left">
     <table>
       <thead><tr><th>What cut the cost</th><th>Measured</th></tr></thead>
       <tbody>
-        <tr><td>Low reasoning effort (vs medium)</td><td>24% cheaper; same plans and prices on 5 of 5 cases</td></tr>
+        <tr><td>Low reasoning effort (vs medium)</td><td>25% cheaper; same plans and prices on 5 of 5 cases</td></tr>
         <tr><td>Refuse bad input in code</td><td>0 tokens</td></tr>
-        <tr><td>Cheapest agent first, can stop the run</td><td>Off-topic: 479 tokens, 5% of a full run</td></tr>
+        <tr><td>Cheapest agent first, can stop the run</td><td>Off-topic: 740 tokens, 6% of a full run</td></tr>
         <tr><td>Repeat questions from memory</td><td>0 tokens</td></tr>
       </tbody>
     </table>
@@ -200,20 +202,19 @@
 <!-- 8. Safety -->
 <section>
   <div class="eyebrow">Safety</div>
-  <h2>The biggest risk: a price that talks someone out of care</h2>
+  <h2>The hardest problem: a price next to an emergency</h2>
   <div class="cols">
     <div>
       <ul>
-        <li><strong>Care first.</strong> Warning signs trigger "call 911 or go now" in code. An agent can add a flag, never remove one.</li>
+        <li><strong>Care first.</strong> Warning signs trigger "call 911 or go now" in code, with three reassurances above the price. I tried hiding the price in emergencies and took it out: people have a right to know.</li>
         <li><strong>Attacks.</strong> Injection is refused before any tokens are spent. No agent can read files or keys.</li>
-        <li><strong>Made-up facts.</strong> Unknown billing codes are rejected. Every dollar must match the pricing code.</li>
-        <li><strong>Runaway spend.</strong> Caps per run, per minute and per day.</li>
+        <li><strong>Made-up facts and runaway spend.</strong> Unknown codes are rejected, every dollar must match the pricing code, and runs are capped.</li>
       </ul>
-      <p style="margin-top:18px;"><span class="tag">27 tests pass</span><span class="small">3 call the real model</span></p>
+      <p style="margin-top:14px;"><span class="tag">32 tests pass</span><span class="small">4 call the real model</span></p>
     </div>
     <div>
-      <img src="report_assets/12a_injection_crop.jpg" alt="The app refusing a prompt-injection attempt" style="margin-bottom:12px;">
-      <img src="report_assets/13a_offtopic_crop.jpg" alt="The app stopping an off-topic request at the first agent" style="max-height:290px; width:auto;">
+      <img src="report_assets/12_injection.jpg" alt="The app refusing a prompt-injection attempt" style="max-height:160px; width:auto; margin-bottom:10px;">
+      <img src="report_assets/13_offtopic.jpg" alt="The app stopping an off-topic request at the first agent" style="max-height:144px; width:auto;">
       <p class="small" style="margin-top:8px;">Top: "Ignore all previous instructions…" refused, 0 tokens. Bottom: "Write me a poem" stopped by the first agent.</p>
     </div>
   </div>
@@ -221,20 +222,23 @@
 
 <!-- 9. Impact -->
 <section>
-  <div class="eyebrow">Impact</div>
-  <h2>From "nobody knows" to a number in 16 seconds</h2>
+  <div class="eyebrow">Impact · what real users told me</div>
+  <h2>From "won't answer" to a number in about 20 seconds</h2>
   <div class="stats three">
-    <div class="stat dark"><b>15.6 s</b><span>to an itemized, insurer-specific estimate (my tests, five cases)</span></div>
-    <div class="stat"><b>6–14</b><span>billing codes a patient would otherwise have to find among 724,913 rows</span></div>
-    <div class="stat"><b>$2,271 → $1,340</b><span>list price vs cash price for a cut finger: the app tells uninsured patients to ask</span></div>
+    <div class="stat dark"><b>22 s</b><span>to an itemized, insurer-specific estimate (median of five runs)</span></div>
+    <div class="stat"><b>845 → 412</b><span>words on the results page, after a tester said it was "too much to read"</span></div>
+    <div class="stat"><b>$17,000</b><span>one real bill (elbow dislocation). The app said $953, then up to $6,686 after a fix. Still far off.</span></div>
   </div>
   <div class="cols">
+    <div class="card">
+      <p><strong>A colleague who tried it</strong></p>
+      <p style="margin:0;">Workup right? <em>"Yes."</em> What do you tell patients today? <em>"Won't answer."</em> Useful? <em>"No… you don't want them to be influenced to seek emergency care based on pricing."</em></p>
+    </div>
     <ul>
-      <li><strong>Patients:</strong> a figure to plan around, and the right questions.</li>
-      <li><strong>Hospital:</strong> could ease the load on billing staff. Not measured yet.</li>
-      <li><strong>New:</strong> the "if you're admitted" conversation rarely happens in the ED today.</li>
+      <li>Four colleagues' cases changed the app the same day: shorter results, a follow-up question, a new scenario.</li>
+      <li>For the uninsured: $1,340 cash price against a $2,271 list price.</li>
+      <li>Not measured: whether seeing a price changes what patients do.</li>
     </ul>
-    <div class="card todo"><p><strong>To do before presenting: real user.</strong></p><p style="margin:0;">Replace this box with what an ED colleague said after trying it: their role, one quote, and how long this takes them today.</p></div>
   </div>
 </section>
 
@@ -248,18 +252,17 @@
       <ul>
         <li>Hospital bill only. The physician bills separately.</li>
         <li>One hospital.</li>
-        <li>No traditional Medicare or Medicaid rates in the hospital's file.</li>
-        <li>17 scenario templates, reviewed by one clinician, not yet checked against real bills.</li>
+        <li>Checked against one real bill, and it missed by a wide margin.</li>
       </ul>
     </div>
     <div class="card dark">
       <p><strong>With another month</strong></p>
       <ul>
-        <li>Add the physician's bill.</li>
         <li>Validate against published real ED bills.</li>
+        <li>Read the insurance card (a quick test worked).</li>
+        <li>Add the physician's bill.</li>
         <li>"Check my bill" when it arrives.</li>
         <li>More hospitals: they all publish the same file format.</li>
-        <li>Pilot with a hospital's financial counselors.</li>
       </ul>
     </div>
   </div>

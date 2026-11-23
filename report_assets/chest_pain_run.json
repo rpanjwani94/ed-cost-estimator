@@ -1,10 +1,11 @@
 {
-  "headline": "You might owe about $1,764 for the hospital's bill.",
+  "headline": "You might pay about $1,764 for the hospital's bill.",
+  "note": "Based on the plan details you entered, at Aetna's rates.",
   "steps": [
-    "Safety screener | The text describes ongoing chest pressure, which can be a life-threatening emergency. | 1.27s \u00b7 1 model call \u00b7 441 tokens in, 54 out",
-    "Clinical planner | acute chest pressure: 6 expected and 6 possible items; admission possible | 4.39s \u00b7 3 model calls \u00b7 3,349 tokens in, 336 out",
-    "Pricing analyst | Priced on Aetna's negotiated rate with the hospital | 5.13s \u00b7 4 model calls \u00b7 3,191 tokens in, 144 out",
-    "Patient advocate | Summary written | 4.7s \u00b7 2 model calls \u00b7 3,008 tokens in, 430 out"
+    "Safety screener | Current chest pressure in a 58-year-old can signal a life-threatening emergency. | 1.31 seconds",
+    "Clinical planner | acute chest pressure: 6 expected and 6 possible items; admission possible | 6.24 seconds",
+    "Pricing analyst | Priced on Aetna's negotiated rate with the hospital | 6.66 seconds",
+    "Patient advocate | Summary written | 7.16 seconds"
   ],
   "tools": [
     [],
@@ -20,16 +21,15 @@
     [
       "get_guidance({\"topic\":\"emergency_care_first\"})\n\u2192 Emergency care comes first",
       "get_guidance({\"topic\":\"observation_vs_inpatient\"})\n\u2192 Observation is not the same as being admitted",
-      "get_guidance({\"topic\":\"admission_cost_share\"})\n\u2192 What an admission usually means for your share"
+      "get_guidance({\"topic\":\"financial_assistance\"})\n\u2192 Financial assistance"
     ]
   ],
-  "usage": "Agent\tModel calls\tTool calls\tInput tokens\tCached input\tOutput tokens\tTime\nSafety screener\t1\t0\t441\t0\t54\t1.27s\nClinical planner\t3\t2\t3,349\t0\t336\t4.39s\nPricing analyst\t4\t3\t3,191\t0\t144\t5.13s\nPatient advocate\t2\t3\t3,008\t1,198\t430\t4.7s\nTotal\t10\t8\t9,989\t1,198\t964\t15.81s",
-  "note": "Model: gpt-6-luna. Run 6b037f5e-5edc.",
-  "summary": "Get emergency care now\u2014call 911 or go to the nearest emergency department, and sort out the cost afterward. This estimate uses Aetna's negotiated rate and covers the hospital's bill only; the emergency physician bills separately, and that bill is not included. The visit level is assigned after care, so the actual hospital bill may differ.",
-  "ifAdmitted": "If formally admitted as an inpatient, the estimate lists a patient share of $5,000 for the chest-pain admission, billed as one case rate under inpatient benefits. An overnight stay under observation is outpatient care billed service by service, so it is different from inpatient admission and the admission estimate may not apply. Ask the care team which status applies.",
-  "drivers": "A lower visit level with expected tests could mean a lower share; a higher level or possible tests could raise it.\nA possible chest CT angiogram is one of the larger estimated items.\nThe estimate says observation is possible and admission is possible; these can change how the hospital bills the stay.",
-  "questions": "Is my dad under observation or formally admitted as an inpatient?\nWhich tests are included in the hospital estimate, and which possible tests were not included in the typical amount?\nWhat will Aetna count toward the deductible and out-of-pocket maximum for this hospital visit?\nWill the emergency physician send a separate bill, and how can we check its coverage?",
-  "rights": "The emergency department must provide a medical screening exam and stabilizing treatment regardless of ability to pay or insurance.\nHe can ask the care team whether he is formally admitted or under observation.",
-  "basis": "Used Aetna\u2019s negotiated hospital rates for the ED estimate and the admission and observation pricing, since Aetna is listed and matches the stated insurer.",
-  "assumptions": "Adult patient, age 58\nNo additional symptoms or medical history provided"
+  "summary": "Get emergency care for your dad now; sort out the cost afterward. Based on Aetna's negotiated rate with the hospital, the estimated hospital share for him is $1,392 at the low end, $1,764 for the typical visit, and $2,015 at the high end. The hospital bill estimate does not include the emergency physician's separate bill, and the final hospital bill may differ; the visit level is assigned after care.",
+  "ifAdmitted": "If he is formally admitted for chest pain, the estimate lists a patient share of $5,000 for the hospital stay, billed as one case rate under inpatient benefits. Observation is different: it is outpatient care billed service by service, and staying overnight does not by itself mean he was admitted as an inpatient. Ask the care team which status applies.",
+  "staff": "Can you confirm whether this hospital is in network with his Aetna plan and what the plan says about his cost share?\nIf he is admitted or kept under observation, how will his benefits and cost share differ?\nCan you provide an itemized hospital bill and explain how to apply for financial assistance or a payment plan?",
+  "doctor": "Which tests or scans are you considering, and what would each help you determine?\nIf he stays, will he be admitted as an inpatient or kept under observation?\nWhat follow-up care will he need after this visit?",
+  "rights": "The emergency department must provide a medical screening exam and stabilizing treatment regardless of ability to pay or insurance; cost questions can be handled afterward.If this is a nonprofit hospital, it must have a written financial assistance policy and tell patients about it; ask billing about applying before paying.",
+  "drivers": "The estimate ranges from ED visit level 4 to level 5; the level is set after the care is provided.A CT angiogram of the chest and IV medication are possible tests or services that could raise the estimate.The high estimate includes possible tests as well as expected tests.",
+  "basis": "Used Aetna\u2019s negotiated hospital rates for the ED estimate and admission/observation pricing because Aetna was listed and matches the stated insurer.",
+  "cards": "Lower end\n\n$1,392\n\nyou might pay\nCopay\n$250\nToward your deductible\n$1,142\nInsurer's rate for the visit\n$1,392\nHospital list price\n$2,696\nCash price (no insurance)\n$1,591\n\nED visit level 4 (serious problem needing a workup). Includes the expected tests only, at the lower visit level.\n\nMost likely\n\n$1,764\n\nyou might pay\nCopay\n$250\nToward your deductible\n$1,500\nCoinsurance\n$14\nInsurer's rate for the visit\n$1,820\nHospital list price\n$3,437\nCash price (no insurance)\n$2,028\n\nED visit level 5 (possible threat to life or limb). Includes the expected tests, at the most likely visit level.\n\nHigher end\n\n$2,015\n\nyou might pay\nCopay\n$250\nToward your deductible\n$1,500\nCoinsurance\n$265\nInsurer's rate for the visit\n$3,077\nHospital list price\n$6,100\nCash price (no insurance)\n$3,599\n\nED visit level 5 (possible threat to life or limb). Includes the expected and the possible tests, at the higher visit level."
 }

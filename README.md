@@ -57,6 +57,10 @@ Windows (PowerShell):
 
 To stop the app press `Ctrl+C` in the terminal. If port 8060 is busy, use another number after `--port` and open that address instead.
 
+## Put it online (optional)
+
+The repo includes `render.yaml`. On [Render](https://render.com), choose **New > Blueprint**, select this repo, and paste `OPENAI_API_KEY` (or add `PORTKEY_API_KEY`) when asked. The free plan sleeps after 15 minutes without visitors and takes about a minute to wake.
+
 ## What to try
 
 | Try this | What you should see |

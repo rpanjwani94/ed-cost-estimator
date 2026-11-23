@@ -1,5 +1,5 @@
 {
-  "started": "2026-11-22 18:44:50",
+  "started": "2026-11-23 10:57:51",
   "model": "gpt-6-luna",
   "reasoning_effort": "low",
   "via": "OpenAI direct",
@@ -8,25 +8,25 @@
       "case": "Twisted ankle",
       "outcome": "result",
       "stage": null,
-      "seconds": 17.0,
+      "seconds": 21.88,
       "agents": [
         {
           "agent": "triage",
           "requests": 1,
           "tool_calls": 0,
-          "input_tokens": 442,
+          "input_tokens": 694,
           "cached_input_tokens": 0,
-          "output_tokens": 59,
-          "seconds": 2.48
+          "output_tokens": 66,
+          "seconds": 3.63
         },
         {
           "agent": "clinical",
           "requests": 3,
           "tool_calls": 2,
-          "input_tokens": 3282,
+          "input_tokens": 3284,
           "cached_input_tokens": 0,
-          "output_tokens": 259,
-          "seconds": 5.17
+          "output_tokens": 261,
+          "seconds": 6.25
         },
         {
           "agent": "pricing",
@@ -34,25 +34,25 @@
           "tool_calls": 3,
           "input_tokens": 3067,
           "cached_input_tokens": 0,
-          "output_tokens": 126,
-          "seconds": 4.68
+          "output_tokens": 139,
+          "seconds": 4.71
         },
         {
           "agent": "advocate",
           "requests": 2,
           "tool_calls": 3,
-          "input_tokens": 2913,
-          "cached_input_tokens": 1160,
-          "output_tokens": 397,
-          "seconds": 4.33
+          "input_tokens": 3269,
+          "cached_input_tokens": 1333,
+          "output_tokens": 441,
+          "seconds": 6.93
         }
       ],
       "totals": {
         "requests": 10,
         "tool_calls": 8,
-        "input_tokens": 9704,
-        "cached_input_tokens": 1160,
-        "output_tokens": 841,
+        "input_tokens": 10314,
+        "cached_input_tokens": 1333,
+        "output_tokens": 907,
         "cost_usd": null
       },
       "scenario_id": "ankle_injury",
@@ -86,58 +86,58 @@
       ],
       "emergency": false,
       "summary_fallback": false,
-      "headline": "The hospital would likely be paid about $985 for this visit; your share depends on your plan.",
+      "headline": "You might pay up to $985 for the hospital's bill.",
       "rejections": []
     },
     {
       "case": "Chest pain",
       "outcome": "result",
       "stage": null,
-      "seconds": 17.1,
+      "seconds": 18.29,
       "agents": [
         {
           "agent": "triage",
           "requests": 1,
           "tool_calls": 0,
-          "input_tokens": 441,
+          "input_tokens": 693,
           "cached_input_tokens": 0,
-          "output_tokens": 59,
-          "seconds": 1.0
+          "output_tokens": 60,
+          "seconds": 1.18
         },
         {
           "agent": "clinical",
           "requests": 3,
           "tool_calls": 2,
-          "input_tokens": 3311,
-          "cached_input_tokens": 0,
-          "output_tokens": 342,
-          "seconds": 4.74
+          "input_tokens": 3349,
+          "cached_input_tokens": 1266,
+          "output_tokens": 340,
+          "seconds": 6.35
         },
         {
           "agent": "pricing",
           "requests": 4,
           "tool_calls": 3,
-          "input_tokens": 3187,
+          "input_tokens": 3191,
           "cached_input_tokens": 0,
-          "output_tokens": 134,
-          "seconds": 6.29
+          "output_tokens": 128,
+          "seconds": 4.39
         },
         {
           "agent": "advocate",
           "requests": 2,
           "tool_calls": 3,
-          "input_tokens": 3056,
-          "cached_input_tokens": 1226,
-          "output_tokens": 479,
-          "seconds": 5.08
+          "input_tokens": 3368,
+          "cached_input_tokens": 1378,
+          "output_tokens": 507,
+          "seconds": 6.36
         }
       ],
       "totals": {
         "requests": 10,
         "tool_calls": 8,
-        "input_tokens": 9995,
-        "cached_input_tokens": 1226,
-        "output_tokens": 1014,
+        "input_tokens": 10601,
+        "cached_input_tokens": 2644,
+        "output_tokens": 1035,
         "cost_usd": null
       },
       "scenario_id": "chest_pain",
@@ -177,23 +177,23 @@
       ],
       "emergency": true,
       "summary_fallback": false,
-      "headline": "You might owe about $1,764 for the hospital's bill.",
+      "headline": "You might pay about $1,764 for the hospital's bill.",
       "rejections": []
     },
     {
       "case": "Belly pain",
       "outcome": "result",
       "stage": null,
-      "seconds": 15.36,
+      "seconds": 22.09,
       "agents": [
         {
           "agent": "triage",
           "requests": 1,
           "tool_calls": 0,
-          "input_tokens": 441,
+          "input_tokens": 693,
           "cached_input_tokens": 0,
-          "output_tokens": 62,
-          "seconds": 1.07
+          "output_tokens": 56,
+          "seconds": 1.6
         },
         {
           "agent": "clinical",
@@ -201,8 +201,8 @@
           "tool_calls": 2,
           "input_tokens": 3400,
           "cached_input_tokens": 0,
-          "output_tokens": 310,
-          "seconds": 4.5
+          "output_tokens": 365,
+          "seconds": 7.01
         },
         {
           "agent": "pricing",
@@ -210,25 +210,25 @@
           "tool_calls": 3,
           "input_tokens": 3063,
           "cached_input_tokens": 0,
-          "output_tokens": 125,
-          "seconds": 4.71
+          "output_tokens": 126,
+          "seconds": 5.49
         },
         {
           "agent": "advocate",
-          "requests": 2,
-          "tool_calls": 3,
-          "input_tokens": 3065,
-          "cached_input_tokens": 1231,
-          "output_tokens": 484,
-          "seconds": 5.08
+          "requests": 3,
+          "tool_calls": 4,
+          "input_tokens": 5323,
+          "cached_input_tokens": 3112,
+          "output_tokens": 528,
+          "seconds": 7.99
         }
       ],
       "totals": {
-        "requests": 10,
-        "tool_calls": 8,
-        "input_tokens": 9969,
-        "cached_input_tokens": 1231,
-        "output_tokens": 981,
+        "requests": 11,
+        "tool_calls": 9,
+        "input_tokens": 12479,
+        "cached_input_tokens": 3112,
+        "output_tokens": 1075,
         "cost_usd": null
       },
       "scenario_id": "abdominal_pain",
@@ -268,23 +268,23 @@
       ],
       "emergency": false,
       "summary_fallback": false,
-      "headline": "The hospital would likely be paid about $1,323 for this visit; your share depends on your plan.",
+      "headline": "You might pay up to $1,323 for the hospital's bill.",
       "rejections": []
     },
     {
       "case": "Cut finger",
       "outcome": "result",
       "stage": null,
-      "seconds": 11.77,
+      "seconds": 14.67,
       "agents": [
         {
           "agent": "triage",
           "requests": 1,
           "tool_calls": 0,
-          "input_tokens": 439,
+          "input_tokens": 691,
           "cached_input_tokens": 0,
-          "output_tokens": 61,
-          "seconds": 1.32
+          "output_tokens": 56,
+          "seconds": 1.19
         },
         {
           "agent": "clinical",
@@ -292,8 +292,8 @@
           "tool_calls": 2,
           "input_tokens": 3221,
           "cached_input_tokens": 0,
-          "output_tokens": 195,
-          "seconds": 3.89
+          "output_tokens": 215,
+          "seconds": 5.19
         },
         {
           "agent": "pricing",
@@ -301,25 +301,25 @@
           "tool_calls": 1,
           "input_tokens": 1310,
           "cached_input_tokens": 0,
-          "output_tokens": 71,
-          "seconds": 1.86
+          "output_tokens": 70,
+          "seconds": 2.57
         },
         {
           "agent": "advocate",
           "requests": 2,
           "tool_calls": 3,
-          "input_tokens": 2852,
-          "cached_input_tokens": 1152,
-          "output_tokens": 346,
-          "seconds": 4.71
+          "input_tokens": 3158,
+          "cached_input_tokens": 1305,
+          "output_tokens": 360,
+          "seconds": 5.72
         }
       ],
       "totals": {
         "requests": 8,
         "tool_calls": 6,
-        "input_tokens": 7822,
-        "cached_input_tokens": 1152,
-        "output_tokens": 673,
+        "input_tokens": 8380,
+        "cached_input_tokens": 1305,
+        "output_tokens": 701,
         "cost_usd": null
       },
       "scenario_id": "laceration",
@@ -351,32 +351,32 @@
       ],
       "emergency": false,
       "summary_fallback": false,
-      "headline": "Without insurance, the hospital's cash price for this visit is about $1,340.",
+      "headline": "Without insurance, you would pay about $1,340 for the hospital's bill.",
       "rejections": []
     },
     {
       "case": "Cough and fever",
       "outcome": "result",
       "stage": null,
-      "seconds": 16.53,
+      "seconds": 50.44,
       "agents": [
         {
           "agent": "triage",
           "requests": 1,
           "tool_calls": 0,
-          "input_tokens": 443,
+          "input_tokens": 695,
           "cached_input_tokens": 0,
-          "output_tokens": 66,
-          "seconds": 1.29
+          "output_tokens": 62,
+          "seconds": 1.32
         },
         {
           "agent": "clinical",
           "requests": 3,
           "tool_calls": 2,
-          "input_tokens": 3322,
+          "input_tokens": 3318,
           "cached_input_tokens": 0,
-          "output_tokens": 334,
-          "seconds": 5.84
+          "output_tokens": 342,
+          "seconds": 6.72
         },
         {
           "agent": "pricing",
@@ -384,25 +384,25 @@
           "tool_calls": 3,
           "input_tokens": 3083,
           "cached_input_tokens": 0,
-          "output_tokens": 138,
-          "seconds": 4.64
+          "output_tokens": 135,
+          "seconds": 35.22
         },
         {
           "agent": "advocate",
           "requests": 2,
           "tool_calls": 3,
-          "input_tokens": 3279,
-          "cached_input_tokens": 1336,
-          "output_tokens": 453,
-          "seconds": 4.76
+          "input_tokens": 3582,
+          "cached_input_tokens": 1490,
+          "output_tokens": 474,
+          "seconds": 7.19
         }
       ],
       "totals": {
         "requests": 10,
         "tool_calls": 8,
-        "input_tokens": 10127,
-        "cached_input_tokens": 1336,
-        "output_tokens": 991,
+        "input_tokens": 10678,
+        "cached_input_tokens": 1490,
+        "output_tokens": 1013,
         "cost_usd": null
       },
       "scenario_id": "cough_fever",
@@ -440,7 +440,7 @@
       ],
       "emergency": false,
       "summary_fallback": false,
-      "headline": "The hospital would likely be paid about $505 for this visit; your share depends on your plan.",
+      "headline": "You might pay up to $505 for the hospital's bill.",
       "rejections": []
     }
   ],
@@ -457,7 +457,7 @@
       "case": "Off-topic request",
       "outcome": "refused",
       "stage": "triage",
-      "tokens_spent": 479,
+      "tokens_spent": 740,
       "agents_run": [
         "triage"
       ],
@@ -466,10 +466,30 @@
           "agent": "triage",
           "requests": 1,
           "tool_calls": 0,
-          "input_tokens": 432,
+          "input_tokens": 684,
           "cached_input_tokens": 0,
-          "output_tokens": 47,
-          "seconds": 1.07
+          "output_tokens": 56,
+          "seconds": 1.53
+        }
+      ]
+    },
+    {
+      "case": "Diagnosis only",
+      "outcome": "need_more",
+      "stage": null,
+      "tokens_spent": 753,
+      "agents_run": [
+        "triage"
+      ],
+      "usage": [
+        {
+          "agent": "triage",
+          "requests": 1,
+          "tool_calls": 0,
+          "input_tokens": 681,
+          "cached_input_tokens": 0,
+          "output_tokens": 72,
+          "seconds": 2.11
         }
       ]
     }
@@ -482,17 +502,17 @@
   "plain_model": [
     {
       "question": "What does Anthem pay Yale New Haven Hospital for the facility fee of a level 3 emergency department visit (CPT 99283)? Answer with one dollar figure.",
-      "model_answer": "$404.00",
+      "model_answer": "I can\u2019t determine a single reliable dollar amount: Anthem\u2019s negotiated rate can vary by plan and contract.",
       "hospital_file_rate": 865.37,
       "input_tokens": 39,
-      "output_tokens": 342
+      "output_tokens": 543
     },
     {
       "question": "What does Aetna pay Yale New Haven Hospital for a 2-view chest X-ray (CPT 71046) done in the emergency department? Answer with one dollar figure.",
-      "model_answer": "$107.00",
+      "model_answer": "$78.00",
       "hospital_file_rate": 119.33,
       "input_tokens": 42,
-      "output_tokens": 435
+      "output_tokens": 582
     }
   ]
 }
