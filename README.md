@@ -61,7 +61,7 @@ To stop the app press `Ctrl+C` in the terminal. If port 8060 is busy, use anothe
 
 ## Put it online (optional)
 
-The repo includes `render.yaml`. On [Render](https://render.com), choose **New > Blueprint**, select this repo, and paste `OPENAI_API_KEY` (or add `PORTKEY_API_KEY`) when asked. The free plan sleeps after 15 minutes without visitors and takes about a minute to wake. `.github/workflows/keep-awake.yml` visits the hosted copy every 10 minutes to keep it awake; change the address in that file if you host your own copy, or delete the file.
+The repo includes `render.yaml`. On [Render](https://render.com), choose **New > Blueprint**, select this repo, and paste `OPENAI_API_KEY` (or add `PORTKEY_API_KEY`) when asked. The free plan sleeps after 15 minutes without visitors and takes about a minute to wake.
 
 ## What to try
 
