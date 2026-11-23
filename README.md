@@ -2,6 +2,8 @@
 
 **What will an emergency department visit cost me?** Describe what is going on in your own words and four AI agents build an itemized estimate of the hospital's bill from Yale New Haven Hospital's own published prices: a low, most-likely and high figure, what you would pay under your plan, and what changes if you are admitted.
 
+**Try it online: <https://ed-cost-estimator.onrender.com>** (hosted on Render's free plan; if it has been idle the first page can take about a minute to load. This hosted copy is in test mode: the page says so, and what you type is saved for review.)
+
 Final project for MGT 409 (Yale SOM EMBA AI course).
 
 > This is a class project. It estimates a hospital bill from public prices. It is not a quote, not medical advice, and not affiliated with Yale New Haven Health.
@@ -59,7 +61,7 @@ To stop the app press `Ctrl+C` in the terminal. If port 8060 is busy, use anothe
 
 ## Put it online (optional)
 
-The repo includes `render.yaml`. On [Render](https://render.com), choose **New > Blueprint**, select this repo, and paste `OPENAI_API_KEY` (or add `PORTKEY_API_KEY`) when asked. The free plan sleeps after 15 minutes without visitors and takes about a minute to wake.
+The repo includes `render.yaml`. On [Render](https://render.com), choose **New > Blueprint**, select this repo, and paste `OPENAI_API_KEY` (or add `PORTKEY_API_KEY`) when asked. The free plan sleeps after 15 minutes without visitors and takes about a minute to wake. `.github/workflows/keep-awake.yml` visits the hosted copy every 10 minutes to keep it awake; change the address in that file if you host your own copy, or delete the file.
 
 ## What to try
 
