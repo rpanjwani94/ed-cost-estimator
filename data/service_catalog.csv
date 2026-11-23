@@ -1,0 +1,149 @@
+code,category,name,hospital_description
+99281,visit,ED visit level 1 (very minor problem),HC ER LVL I
+99282,visit,ED visit level 2 (minor problem),HC ER LVL II
+99283,visit,ED visit level 3 (moderate problem),HC ER LVL III
+99284,visit,ED visit level 4 (serious problem needing a workup),HC ER LVL IV
+99285,visit,ED visit level 5 (possible threat to life or limb),HC ER LVL V
+99291,visit,Critical care (first 30 to 74 minutes),HC ER CRITICAL CARE 30-74 MIN
+99292,visit,Critical care (each extra 30 minutes),HC ER CRITICAL CARE ADDL 30 MIN
+G0390,visit,Trauma team activation,HC FULL TRAUMA RESPONSE LEVEL I
+99222,observation,Observation stay (moderate acuity),HC OBSERVATION MODERATE ACUITY
+99223,observation,Observation stay (higher acuity),HC OBSERVATION HIGHER ACUITY
+G0379,observation,Direct referral to observation,HC DIRECT REFER HOSPITAL OBSERVATION
+93005,cardiac,ECG (heart tracing),HC EKG ROUTINE TRACING ONLY
+93041,cardiac,Heart rhythm strip,HC EKG RHYTHM TRACING ONLY
+93306,cardiac,Echocardiogram (heart ultrasound),HC ECHO 2D W/ SPEC/COLOR FLOW M-MODE COMPL
+92960,cardiac,Electrical cardioversion,HC CARDIOVERSION ELECTIVE EXTERNAL
+36415,lab,Blood draw,HC VENIPUNCTURE
+85025,lab,Complete blood count (CBC),HC BL COUNT CBC AUTO W/AUTO DIFF
+80048,lab,Basic metabolic panel (electrolytes and kidney function),HC BASIC METABOLIC PANEL
+80053,lab,Comprehensive metabolic panel (adds liver tests),HC CMPRH METABOLIC PANEL
+80076,lab,Liver function panel,HC HEPATIC FUNCTION PANEL
+83690,lab,Lipase (pancreas test),HC LIPASE
+84484,lab,Troponin (heart damage blood test),"HC TROPONIN, QUANTITATIVE"
+83880,lab,BNP (heart failure blood test),HC NATRIURETIC PEPTIDE
+85379,lab,D-dimer (blood clot screening test),"HC DDIMER, QUANT"
+85610,lab,Prothrombin time / INR (clotting test),HC PROTHROMBIN TIME (PT)
+85730,lab,PTT (clotting test),HC PTT
+83605,lab,Lactate (lactic acid),HC LACTATE/LACTIC ACID
+84145,lab,Procalcitonin (bacterial infection marker),HC PROCALCITONIN
+86140,lab,C-reactive protein (inflammation marker),HC C-REACTIVE PROTEIN
+85652,lab,Sedimentation rate (inflammation marker),HC SED RATE RBC AUTO
+83735,lab,Magnesium level,HC MAGNESIUM
+84443,lab,Thyroid test (TSH),HC THYROID STIMULATING HORMONE (TSH)
+82962,lab,Fingerstick blood sugar,HC GLUCOSE BY DEVICE
+82947,lab,Blood sugar (lab),HC GLUCOSE BLOOD QUANTITATVE
+82803,lab,Blood gas,HC BL GAS PH PO2 &/OR PCO2
+82550,lab,Creatine kinase (muscle enzyme),HC CREATINE KINASE (CPK) TOTAL
+82077,lab,Blood alcohol level,HC ASSAY ALCOHOL SPEC XCP UR&BREATH IA
+80307,lab,Urine drug screen,HC DRUG TEST PRESUMPTIVE INSTRUMENTED
+81001,lab,Urinalysis with microscope exam,HC URINALYSIS AUTO W/MICRO
+81003,lab,Urinalysis (dipstick),HC URINALYSIS AUTO W/O MICRO
+81025,lab,Urine pregnancy test,HC URINE PREGNANCY TEST
+84703,lab,Blood pregnancy test (yes/no),HC HCG QUALITATIVE
+84702,lab,Blood pregnancy hormone level (hCG),HC BETA HCG QUANT
+87086,lab,Urine culture,HC CULT URINE W/COLONY COUNT
+87040,lab,Blood culture,HC BLOOD CULTURE
+87880,lab,Rapid strep test,HC GROUP A STREP RAPID ANTIG GROUP A
+87804,lab,Rapid flu test,HC RAPID FLU A & B
+87635,lab,COVID-19 PCR test,"HC COVID-19 AMPLIFIED PROBE, NON-CDC"
+87637,lab,COVID + flu + RSV PCR test,HC COVID-19 + FLU A/B + RSV
+87491,lab,Chlamydia test,HC NUCLEIC ACID PROBE AMPL CHLAMYDIA TRACH
+87591,lab,Gonorrhea test,HC NUCLEIC ACID PROBE AMPL NEISSERIA GONORR
+86900,lab,Blood type (ABO),HC BLOOD GROUPING ABO
+86901,lab,Blood type (Rh),HC BL TYPING RH (D)
+86850,lab,Antibody screen (before transfusion),HC RBC SCRN ANTIBODY
+71045,imaging,Chest X-ray (1 view),HC XR EXAM CHEST 1 VIEW
+71046,imaging,Chest X-ray (2 views),HC XR EXAM CHEST 2 VIEWS
+71100,imaging,Rib X-ray,HC XR RIBS UNI 2 VIEWS
+72040,imaging,Neck (cervical spine) X-ray,HC XR C-SPINE 2 OR 3 VIEWS
+72100,imaging,Lower back (lumbar spine) X-ray,HC XR LUMBAR SPINE 2 OR 3 VIEWS
+72170,imaging,Pelvis X-ray,HC XR PELVIS 1 OR 2 VIEWS
+73030,imaging,Shoulder X-ray,HC XR SHOULDER COMPL 2+ VIEWS
+73080,imaging,Elbow X-ray,HC XR ELBOW COMPL 3+ VIEWS
+73090,imaging,Forearm X-ray,HC XR FOREARM 2 VIEWS
+73110,imaging,Wrist X-ray,HC XR WRIST COMPL 3+ VIEWS
+73130,imaging,Hand X-ray,HC XR HAND COMPL 3+ VIEWS
+73502,imaging,Hip X-ray,HC XR EXAM HIP UNI 2 -3 VIEWS
+73562,imaging,Knee X-ray,HC XR KNEE 3 VIEWS
+73610,imaging,Ankle X-ray,HC XR ANKLE COMPL 3+ VIEWS
+73630,imaging,Foot X-ray,HC XR FT COMPL 3+ VIEWS
+74018,imaging,Abdomen X-ray,HC XR EXAM ABDOMEN 1 VIEW
+70450,imaging,CT scan of the head (no contrast),HC CT HEAD/BRAIN W/O CONTR
+70486,imaging,CT scan of the face (no contrast),HC CT MAXILLOFACIAL W/O CONTR
+70491,imaging,CT scan of the neck (with contrast),HC CT NECK W/CONTR
+70496,imaging,CT angiogram of the head (brain blood vessels),HC CTA HEAD W&W/O CONTR
+70498,imaging,CT angiogram of the neck (neck blood vessels),HC CTA NECK W&W/O CONTR
+72125,imaging,CT scan of the neck spine (no contrast),HC CT C-SPINE W/O CONTR
+72131,imaging,CT scan of the lower spine (no contrast),HC CT LUMBAR SPINE W/O CONTR
+71250,imaging,CT scan of the chest (no contrast),HC CT THORAX W/O CONTR
+71260,imaging,CT scan of the chest (with contrast),HC CT THORAX W/CONTR
+71275,imaging,CT angiogram of the chest (checks for lung blood clots),HC CTA CHEST (NONCOR) W&W/O CONTR
+74176,imaging,CT scan of the abdomen and pelvis (no contrast),HC CT ABD/PEL W/O CONTR
+74177,imaging,CT scan of the abdomen and pelvis (with contrast),HC CT ABD/PEL W/CONTR
+74174,imaging,CT angiogram of the abdomen and pelvis,HC CTA ABD/PEL W&WO CONTR
+70551,imaging,MRI of the brain (no contrast),HC MRI BRAIN W/O CONTR LTD
+72148,imaging,MRI of the lower spine (no contrast),HC MRI LUMBAR SPINE W/O CONTR
+76705,imaging,Ultrasound of the abdomen (limited),HC US ABD LTD
+76700,imaging,Ultrasound of the abdomen (complete),HC US ABD COMPL
+76770,imaging,Ultrasound of the kidneys,HC US RETROPERITIONEAL COMPL
+76856,imaging,Pelvic ultrasound,HC US PELVIS NON OB
+76830,imaging,Transvaginal ultrasound,HC US TRANSVAG NON OB
+76815,imaging,Pregnancy ultrasound (limited),HC US PREGNANCY 1 OR MORE FETUSES LTD
+76817,imaging,Pregnancy ultrasound (transvaginal),HC US PREGNANCY TRANSVAG
+76870,imaging,Scrotal ultrasound,HC US SCROTUM
+76882,imaging,Soft tissue ultrasound of an arm or leg,HC US EXTREM NON VASCULAR LTD ANATOMIC SPEC
+93971,imaging,Leg vein ultrasound for blood clot (one leg),HC DUPLEX VENOUS EXTREM UNI/LTD
+93970,imaging,Leg vein ultrasound for blood clot (both legs),HC DUPLEX VENOUS EXTREM
+96360,treatment,IV fluids (first hour),HC IV INF THPY HYD FLUIDS INIT 31 MIN-1HR
+96361,treatment,IV fluids (each extra hour),HC IV INF THPY HYDRATION FLUIDS ADDL HR
+96365,treatment,IV medication infusion (first hour),HC IV INF FOR THER/PROPH/DIAG INIT <= 1HR
+96374,treatment,IV medication push (first),HC TX/PROPH/DIAG INJ IV PUSH INIT
+96375,treatment,IV medication push (each additional drug),HC TX/PROPH/DIAG INJ IV PUSH ADDL SEQ
+96372,treatment,Injection (shot in the muscle or under the skin),HC THER/PROPH/DIAG INJ/SQ/IM
+94640,treatment,Nebulizer breathing treatment,HC PRESSURIZED/NONPRESSURIZED INHAL TX
+94760,treatment,Pulse oximetry (oxygen level check),HC PULSE OXIMETRY SNGL DETERMINATION
+90471,treatment,Vaccine administration,HC IMMUN ADMIN 1 VACC PERC/IM/SUB Q/ID
+90715,treatment,Tetanus booster (Tdap) vaccine,HC TDAP VACC >7 YR IM
+99152,treatment,Procedural sedation (first 15 minutes),HC MOD SED SAME PHYS/QHP 5/>YRS INTL 15 MIN
+12001,procedure,"Stitches, simple cut up to 2.5 cm (body, scalp, hands, feet)",HC RPR LAC SMPL SCLP/HND/FT/GEN <2.5CM
+12002,procedure,"Stitches, simple cut 2.6 to 7.5 cm (body, scalp, hands, feet)",HC RPR LAC SMPL SCLP/HND/FT/GEN 2.6-7.5CM
+12011,procedure,"Stitches, simple cut on the face up to 2.5 cm",HC RPR LAC SMPL FACE/EAR/LIPS <=2.5CM
+12013,procedure,"Stitches, simple cut on the face 2.6 to 5 cm",HC RPR LAC SMPL FACE/EAR/LIPS 2.6-5.0CM
+12032,procedure,"Stitches, deeper layered repair 2.6 to 7.5 cm",HC RPR LAC INTMD SCLP/AXIL/TRUNK 2.6-7.5CM
+10060,procedure,Abscess drainage (simple),HC I&D ABSC SMPL
+10061,procedure,Abscess drainage (complex),HC I&D ABSC CMPLX
+10120,procedure,Removal of a foreign object under the skin,HC INCISION/REM FOREIGN BODY SC SMPL
+11740,procedure,Draining blood from under a nail,HC EVAC HEMATOMA SUBUNGAL
+30901,procedure,Nosebleed control,HC CONTROL NOSEBLEED ANTERIOR SMPL
+65222,procedure,Removal of an object from the eye surface,HC REM FB CORNEAL W/SLIT LAMP
+51702,procedure,Urinary catheter placement,HC CATH BLADDER SMPL
+62270,procedure,Lumbar puncture (spinal tap),HC LUMBAR PUNCT DIAG
+20610,procedure,Joint drainage or injection (large joint),HC DRAIN/INJ JT/BURSA MAJOR NO US
+23650,procedure,Putting a dislocated shoulder back in place,HC TX DISL SHOULDER W/MANIP CLSD
+24640,procedure,Nursemaid's elbow reduction (child),HC TX ELBOW CHILD NURSEMAID W/MANIP CLSD
+25600,procedure,Wrist fracture care (no setting needed),HC TX FX RADIUS/ULNA W/O MANIP CLSD
+27786,procedure,Ankle fracture care (no setting needed),HC TX DIST FIBULA CLSD
+29125,procedure,Forearm or wrist splint,HC APPLICATION SPLINT ARM SHO STATIC
+29105,procedure,Long arm splint,HC APPLICATION SPLINT ARM LONG
+29130,procedure,Finger splint,HC APPLICATION SPLINT FINGER STATIC
+29515,procedure,Lower leg or ankle splint,HC APPLICATION SPLINT LEG SHORT
+29540,procedure,Ankle strapping,HC STRAPPING ANKLE AND/OR FT
+16020,procedure,Burn dressing (small burn),HC DRESS/DEBR PA-THICK BURN <5% INIT/SQ SM
+73721,imaging,MRI of a leg joint such as the ankle or knee (no contrast),HC MRI LWR EXTREM JT W/O CONTR
+97161,treatment,Physical therapy evaluation,HC PT EVAL LOW COMPLEX 20 MIN
+86308,lab,Mono test (heterophile antibody),HC HETEROPHILE AB(MONO)
+RX-ACETAMINOPHEN,medicine,Acetaminophen 500 mg tablet,ACETAMINOPHEN 500 MG TABLET
+RX-LIDOCAINE-PATCH,medicine,Lidocaine 4% patch,LIDOCAINE 4 % TOPICAL PATCH
+RX-ONDANSETRON,medicine,Ondansetron 4 mg IV (anti-nausea medicine),ONDANSETRON HCL (PF) 4 MG/2 ML INJECTION SOLUTION
+RX-DEXAMETHASONE,medicine,Dexamethasone IV (steroid),DEXAMETHASONE SODIUM PHOSPHATE 4 MG/ML INJECTION SOLUTION
+RX-FAMOTIDINE,medicine,Famotidine (Pepcid) 20 mg IV,FAMOTIDINE (PF) 20 MG/2 ML INTRAVENOUS SOLUTION
+RX-DIPHENHYDRAMINE,medicine,Diphenhydramine (Benadryl) 50 mg IV,DIPHENHYDRAMINE 50 MG/ML INJECTION SOLUTION
+RX-EPINEPHRINE,medicine,Epinephrine auto-injector 0.3 mg (EpiPen),"EPINEPHRINE 0.3 MG/0.3 ML INJECTION, AUTO-INJECTOR"
+RX-CEPHALEXIN,medicine,Cephalexin 500 mg capsule (antibiotic),CEPHALEXIN 500 MG CAPSULE
+RX-CEFTRIAXONE,medicine,Ceftriaxone 1 g IV (antibiotic),CEFTRIAXONE 1 GRAM SOLUTION FOR INJECTION
+24600,procedure,Putting a dislocated elbow back in place,HC TX DISL ELBOW W/O ANES CLSD
+24605,procedure,Putting a dislocated elbow back in place under anesthesia,HC TX DISL ELBOW W/ANES CLSD
+23655,procedure,Putting a dislocated shoulder back in place under anesthesia,HC TX DISL SHOULDER W/MANIP W/ANES CLSD
+73200,imaging,CT scan of an arm joint (no contrast),HC CT UPR EXTREM W/O CONTR
+99153,treatment,Procedural sedation (each extra 15 minutes),HC MOD SED SAME PHYS/QHP EA ADD'L 15 MIN

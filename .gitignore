@@ -1,0 +1,25 @@
+# Secrets
+.env
+
+# Full hospital price file (122 MB, too big for GitHub); regenerate the test data with scripts/extract_ed_rows.py
+raw/
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Node
+node_modules/
+dist/
+
+# OS
+.DS_Store
+
+# Test cache
+.pytest_cache/
+
+# Test mode: what testers typed (never commit)
+output/test_runs.jsonl
+output/test_runs_review.csv
+output/*.log.jsonl

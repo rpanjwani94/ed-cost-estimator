@@ -1,0 +1,1158 @@
+{
+  "_note": "Typical ED workups by presenting problem. Drafted with AI help, then reviewed and corrected by the ED clinician who owns this project on 22 November 2026. 'expected' items are ordered for most patients with this problem; 'possible' items are ordered for some. Visit levels are the hospital facility E/M level (99281-99285) or critical care (99291).",
+  "scenarios": [
+    {
+      "id": "chest_pain",
+      "title": "Chest pain",
+      "keywords": [
+        "chest pain",
+        "chest pressure",
+        "chest tightness",
+        "heart",
+        "palpitations",
+        "angina"
+      ],
+      "levels": {
+        "low": "99284",
+        "typical": "99285",
+        "high": "99285"
+      },
+      "expected": [
+        {
+          "code": "93005",
+          "quantity": 1
+        },
+        {
+          "code": "84484",
+          "quantity": 2
+        },
+        {
+          "code": "85025",
+          "quantity": 1
+        },
+        {
+          "code": "80048",
+          "quantity": 1
+        },
+        {
+          "code": "71046",
+          "quantity": 1
+        },
+        {
+          "code": "36415",
+          "quantity": 1
+        }
+      ],
+      "possible": [
+        {
+          "code": "85379",
+          "quantity": 1
+        },
+        {
+          "code": "71275",
+          "quantity": 1
+        },
+        {
+          "code": "83880",
+          "quantity": 1
+        },
+        {
+          "code": "96374",
+          "quantity": 1
+        },
+        {
+          "code": "85652",
+          "quantity": 1,
+          "note": "ESR"
+        },
+        {
+          "code": "86140",
+          "quantity": 1,
+          "note": "CRP"
+        }
+      ],
+      "admission": {
+        "likelihood": "possible",
+        "drgs": [
+          "313"
+        ],
+        "observation_possible": true
+      },
+      "note": "Two troponins a few hours apart is standard. Many low-risk patients go home; others stay in observation for monitoring or a stress test."
+    },
+    {
+      "id": "abdominal_pain",
+      "title": "Abdominal pain",
+      "keywords": [
+        "abdominal pain",
+        "stomach pain",
+        "belly pain",
+        "stomach ache",
+        "appendicitis",
+        "gallbladder",
+        "abdomen"
+      ],
+      "levels": {
+        "low": "99284",
+        "typical": "99284",
+        "high": "99285"
+      },
+      "expected": [
+        {
+          "code": "85025",
+          "quantity": 1
+        },
+        {
+          "code": "80053",
+          "quantity": 1
+        },
+        {
+          "code": "83690",
+          "quantity": 1
+        },
+        {
+          "code": "81001",
+          "quantity": 1
+        },
+        {
+          "code": "36415",
+          "quantity": 1
+        }
+      ],
+      "possible": [
+        {
+          "code": "74177",
+          "quantity": 1
+        },
+        {
+          "code": "76705",
+          "quantity": 1
+        },
+        {
+          "code": "84703",
+          "quantity": 1
+        },
+        {
+          "code": "96360",
+          "quantity": 1
+        },
+        {
+          "code": "96374",
+          "quantity": 1
+        },
+        {
+          "code": "RX-ONDANSETRON",
+          "quantity": 1,
+          "note": "anti-nausea medicine"
+        },
+        {
+          "code": "96375",
+          "quantity": 1,
+          "note": "IV push for the anti-nausea medicine"
+        }
+      ],
+      "admission": {
+        "likelihood": "possible",
+        "drgs": [
+          "392"
+        ],
+        "observation_possible": true
+      },
+      "note": "The CT scan is the biggest swing in cost. Whether it is needed depends on the exam and blood work."
+    },
+    {
+      "id": "ankle_injury",
+      "title": "Ankle or foot injury",
+      "keywords": [
+        "ankle",
+        "sprain",
+        "twisted",
+        "rolled my ankle",
+        "foot injury",
+        "foot pain after"
+      ],
+      "levels": {
+        "low": "99282",
+        "typical": "99283",
+        "high": "99283"
+      },
+      "expected": [
+        {
+          "code": "73610",
+          "quantity": 1
+        }
+      ],
+      "possible": [
+        {
+          "code": "73630",
+          "quantity": 1
+        },
+        {
+          "code": "29515",
+          "quantity": 1
+        },
+        {
+          "code": "27786",
+          "quantity": 1
+        },
+        {
+          "code": "73721",
+          "quantity": 1,
+          "note": "MRI if needed"
+        },
+        {
+          "code": "97161",
+          "quantity": 1,
+          "note": "physical therapy evaluation"
+        }
+      ],
+      "admission": {
+        "likelihood": "unlikely",
+        "drgs": [],
+        "observation_possible": true
+      },
+      "note": "Most ankle injuries need one X-ray. A splint or fracture care is added only if something is broken. Some patients are kept in ED or medical observation when they need physical therapy or an MRI."
+    },
+    {
+      "id": "arm_wrist_injury",
+      "title": "Wrist, hand or arm injury",
+      "keywords": [
+        "wrist",
+        "hand injury",
+        "arm injury",
+        "fell on my hand",
+        "forearm",
+        "elbow",
+        "finger injury",
+        "broken arm"
+      ],
+      "levels": {
+        "low": "99282",
+        "typical": "99283",
+        "high": "99284"
+      },
+      "expected": [
+        {
+          "code": "73110",
+          "quantity": 1
+        }
+      ],
+      "possible": [
+        {
+          "code": "73130",
+          "quantity": 1
+        },
+        {
+          "code": "73090",
+          "quantity": 1
+        },
+        {
+          "code": "29125",
+          "quantity": 1
+        },
+        {
+          "code": "25600",
+          "quantity": 1
+        }
+      ],
+      "admission": {
+        "likelihood": "unlikely",
+        "drgs": [],
+        "observation_possible": false
+      },
+      "note": "Cost depends on how many areas are X-rayed and whether a fracture needs a splint."
+    },
+    {
+      "id": "laceration",
+      "title": "Cut that may need stitches",
+      "keywords": [
+        "cut",
+        "laceration",
+        "stitches",
+        "gash",
+        "sliced",
+        "bleeding wound"
+      ],
+      "levels": {
+        "low": "99282",
+        "typical": "99283",
+        "high": "99283"
+      },
+      "expected": [
+        {
+          "code": "12001",
+          "quantity": 1
+        },
+        {
+          "code": "73130",
+          "quantity": 1,
+          "note": "X-ray of the injured area (hand shown; use the body part that was cut)"
+        }
+      ],
+      "possible": [
+        {
+          "code": "90715",
+          "quantity": 1
+        },
+        {
+          "code": "90471",
+          "quantity": 1
+        }
+      ],
+      "admission": {
+        "likelihood": "unlikely",
+        "drgs": [],
+        "observation_possible": false
+      },
+      "note": "The repair is priced by length, depth and body area; a longer or deeper cut costs more than shown. A tetanus booster is added if yours is out of date."
+    },
+    {
+      "id": "headache",
+      "title": "Headache",
+      "keywords": [
+        "headache",
+        "migraine",
+        "head pain"
+      ],
+      "levels": {
+        "low": "99283",
+        "typical": "99284",
+        "high": "99285"
+      },
+      "expected": [
+        {
+          "code": "70450",
+          "quantity": 1
+        },
+        {
+          "code": "96374",
+          "quantity": 1,
+          "note": "IV medicine"
+        },
+        {
+          "code": "96360",
+          "quantity": 1
+        },
+        {
+          "code": "85025",
+          "quantity": 1
+        },
+        {
+          "code": "80048",
+          "quantity": 1
+        },
+        {
+          "code": "36415",
+          "quantity": 1,
+          "note": "blood draw for the labs"
+        }
+      ],
+      "possible": [
+        {
+          "code": "70496",
+          "quantity": 1
+        },
+        {
+          "code": "70498",
+          "quantity": 1
+        }
+      ],
+      "admission": {
+        "likelihood": "unlikely",
+        "drgs": [],
+        "observation_possible": false
+      },
+      "note": "The usual ED workup for a headache is a head CT, blood work, IV fluids and IV medicine. A CT angiogram of the head and neck is added when a blood vessel problem is a concern."
+    },
+    {
+      "id": "head_injury",
+      "title": "Head injury",
+      "keywords": [
+        "head injury",
+        "hit my head",
+        "concussion",
+        "fell and hit",
+        "bumped head"
+      ],
+      "levels": {
+        "low": "99283",
+        "typical": "99284",
+        "high": "99285"
+      },
+      "expected": [],
+      "possible": [
+        {
+          "code": "70450",
+          "quantity": 1
+        },
+        {
+          "code": "72125",
+          "quantity": 1
+        },
+        {
+          "code": "12001",
+          "quantity": 1
+        },
+        {
+          "code": "85025",
+          "quantity": 1,
+          "note": "labs"
+        },
+        {
+          "code": "80048",
+          "quantity": 1,
+          "note": "labs"
+        },
+        {
+          "code": "36415",
+          "quantity": 1,
+          "note": "blood draw for the labs"
+        },
+        {
+          "code": "RX-ACETAMINOPHEN",
+          "quantity": 2
+        },
+        {
+          "code": "90715",
+          "quantity": 1,
+          "note": "tetanus booster"
+        },
+        {
+          "code": "90471",
+          "quantity": 1,
+          "note": "giving the tetanus booster"
+        }
+      ],
+      "admission": {
+        "likelihood": "unlikely",
+        "drgs": [],
+        "observation_possible": true
+      },
+      "note": "Clinicians use decision rules to decide who needs a head CT. Many minor head injuries need only an exam and watching."
+    },
+    {
+      "id": "shortness_of_breath",
+      "title": "Shortness of breath, asthma or COPD flare",
+      "keywords": [
+        "shortness of breath",
+        "short of breath",
+        "trouble breathing",
+        "can't breathe",
+        "wheezing",
+        "asthma",
+        "copd",
+        "breathing"
+      ],
+      "levels": {
+        "low": "99284",
+        "typical": "99285",
+        "high": "99291"
+      },
+      "expected": [
+        {
+          "code": "71046",
+          "quantity": 1
+        },
+        {
+          "code": "94640",
+          "quantity": 1
+        },
+        {
+          "code": "93005",
+          "quantity": 1
+        },
+        {
+          "code": "87637",
+          "quantity": 1,
+          "note": "flu/COVID/RSV swab"
+        }
+      ],
+      "possible": [
+        {
+          "code": "85025",
+          "quantity": 1
+        },
+        {
+          "code": "80048",
+          "quantity": 1
+        },
+        {
+          "code": "83880",
+          "quantity": 1
+        },
+        {
+          "code": "84484",
+          "quantity": 1
+        },
+        {
+          "code": "82803",
+          "quantity": 1
+        },
+        {
+          "code": "85379",
+          "quantity": 1
+        },
+        {
+          "code": "71275",
+          "quantity": 1
+        },
+        {
+          "code": "36415",
+          "quantity": 1
+        },
+        {
+          "code": "RX-CEFTRIAXONE",
+          "quantity": 1,
+          "note": "antibiotic"
+        },
+        {
+          "code": "96365",
+          "quantity": 1,
+          "note": "IV infusion for the antibiotic"
+        }
+      ],
+      "admission": {
+        "likelihood": "possible",
+        "drgs": [
+          "190",
+          "191",
+          "192",
+          "291",
+          "292",
+          "293"
+        ],
+        "observation_possible": true
+      },
+      "note": "The range is wide because the cause ranges from a mild asthma flare to heart failure or a blood clot in the lung."
+    },
+    {
+      "id": "cough_fever",
+      "title": "Cough and fever (possible flu, COVID or pneumonia)",
+      "keywords": [
+        "cough",
+        "fever",
+        "flu",
+        "covid",
+        "pneumonia",
+        "chills",
+        "body aches"
+      ],
+      "levels": {
+        "low": "99283",
+        "typical": "99284",
+        "high": "99285"
+      },
+      "expected": [
+        {
+          "code": "71046",
+          "quantity": 1
+        },
+        {
+          "code": "87637",
+          "quantity": 1
+        }
+      ],
+      "possible": [
+        {
+          "code": "85025",
+          "quantity": 1
+        },
+        {
+          "code": "80048",
+          "quantity": 1
+        },
+        {
+          "code": "83605",
+          "quantity": 1
+        },
+        {
+          "code": "87040",
+          "quantity": 2
+        },
+        {
+          "code": "84145",
+          "quantity": 1
+        },
+        {
+          "code": "96360",
+          "quantity": 1
+        },
+        {
+          "code": "96365",
+          "quantity": 1
+        },
+        {
+          "code": "36415",
+          "quantity": 1
+        }
+      ],
+      "admission": {
+        "likelihood": "possible",
+        "drgs": [
+          "193",
+          "194",
+          "195",
+          "871",
+          "872"
+        ],
+        "observation_possible": true
+      },
+      "note": "Healthy adults with a viral illness usually go home. Older or sicker patients with pneumonia may be admitted."
+    },
+    {
+      "id": "urinary_flank",
+      "title": "Painful urination or flank pain (possible UTI or kidney stone)",
+      "keywords": [
+        "uti",
+        "urinary",
+        "burning when i pee",
+        "painful urination",
+        "kidney stone",
+        "flank pain",
+        "blood in urine",
+        "kidney"
+      ],
+      "levels": {
+        "low": "99283",
+        "typical": "99284",
+        "high": "99284"
+      },
+      "expected": [
+        {
+          "code": "81001",
+          "quantity": 1
+        },
+        {
+          "code": "87086",
+          "quantity": 1
+        },
+        {
+          "code": "85025",
+          "quantity": 1
+        },
+        {
+          "code": "80048",
+          "quantity": 1
+        },
+        {
+          "code": "74176",
+          "quantity": 1
+        },
+        {
+          "code": "76770",
+          "quantity": 1
+        },
+        {
+          "code": "84703",
+          "quantity": 1
+        },
+        {
+          "code": "96374",
+          "quantity": 1
+        },
+        {
+          "code": "96360",
+          "quantity": 1
+        },
+        {
+          "code": "36415",
+          "quantity": 1
+        }
+      ],
+      "possible": [],
+      "admission": {
+        "likelihood": "unlikely",
+        "drgs": [
+          "690"
+        ],
+        "observation_possible": false
+      },
+      "note": "The ED workup includes urine tests, blood work, imaging for a kidney stone (CT and kidney ultrasound), and IV fluids and medicine."
+    },
+    {
+      "id": "syncope",
+      "title": "Fainting or passing out",
+      "keywords": [
+        "fainted",
+        "passed out",
+        "syncope",
+        "blacked out",
+        "lost consciousness",
+        "fainting"
+      ],
+      "levels": {
+        "low": "99284",
+        "typical": "99285",
+        "high": "99285"
+      },
+      "expected": [
+        {
+          "code": "93005",
+          "quantity": 1
+        },
+        {
+          "code": "85025",
+          "quantity": 1
+        },
+        {
+          "code": "80048",
+          "quantity": 1
+        },
+        {
+          "code": "82962",
+          "quantity": 1
+        },
+        {
+          "code": "36415",
+          "quantity": 1
+        },
+        {
+          "code": "84484",
+          "quantity": 1
+        }
+      ],
+      "possible": [
+        {
+          "code": "70450",
+          "quantity": 1
+        },
+        {
+          "code": "71046",
+          "quantity": 1
+        },
+        {
+          "code": "84703",
+          "quantity": 1
+        },
+        {
+          "code": "96360",
+          "quantity": 1
+        }
+      ],
+      "admission": {
+        "likelihood": "likely",
+        "drgs": [
+          "312"
+        ],
+        "observation_possible": true
+      },
+      "note": "The ED checks the heart, including a troponin. Most patients are admitted or kept for monitoring."
+    },
+    {
+      "id": "stroke_symptoms",
+      "title": "Stroke symptoms",
+      "keywords": [
+        "stroke",
+        "face drooping",
+        "slurred speech",
+        "weakness on one side",
+        "numbness on one side",
+        "can't speak",
+        "tia"
+      ],
+      "levels": {
+        "low": "99285",
+        "typical": "99285",
+        "high": "99291"
+      },
+      "expected": [
+        {
+          "code": "70450",
+          "quantity": 1
+        },
+        {
+          "code": "70496",
+          "quantity": 1
+        },
+        {
+          "code": "70498",
+          "quantity": 1
+        },
+        {
+          "code": "85025",
+          "quantity": 1
+        },
+        {
+          "code": "80048",
+          "quantity": 1
+        },
+        {
+          "code": "85610",
+          "quantity": 1
+        },
+        {
+          "code": "82962",
+          "quantity": 1
+        },
+        {
+          "code": "93005",
+          "quantity": 1
+        },
+        {
+          "code": "84484",
+          "quantity": 1
+        },
+        {
+          "code": "36415",
+          "quantity": 1
+        }
+      ],
+      "possible": [
+        {
+          "code": "70551",
+          "quantity": 1
+        }
+      ],
+      "admission": {
+        "likelihood": "likely",
+        "drgs": [
+          "064",
+          "065",
+          "066"
+        ],
+        "observation_possible": false
+      },
+      "note": "Stroke care is time-critical. Call 911. Do not wait to compare prices. A neurology consult is part of the workup; the neurologist bills separately, so it is not in the hospital-bill total."
+    },
+    {
+      "id": "skin_infection",
+      "title": "Skin infection or abscess",
+      "keywords": [
+        "abscess",
+        "cellulitis",
+        "skin infection",
+        "boil",
+        "infected",
+        "red swollen skin"
+      ],
+      "levels": {
+        "low": "99282",
+        "typical": "99283",
+        "high": "99284"
+      },
+      "expected": [
+        {
+          "code": "RX-CEPHALEXIN",
+          "quantity": 1,
+          "note": "antibiotic"
+        }
+      ],
+      "possible": [
+        {
+          "code": "10060",
+          "quantity": 1
+        },
+        {
+          "code": "85025",
+          "quantity": 1
+        },
+        {
+          "code": "80048",
+          "quantity": 1
+        },
+        {
+          "code": "96365",
+          "quantity": 1
+        },
+        {
+          "code": "76882",
+          "quantity": 1
+        },
+        {
+          "code": "36415",
+          "quantity": 1
+        }
+      ],
+      "admission": {
+        "likelihood": "unlikely",
+        "drgs": [
+          "602",
+          "603"
+        ],
+        "observation_possible": true
+      },
+      "note": "Antibiotics are expected. An abscess that needs draining, blood work, or IV antibiotics adds to the cost."
+    },
+    {
+      "id": "vomiting_diarrhea",
+      "title": "Vomiting, diarrhea or dehydration",
+      "keywords": [
+        "vomiting",
+        "throwing up",
+        "diarrhea",
+        "dehydrated",
+        "dehydration",
+        "nausea",
+        "food poisoning",
+        "stomach bug"
+      ],
+      "levels": {
+        "low": "99283",
+        "typical": "99284",
+        "high": "99284"
+      },
+      "expected": [
+        {
+          "code": "80048",
+          "quantity": 1
+        },
+        {
+          "code": "96360",
+          "quantity": 1
+        },
+        {
+          "code": "36415",
+          "quantity": 1
+        },
+        {
+          "code": "85025",
+          "quantity": 1
+        }
+      ],
+      "possible": [
+        {
+          "code": "96374",
+          "quantity": 1
+        },
+        {
+          "code": "96361",
+          "quantity": 1
+        },
+        {
+          "code": "83690",
+          "quantity": 1
+        },
+        {
+          "code": "81001",
+          "quantity": 1
+        },
+        {
+          "code": "84703",
+          "quantity": 1
+        },
+        {
+          "code": "74177",
+          "quantity": 1
+        }
+      ],
+      "admission": {
+        "likelihood": "unlikely",
+        "drgs": [
+          "392"
+        ],
+        "observation_possible": true
+      },
+      "note": "IV fluids and anti-nausea medicine are the usual treatment. Imaging is uncommon unless the pain is severe."
+    },
+    {
+      "id": "back_pain",
+      "title": "Back pain",
+      "keywords": [
+        "back pain",
+        "lower back",
+        "sciatica",
+        "threw out my back"
+      ],
+      "levels": {
+        "low": "99282",
+        "typical": "99283",
+        "high": "99284"
+      },
+      "expected": [
+        {
+          "code": "RX-ACETAMINOPHEN",
+          "quantity": 2
+        },
+        {
+          "code": "RX-LIDOCAINE-PATCH",
+          "quantity": 1
+        }
+      ],
+      "possible": [
+        {
+          "code": "72148",
+          "quantity": 1
+        }
+      ],
+      "admission": {
+        "likelihood": "unlikely",
+        "drgs": [],
+        "observation_possible": false
+      },
+      "note": "Most back pain is treated with acetaminophen and a lidocaine patch and needs no imaging. An MRI is ordered only for warning signs like weakness, fever or loss of bladder control."
+    },
+    {
+      "id": "sore_throat",
+      "title": "Sore throat",
+      "keywords": [
+        "sore throat",
+        "strep",
+        "throat pain",
+        "tonsils"
+      ],
+      "levels": {
+        "low": "99281",
+        "typical": "99282",
+        "high": "99283"
+      },
+      "expected": [
+        {
+          "code": "87880",
+          "quantity": 1
+        }
+      ],
+      "possible": [
+        {
+          "code": "87637",
+          "quantity": 1
+        },
+        {
+          "code": "86308",
+          "quantity": 1,
+          "note": "mono (EBV) test"
+        }
+      ],
+      "admission": {
+        "likelihood": "unlikely",
+        "drgs": [],
+        "observation_possible": false
+      },
+      "note": "This is usually a low-level visit. An urgent care clinic or primary care office can often treat it for much less."
+    },
+    {
+      "id": "allergic_reaction",
+      "title": "Allergic reaction",
+      "keywords": [
+        "allergic reaction",
+        "hives",
+        "swelling",
+        "allergy",
+        "rash after",
+        "bee sting"
+      ],
+      "levels": {
+        "low": "99283",
+        "typical": "99284",
+        "high": "99285"
+      },
+      "expected": [
+        {
+          "code": "RX-DEXAMETHASONE",
+          "quantity": 1
+        },
+        {
+          "code": "RX-FAMOTIDINE",
+          "quantity": 1
+        },
+        {
+          "code": "RX-DIPHENHYDRAMINE",
+          "quantity": 1
+        },
+        {
+          "code": "96374",
+          "quantity": 1,
+          "note": "IV push, first medicine"
+        },
+        {
+          "code": "96375",
+          "quantity": 2,
+          "note": "IV push, second and third medicines"
+        }
+      ],
+      "possible": [
+        {
+          "code": "RX-EPINEPHRINE",
+          "quantity": 1,
+          "note": "EpiPen"
+        },
+        {
+          "code": "96372",
+          "quantity": 1,
+          "note": "injection of epinephrine"
+        },
+        {
+          "code": "96360",
+          "quantity": 1
+        }
+      ],
+      "admission": {
+        "likelihood": "unlikely",
+        "drgs": [],
+        "observation_possible": true
+      },
+      "note": "The usual treatment is IV dexamethasone, famotidine (Pepcid) and diphenhydramine (Benadryl). A severe reaction (trouble breathing, throat swelling) is an emergency, needs epinephrine, and is watched for several hours."
+    },
+    {
+      "id": "joint_dislocation",
+      "title": "Dislocated joint (elbow or shoulder)",
+      "keywords": [
+        "dislocation",
+        "dislocated",
+        "popped out",
+        "out of socket",
+        "elbow dislocation",
+        "shoulder dislocation"
+      ],
+      "levels": {
+        "low": "99284",
+        "typical": "99284",
+        "high": "99285"
+      },
+      "expected": [
+        {
+          "code": "73080",
+          "quantity": 2,
+          "note": "X-ray before and after the joint is put back (elbow shown; use the shoulder X-ray for a shoulder)"
+        },
+        {
+          "code": "24600",
+          "quantity": 1,
+          "note": "putting the joint back (elbow shown; use the shoulder code for a shoulder)"
+        },
+        {
+          "code": "99152",
+          "quantity": 1,
+          "note": "sedation for the procedure"
+        },
+        {
+          "code": "99153",
+          "quantity": 1,
+          "note": "sedation, extra time"
+        },
+        {
+          "code": "96374",
+          "quantity": 1,
+          "note": "IV pain medicine"
+        },
+        {
+          "code": "29105",
+          "quantity": 1,
+          "note": "splint"
+        }
+      ],
+      "possible": [
+        {
+          "code": "73200",
+          "quantity": 1,
+          "note": "CT if a fracture is suspected"
+        },
+        {
+          "code": "96375",
+          "quantity": 1,
+          "note": "second IV medicine"
+        },
+        {
+          "code": "99153",
+          "quantity": 1,
+          "note": "longer sedation"
+        }
+      ],
+      "admission": {
+        "likelihood": "unlikely",
+        "drgs": [],
+        "observation_possible": true
+      },
+      "note": "DRAFT, not yet reviewed by the clinician. A dislocated joint is X-rayed, put back under sedation, X-rayed again and splinted. If it cannot be put back in the ED it is done under anesthesia, which costs several times more and is not in this estimate."
+    }
+  ]
+}

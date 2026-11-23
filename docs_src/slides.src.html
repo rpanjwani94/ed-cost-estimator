@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ED Cost Estimator: Slides</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reset.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.css">
+<style>
+  :root { --page:#E9F0E4; --card:#F9FBF7; --line:#CDD9C6; --ink:#1D2A22; --muted:#4D5D52; --moss:#2F4A3A; --bamboo:#6F8F4E; --leaf:#C8D9B2; --terra:#B23F26; --terra-wash:#F5E3D9; --sand:#F2E6C7; }
+  html, body, .reveal-viewport { background: var(--page) !important; }
+  .reveal { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; font-size: 29px; color: var(--ink); }
+  .reveal .slides { text-align: left; }
+  .reveal .slides section { height: 100%; padding: 34px 56px 30px; box-sizing: border-box; }
+  .reveal h1 { font-size: 78px; font-weight: 700; letter-spacing: -0.03em; line-height: 1.05; margin: 0 0 18px; }
+  .reveal h2 { font-size: 46px; font-weight: 700; letter-spacing: -0.025em; line-height: 1.1; margin: 0 0 22px; }
+  .reveal p { margin: 0 0 14px; line-height: 1.4; }
+  .reveal ul { margin: 0; padding-left: 1.1em; list-style: disc; }
+  .reveal li { margin-bottom: 12px; line-height: 1.35; }
+  .reveal li::marker { color: var(--bamboo); }
+  .reveal strong { font-weight: 700; }
+  .eyebrow { color: var(--bamboo); font-weight: 700; font-size: 22px; letter-spacing: 0.02em; margin-bottom: 10px; }
+  .muted { color: var(--muted); }
+  .small { font-size: 21px; color: var(--muted); }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 34px; align-items: start; }
+  .cols.wide-left { grid-template-columns: 1.25fr 1fr; }
+  .cols.wide-right { grid-template-columns: 1fr 1.35fr; }
+  .card { background: var(--card); border-radius: 22px; padding: 22px 26px; }
+  .card.dark { background: var(--moss); color: #F4F8F1; }
+  .card.warn { background: var(--terra-wash); }
+  .card.todo { background: var(--sand); border-left: 8px solid #C98A12; border-radius: 0 22px 22px 0; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-bottom: 22px; }
+  .stats.three { grid-template-columns: repeat(3, 1fr); }
+  .stat { background: var(--card); border-radius: 22px; padding: 20px 22px; }
+  .stat.dark { background: var(--moss); color: #F4F8F1; }
+  .stat b { display: block; font-size: 50px; font-weight: 700; letter-spacing: -0.03em; line-height: 1.05; margin-bottom: 8px; }
+  .stat span { font-size: 21px; line-height: 1.3; color: var(--muted); display: block; }
+  .stat.dark span { color: #BCCBB9; }
+  .reveal img { border-radius: 16px; border: 1px solid var(--line); max-width: 100%; display: block; margin: 0; }
+  .reveal table { width: 100%; border-collapse: collapse; font-size: 23px; margin: 0; }
+  .reveal th { text-align: left; color: var(--muted); font-weight: 600; border-bottom: 2px solid #B1C0A9; padding: 8px 14px 8px 0; }
+  .reveal td { border-bottom: 1px solid var(--line); padding: 9px 14px 9px 0; }
+  .reveal td.num, .reveal th.num { text-align: right; font-variant-numeric: tabular-nums; }
+  .title-slide { display: flex !important; flex-direction: column; justify-content: center; }
+  .tag { display: inline-block; background: var(--leaf); color: var(--moss); border-radius: 999px; padding: 4px 16px; font-size: 20px; font-weight: 600; margin-right: 8px; }
+  svg text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; }
+  .reveal .progress { color: var(--moss); } .reveal .controls { color: var(--moss); }
+</style>
+</head>
+<body>
+<div class="reveal"><div class="slides">
+
+<!-- 1. Title -->
+<section class="title-slide">
+  <div class="eyebrow">MGT 409 · AI Foundations for Managers · Final project</div>
+  <h1>ED Cost Estimator</h1>
+  <p style="font-size:38px; max-width: 22em; line-height:1.25;">"How much am I going to get charged?" An answer in 16 seconds, from the hospital's own published prices.</p>
+  <p class="muted" style="margin-top:28px;">Reema Panjwani</p>
+</section>
+
+<!-- 2. The problem -->
+<section>
+  <div class="eyebrow">The problem</div>
+  <h2>Nobody can tell an ED patient what the visit will cost</h2>
+  <div class="stats">
+    <div class="stat dark"><b>155.4M</b><span>ED visits in the U.S. in 2022 (CDC)</span></div>
+    <div class="stat"><b>5×</b><span>spread for one service: a level 4 visit is $321 to $1,712 across 23 insurers at Yale New Haven</span></div>
+    <div class="stat"><b>724,913</b><span>rows in the hospital's public price file, organized by billing code</span></div>
+    <div class="stat"><b>28%</b><span>of adults skipped or delayed care over cost in the past year (KFF, 2026)</span></div>
+  </div>
+  <ul>
+    <li>The price is set <strong>after</strong> care: a visit level, plus every test that was ordered.</li>
+    <li>The legal right to a "good faith estimate" does not cover walk-in or same-day care.</li>
+    <li>So patients decide blind, and the bill arrives weeks later.</li>
+  </ul>
+</section>
+
+<!-- 3. What is new -->
+<section>
+  <div class="eyebrow">What is new</div>
+  <h2>Start from symptoms, not billing codes</h2>
+  <div class="cols">
+    <div class="card">
+      <p><strong>What exists today</strong></p>
+      <ul>
+        <li>Hospital and insurer estimators: you must already know which service you need.</li>
+        <li>FAIR Health, Turquoise: built around a procedure, or area averages.</li>
+        <li>Goodbill: only after the bill arrives.</li>
+        <li>A general AI model: asked the same price twice, it said <strong>$60</strong>, then <strong>$107</strong>. The hospital's file says <strong>$119</strong>.</li>
+      </ul>
+    </div>
+    <div class="card dark">
+      <p><strong>This app</strong></p>
+      <ul>
+        <li>You describe the problem in a sentence.</li>
+        <li>It predicts the likely ED workup.</li>
+        <li>It prices each line at <em>this</em> hospital's rate for <em>your</em> insurer.</li>
+        <li>It gives a low, likely and high figure, and says why.</li>
+        <li>It covers "what if I'm admitted?"</li>
+        <li>The AI cannot invent a number.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 4. How the agents work -->
+<section>
+  <div class="eyebrow">How it works</div>
+  <h2>Four agents in a fixed line; code does the math</h2>
+  <svg viewBox="0 0 760 300" width="100%" role="img" aria-label="Diagram: the patient's words pass through code checks, then four agents in order, then a numbers guard, to the estimate.">
+    <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#2F4A3A"/></marker></defs>
+    <g font-size="11.5" fill="#1D2A22">
+      <rect x="4" y="18" width="118" height="62" rx="12" fill="#F9FBF7" stroke="#B1C0A9"/>
+      <text x="63" y="44" text-anchor="middle" font-weight="600">Patient's words</text><text x="63" y="61" text-anchor="middle" fill="#4D5D52" font-size="10">+ insurance, plan</text>
+      <rect x="150" y="18" width="126" height="62" rx="12" fill="#F2E6C7" stroke="#C9B36A"/>
+      <text x="213" y="40" text-anchor="middle" font-weight="600">Code checks</text><text x="213" y="56" text-anchor="middle" fill="#4D5D52" font-size="10">injection, length, budget</text><text x="213" y="70" text-anchor="middle" fill="#4D5D52" font-size="10">red-flag screen · 0 tokens</text>
+      <g font-weight="600">
+        <rect x="304" y="18" width="104" height="62" rx="12" fill="#C8D9B2"/><text x="356" y="44" text-anchor="middle">1. Safety</text><text x="356" y="60" text-anchor="middle">screener</text>
+        <rect x="430" y="18" width="104" height="62" rx="12" fill="#C8D9B2"/><text x="482" y="44" text-anchor="middle">2. Clinical</text><text x="482" y="60" text-anchor="middle">planner</text>
+        <rect x="556" y="18" width="96" height="62" rx="12" fill="#C8D9B2"/><text x="604" y="44" text-anchor="middle">3. Pricing</text><text x="604" y="60" text-anchor="middle">analyst</text>
+        <rect x="674" y="18" width="82" height="62" rx="12" fill="#C8D9B2"/><text x="715" y="44" text-anchor="middle">4. Patient</text><text x="715" y="60" text-anchor="middle">advocate</text>
+      </g>
+      <g stroke="#2F4A3A" stroke-width="1.4" fill="none" marker-end="url(#ar)">
+        <path d="M122 49H148"/><path d="M276 49H302"/><path d="M408 49H428"/><path d="M534 49H554"/><path d="M652 49H672"/>
+      </g>
+      <g font-size="9.5" fill="#4D5D52" text-anchor="middle"><text x="419" y="12">in scope</text><text x="545" y="12">plan</text><text x="663" y="12">estimate</text></g>
+      <g stroke="#B23F26" stroke-width="1.3" fill="none" marker-end="url(#ar)" stroke-dasharray="4 3"><path d="M213 80V118"/><path d="M356 80V118"/></g>
+      <rect x="150" y="120" width="126" height="40" rx="10" fill="#F5E3D9"/><text x="213" y="137" text-anchor="middle" font-size="10.5" font-weight="600" fill="#B23F26">Refused</text><text x="213" y="151" text-anchor="middle" font-size="9.5" fill="#4D5D52">no AI call made</text>
+      <rect x="296" y="120" width="120" height="40" rx="10" fill="#F5E3D9"/><text x="356" y="137" text-anchor="middle" font-size="10.5" font-weight="600" fill="#B23F26">Out of scope: stop</text><text x="356" y="151" text-anchor="middle" font-size="9.5" fill="#4D5D52">agents 2–4 never run</text>
+      <g stroke="#6F8F4E" stroke-width="1.2" fill="none" marker-end="url(#ar)" marker-start="url(#ar)"><path d="M482 82V182"/><path d="M604 82V182"/><path d="M715 82V182"/></g>
+      <rect x="430" y="184" width="104" height="58" rx="10" fill="#F9FBF7" stroke="#B1C0A9"/><text x="482" y="203" text-anchor="middle" font-size="10.5" font-weight="600">17 clinical</text><text x="482" y="217" text-anchor="middle" font-size="10.5" font-weight="600">scenarios</text><text x="482" y="232" text-anchor="middle" font-size="9" fill="#4D5D52">+ service search</text>
+      <rect x="548" y="184" width="112" height="58" rx="10" fill="#F9FBF7" stroke="#B1C0A9"/><text x="604" y="203" text-anchor="middle" font-size="10.5" font-weight="600">Hospital price file</text><text x="604" y="218" text-anchor="middle" font-size="9" fill="#4D5D52">236 services, 20 DRGs</text><text x="604" y="231" text-anchor="middle" font-size="9" fill="#4D5D52">23 insurers · code math</text>
+      <rect x="674" y="184" width="82" height="58" rx="10" fill="#F9FBF7" stroke="#B1C0A9"/><text x="715" y="203" text-anchor="middle" font-size="10.5" font-weight="600">10 guidance</text><text x="715" y="217" text-anchor="middle" font-size="10.5" font-weight="600">notes</text><text x="715" y="232" text-anchor="middle" font-size="9" fill="#4D5D52">rights, billing</text>
+      <path d="M715 242V268H560" stroke="#2F4A3A" stroke-width="1.4" fill="none" marker-end="url(#ar)"/>
+      <rect x="416" y="250" width="142" height="40" rx="10" fill="#F2E6C7" stroke="#C9B36A"/><text x="487" y="267" text-anchor="middle" font-size="10.5" font-weight="600">Numbers guard (code)</text><text x="487" y="281" text-anchor="middle" font-size="9.5" fill="#4D5D52">every $ must come from tools</text>
+      <path d="M416 270H330" stroke="#2F4A3A" stroke-width="1.4" fill="none" marker-end="url(#ar)"/>
+      <rect x="196" y="246" width="132" height="48" rx="12" fill="#2F4A3A"/><text x="262" y="266" text-anchor="middle" font-weight="600" fill="#F4F8F1">Estimate on the page</text><text x="262" y="282" text-anchor="middle" font-size="9.5" fill="#BCCBB9">range · items · rights</text>
+    </g>
+  </svg>
+  <p class="small" style="margin-top:6px;"><span class="tag">Green</span>AI agents, all on gpt-6-luna <span class="tag" style="background:#F2E6C7;color:#6A4D0C;margin-left:14px;">Sand</span>plain code, zero tokens. The cheapest agent goes first and can end the run.</p>
+</section>
+
+<!-- 5. Demo: the answer -->
+<section>
+  <div class="eyebrow">Demo · a real run</div>
+  <h2>"My dad is 58 and has had chest pressure for 30 minutes"</h2>
+  <div class="cols wide-right">
+    <div>
+      <img src="report_assets/03_emergency.jpg" alt="Red banner telling the user to call 911 or go to the emergency department now">
+      <ul style="margin-top:22px;">
+        <li><strong>First:</strong> go now. The warning appears before any AI call.</li>
+        <li><strong>Then:</strong> about <strong>$1,764</strong> under his Aetna plan, from $1,392 to $2,015.</li>
+        <li>If admitted: his share stops at the <strong>$5,000</strong> out-of-pocket maximum.</li>
+      </ul>
+    </div>
+    <img src="report_assets/06_estimate.jpg" alt="Estimate cards: lower end $1,392, most likely $1,764, higher end $2,015" style="max-height:500px; width:auto; justify-self:center;">
+  </div>
+</section>
+
+<!-- 6. Demo: showing the work -->
+<section>
+  <div class="eyebrow">Demo · showing the work</div>
+  <h2>Every step and every line is on the page</h2>
+  <div class="cols">
+    <div>
+      <img src="report_assets/05a_timeline_crop.jpg" alt="Agents at work panel showing the clinical planner's and pricing analyst's tool calls" style="max-height:415px; width:auto;">
+      <p class="small" style="margin-top:8px;">Each agent's tool calls and tokens. Here: the planner finds the chest pain scenario; the analyst matches Aetna and prices it.</p>
+    </div>
+    <div>
+      <img src="report_assets/09a_items_crop.jpg" alt="Itemized estimate table" style="max-height:415px; width:auto;">
+      <p class="small" style="margin-top:8px;">Each service: list price, Aetna's rate, and the range across 23 insurers.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 7. Cost to run -->
+<section>
+  <div class="eyebrow">Cost to run · measured on five real cases</div>
+  <h2>About one-eighth of a cent per estimate</h2>
+  <div class="stats">
+    <div class="stat dark"><b>$0.00129</b><span>AI cost of one typical estimate</span></div>
+    <div class="stat"><b>10,423</b><span>tokens: 9,523 in (1,221 cached), 900 out</span></div>
+    <div class="stat"><b>15.6 s</b><span>average time, start to finish</span></div>
+    <div class="stat"><b>$26</b><span>a month for 10,000 users at 2 estimates each</span></div>
+  </div>
+  <div class="cols wide-left">
+    <table>
+      <thead><tr><th>What cut the cost</th><th>Measured</th></tr></thead>
+      <tbody>
+        <tr><td>Low reasoning effort (vs medium)</td><td>24% cheaper; same plans and prices on 5 of 5 cases</td></tr>
+        <tr><td>Refuse bad input in code</td><td>0 tokens</td></tr>
+        <tr><td>Cheapest agent first, can stop the run</td><td>Off-topic: 479 tokens, 5% of a full run</td></tr>
+        <tr><td>Repeat questions from memory</td><td>0 tokens</td></tr>
+      </tbody>
+    </table>
+    <div class="card"><p><strong>Did cutting cost hurt?</strong></p><p style="margin:0;">Not on what was measured: both settings picked the same scenario, codes, insurer and totals. The wording of summaries was not scored. Five cases is a small sample.</p></div>
+  </div>
+</section>
+
+<!-- 8. Safety -->
+<section>
+  <div class="eyebrow">Safety</div>
+  <h2>The biggest risk: a price that talks someone out of care</h2>
+  <div class="cols">
+    <div>
+      <ul>
+        <li><strong>Care first.</strong> Warning signs trigger "call 911 or go now" in code. An agent can add a flag, never remove one.</li>
+        <li><strong>Attacks.</strong> Injection is refused before any tokens are spent. No agent can read files or keys.</li>
+        <li><strong>Made-up facts.</strong> Unknown billing codes are rejected. Every dollar must match the pricing code.</li>
+        <li><strong>Runaway spend.</strong> Caps per run, per minute and per day.</li>
+      </ul>
+      <p style="margin-top:18px;"><span class="tag">27 tests pass</span><span class="small">3 call the real model</span></p>
+    </div>
+    <div>
+      <img src="report_assets/12a_injection_crop.jpg" alt="The app refusing a prompt-injection attempt" style="margin-bottom:12px;">
+      <img src="report_assets/13a_offtopic_crop.jpg" alt="The app stopping an off-topic request at the first agent" style="max-height:290px; width:auto;">
+      <p class="small" style="margin-top:8px;">Top: "Ignore all previous instructions…" refused, 0 tokens. Bottom: "Write me a poem" stopped by the first agent.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 9. Impact -->
+<section>
+  <div class="eyebrow">Impact</div>
+  <h2>From "nobody knows" to a number in 16 seconds</h2>
+  <div class="stats three">
+    <div class="stat dark"><b>15.6 s</b><span>to an itemized, insurer-specific estimate (my tests, five cases)</span></div>
+    <div class="stat"><b>6–14</b><span>billing codes a patient would otherwise have to find among 724,913 rows</span></div>
+    <div class="stat"><b>$2,271 → $1,340</b><span>list price vs cash price for a cut finger: the app tells uninsured patients to ask</span></div>
+  </div>
+  <div class="cols">
+    <ul>
+      <li><strong>Patients:</strong> a figure to plan around, and the right questions.</li>
+      <li><strong>Hospital:</strong> could ease the load on billing staff. Not measured yet.</li>
+      <li><strong>New:</strong> the "if you're admitted" conversation rarely happens in the ED today.</li>
+    </ul>
+    <div class="card todo"><p><strong>To do before presenting: real user.</strong></p><p style="margin:0;">Replace this box with what an ED colleague said after trying it: their role, one quote, and how long this takes them today.</p></div>
+  </div>
+</section>
+
+<!-- 10. What's next -->
+<section>
+  <div class="eyebrow">Limits and what's next</div>
+  <h2>Honest about what it does not do yet</h2>
+  <div class="cols">
+    <div class="card warn">
+      <p><strong>Limits today</strong></p>
+      <ul>
+        <li>Hospital bill only. The physician bills separately.</li>
+        <li>One hospital.</li>
+        <li>No traditional Medicare or Medicaid rates in the hospital's file.</li>
+        <li>17 scenario templates, reviewed by one clinician, not yet checked against real bills.</li>
+      </ul>
+    </div>
+    <div class="card dark">
+      <p><strong>With another month</strong></p>
+      <ul>
+        <li>Add the physician's bill.</li>
+        <li>Validate against published real ED bills.</li>
+        <li>"Check my bill" when it arrives.</li>
+        <li>More hospitals: they all publish the same file format.</li>
+        <li>Pilot with a hospital's financial counselors.</li>
+      </ul>
+    </div>
+  </div>
+  <p class="small" style="margin-top:20px;">Repo: github.com/rpanjwani94/ed-cost-estimator · Prices: Yale New Haven Hospital standard charges file, updated 19 September 2026</p>
+</section>
+
+</div></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.js"></script>
+<script>
+  Reveal.initialize({ width: 1280, height: 720, margin: 0.02, hash: true, center: false, transition: "fade", slideNumber: "c/t", controlsTutorial: false });
+</script>
+</body>
+</html>

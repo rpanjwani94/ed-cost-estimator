@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ED Cost Estimator</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='13' fill='%232F4A3A'/%3E%3Cpath d='M6 26h8l3-9 5 17 4-12 2 4h14' fill='none' stroke='%23C8D9B2' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <header class="hero">
+    <svg class="hero-pulse" viewBox="0 0 1200 220" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 150 H330 l22 -34 l26 34 h60 l18 -92 l30 168 l26 -116 l16 40 H700 l20 -26 l22 26 H1200" />
+    </svg>
+    <div class="wrap hero-inner">
+      <div class="brand">
+        <svg class="logo" viewBox="0 0 48 48" width="44" height="44" aria-hidden="true">
+          <rect width="48" height="48" rx="13" fill="#C8D9B2"/>
+          <path d="M6 26h8l3-9 5 17 4-12 2 4h14" fill="none" stroke="#2F4A3A" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="38.5" cy="12" r="6.5" fill="#2F4A3A"/>
+          <text x="38.5" y="15.6" text-anchor="middle" font-size="10" font-weight="700" fill="#C8D9B2" font-family="-apple-system, Segoe UI, Arial, sans-serif">$</text>
+        </svg>
+        <h1>ED Cost Estimator</h1>
+      </div>
+      <p class="hero-title">What will an emergency department visit cost me?</p>
+      <p class="tagline">An estimate built from a hospital's published prices.</p>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <div class="always" role="note">
+      <strong>If this could be an emergency, call 911 or go to the nearest emergency department now.</strong>
+      The hospital must examine and stabilize you whether or not you can pay. Cost can be sorted out afterward.
+    </div>
+  </div>
+
+  <main class="wrap layout">
+    <section class="panel form-panel" aria-labelledby="form-title">
+      <h2 id="form-title">Tell us what's going on</h2>
+      <form id="form" novalidate>
+        <div class="form-grid">
+          <div class="form-col">
+            <label for="complaint">What's happening?</label>
+            <textarea id="complaint" name="complaint" rows="5" required
+              placeholder="Example: I rolled my ankle playing soccer an hour ago. It's swollen and hurts to walk on."></textarea>
+            <div class="row between"><span class="hint" id="count">0 / 1200</span></div>
+            <p class="save-notice" id="save-notice" hidden><strong>Test version.</strong> What you type here is saved so the tool can be improved. Do not enter a name or anything else that identifies a real person.</p>
+            <p class="label" id="examples-label">Or try an example</p>
+            <div class="chips" id="examples" role="group" aria-labelledby="examples-label"></div>
+          </div>
+
+          <div class="form-col">
+            <label for="insurer">Your insurance</label>
+            <select id="insurer" name="insurer">
+              <option value="">I'm not sure</option>
+              <option value="no insurance">No insurance (I would pay myself)</option>
+              <optgroup label="Insurers with rates at this hospital" id="insurer-list"></optgroup>
+              <optgroup label="Other coverage">
+                <option value="traditional Medicare">Traditional Medicare</option>
+                <option value="Medicaid (HUSKY)">Medicaid (HUSKY)</option>
+                <option value="__other__">Something else (type it)</option>
+              </optgroup>
+            </select>
+            <input id="insurance" name="insurance" type="text" maxlength="200" autocomplete="off" hidden
+              aria-label="Type your insurance" placeholder="Example: Blue Cross through my job">
+            <p class="hint" id="insurer-hint">Not sure? Leave it. You will see the middle of all insurers' rates.</p>
+
+            <details class="plan">
+              <summary>I know my plan details <span class="optional">(for a "what you pay" estimate)</span></summary>
+              <div class="grid2">
+                <div>
+                  <label for="copay">ED copay ($)</label>
+                  <input id="copay" type="number" min="0" max="5000" step="1" inputmode="decimal" placeholder="250">
+                </div>
+                <div>
+                  <label for="deductible">Deductible left this year ($)</label>
+                  <input id="deductible" type="number" min="0" max="50000" step="1" inputmode="decimal" placeholder="1000">
+                </div>
+                <div>
+                  <label for="coinsurance">Coinsurance (%)</label>
+                  <input id="coinsurance" type="number" min="0" max="100" step="1" inputmode="decimal" placeholder="20">
+                </div>
+                <div>
+                  <label for="oop">Out-of-pocket max left ($)</label>
+                  <input id="oop" type="number" min="0" max="100000" step="1" inputmode="decimal" placeholder="4000">
+                </div>
+              </div>
+              <p class="hint">These are on your insurance card or your insurer's website. Any you leave blank are treated as zero.</p>
+            </details>
+
+            <button id="submit" type="submit" class="primary">Estimate my cost</button>
+            <p class="hint center" id="privacy-note">Takes about 20 seconds. Your text is not saved.</p>
+          </div>
+        </div>
+      </form>
+    </section>
+
+    <section class="results" aria-live="polite" aria-busy="false" id="results">
+      <div class="alert emergency" id="emergency" role="alert" hidden></div>
+      <div class="alert error" id="error" role="alert" hidden></div>
+      <div class="alert refused" id="refused" role="status" hidden></div>
+
+      <div class="care-first" id="care-first" hidden>
+        <h2>Care first. Cost can wait.</h2>
+        <ul>
+          <li><strong>The hospital must treat you.</strong> In an emergency it has to examine and stabilize you whether or not you can pay or have insurance.</li>
+          <li><strong>The bill can be lowered afterward.</strong> Hospitals have financial assistance and interest-free payment plans. You can ask after you have been seen.</li>
+          <li><strong>Insurance has to cover emergencies.</strong> With most private plans, emergency care is billed at in-network rates even at an out-of-network hospital.</li>
+        </ul>
+      </div>
+
+      <div class="panel empty" id="empty">
+        <h2>How it works</h2>
+        <ol class="how">
+          <li><strong>Safety screener</strong><span>checks for warning signs that need care right away.</span></li>
+          <li><strong>Clinical planner</strong><span>works out the visit level, tests and scans an ED would likely order.</span></li>
+          <li><strong>Pricing analyst</strong><span>prices that plan from the hospital's published rates for your insurer.</span></li>
+          <li><strong>Patient advocate</strong><span>explains the estimate, your rights and what to ask.</span></li>
+        </ol>
+        <p class="hint">Prices come from the hospital's public price transparency file. This is an estimate of the hospital's bill, not a quote, and not medical advice.</p>
+      </div>
+
+      <div class="panel" id="timeline-panel" hidden>
+        <h2>Agents at work</h2>
+        <ol class="timeline" id="timeline"></ol>
+      </div>
+
+      <div id="answer" hidden>
+        <div class="panel headline-panel">
+          <p class="eyebrow" id="basis"></p>
+          <p class="headline" id="headline"></p>
+          <p class="headline-note" id="headline-note"></p>
+          <div class="scenarios" id="scenarios"></div>
+          <p class="hint" id="physician"></p>
+        </div>
+
+        <div class="panel">
+          <h2>What this means</h2>
+          <p id="summary"></p>
+          <div class="grid2 ask">
+            <div class="ask-card">
+              <h3>Ask the front desk or billing staff</h3>
+              <p class="hint">Registration, billing, and financial counselors can guide you on prices and insurance.</p>
+              <ul id="questions-staff"></ul>
+            </div>
+            <div class="ask-card">
+              <h3>Ask your doctor or nurse</h3>
+              <p class="hint">They decide the care.</p>
+              <ul id="questions-doctor"></ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel more-panel">
+          <h2>More detail</h2>
+          <p class="hint">Open any of these if you want to see how the estimate was built.</p>
+          <details class="more" id="admission-panel" hidden>
+            <summary>If you are admitted or kept for observation</summary>
+            <div class="more-body">
+              <p id="if-admitted"></p>
+              <div class="table-wrap"><table id="admission-table"></table></div>
+              <div id="observation"></div>
+            </div>
+          </details>
+          <details class="more">
+            <summary>What could move the bill up or down</summary>
+            <div class="more-body"><ul id="drivers"></ul></div>
+          </details>
+          <details class="more">
+            <summary>Your rights</summary>
+            <div class="more-body"><ul id="rights"></ul></div>
+          </details>
+          <details class="more">
+            <summary>Every line of the estimate</summary>
+            <div class="more-body">
+              <p class="hint">Hospital bill only. "Expected" items are ordered for most patients with this problem; "possible" items are ordered for some.</p>
+              <div class="table-wrap"><table id="lines"></table></div>
+            </div>
+          </details>
+          <details class="more">
+            <summary>How this was calculated</summary>
+            <div class="more-body">
+              <p id="basis-explanation"></p>
+              <ul id="caveats"></ul>
+              <h3>Assumptions</h3>
+              <ul id="assumptions"></ul>
+              <p class="hint" id="run-note" hidden></p>
+            </div>
+          </details>
+          <details class="more" id="work">
+            <summary>How the AI worked</summary>
+            <div class="more-body" id="work-body"></div>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap foot">
+    <p>This tool estimates the hospital's bill from published prices. It is not a quote, a bill, medical advice or a diagnosis. Your actual bill depends on the care you receive and your insurance plan. Class project, not affiliated with Yale New Haven Health.</p>
+    <p class="source" id="source" aria-live="polite"></p>
+  </footer>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

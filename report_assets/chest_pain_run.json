@@ -1,0 +1,35 @@
+{
+  "headline": "You might owe about $1,764 for the hospital's bill.",
+  "steps": [
+    "Safety screener | The text describes ongoing chest pressure, which can be a life-threatening emergency. | 1.27s \u00b7 1 model call \u00b7 441 tokens in, 54 out",
+    "Clinical planner | acute chest pressure: 6 expected and 6 possible items; admission possible | 4.39s \u00b7 3 model calls \u00b7 3,349 tokens in, 336 out",
+    "Pricing analyst | Priced on Aetna's negotiated rate with the hospital | 5.13s \u00b7 4 model calls \u00b7 3,191 tokens in, 144 out",
+    "Patient advocate | Summary written | 4.7s \u00b7 2 model calls \u00b7 3,008 tokens in, 430 out"
+  ],
+  "tools": [
+    [],
+    [
+      "find_scenarios({\"problem\":\"acute chest pressure\"})\n\u2192 [{'id': 'chest_pain', 'title': 'Chest pain', 'match_score': 5}, {'id': 'laceration', 'title': 'Cut that may need stitches', 'match_score': 3}]",
+      "get_scenario({\"scenario_id\":\"chest_pain\"})\n\u2192 Chest pain"
+    ],
+    [
+      "list_insurers()\n\u2192 23 insurers",
+      "price_ed_visit({\"basis\":\"payer\",\"insurer\":\"Aetna\"})\n\u2192 {'priced_on': \"Aetna's negotiated rate with the hospital\", 'totals': {'low': 1391.52, 'typical': 1820.08, 'high': 3076.81}, 'admission_pricing_needed': True}",
+      "price_admission()\n\u2192 {'drgs': {'313': 22374.42}, 'observation_lines': 2}"
+    ],
+    [
+      "get_guidance({\"topic\":\"emergency_care_first\"})\n\u2192 Emergency care comes first",
+      "get_guidance({\"topic\":\"observation_vs_inpatient\"})\n\u2192 Observation is not the same as being admitted",
+      "get_guidance({\"topic\":\"admission_cost_share\"})\n\u2192 What an admission usually means for your share"
+    ]
+  ],
+  "usage": "Agent\tModel calls\tTool calls\tInput tokens\tCached input\tOutput tokens\tTime\nSafety screener\t1\t0\t441\t0\t54\t1.27s\nClinical planner\t3\t2\t3,349\t0\t336\t4.39s\nPricing analyst\t4\t3\t3,191\t0\t144\t5.13s\nPatient advocate\t2\t3\t3,008\t1,198\t430\t4.7s\nTotal\t10\t8\t9,989\t1,198\t964\t15.81s",
+  "note": "Model: gpt-6-luna. Run 6b037f5e-5edc.",
+  "summary": "Get emergency care now\u2014call 911 or go to the nearest emergency department, and sort out the cost afterward. This estimate uses Aetna's negotiated rate and covers the hospital's bill only; the emergency physician bills separately, and that bill is not included. The visit level is assigned after care, so the actual hospital bill may differ.",
+  "ifAdmitted": "If formally admitted as an inpatient, the estimate lists a patient share of $5,000 for the chest-pain admission, billed as one case rate under inpatient benefits. An overnight stay under observation is outpatient care billed service by service, so it is different from inpatient admission and the admission estimate may not apply. Ask the care team which status applies.",
+  "drivers": "A lower visit level with expected tests could mean a lower share; a higher level or possible tests could raise it.\nA possible chest CT angiogram is one of the larger estimated items.\nThe estimate says observation is possible and admission is possible; these can change how the hospital bills the stay.",
+  "questions": "Is my dad under observation or formally admitted as an inpatient?\nWhich tests are included in the hospital estimate, and which possible tests were not included in the typical amount?\nWhat will Aetna count toward the deductible and out-of-pocket maximum for this hospital visit?\nWill the emergency physician send a separate bill, and how can we check its coverage?",
+  "rights": "The emergency department must provide a medical screening exam and stabilizing treatment regardless of ability to pay or insurance.\nHe can ask the care team whether he is formally admitted or under observation.",
+  "basis": "Used Aetna\u2019s negotiated hospital rates for the ED estimate and the admission and observation pricing, since Aetna is listed and matches the stated insurer.",
+  "assumptions": "Adult patient, age 58\nNo additional symptoms or medical history provided"
+}

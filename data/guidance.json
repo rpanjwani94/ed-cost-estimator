@@ -1,0 +1,45 @@
+{
+  "_note": "Short patient-rights and billing explanations the Advocate agent may quote. General U.S. information, not legal advice. Review before relying on it.",
+  "topics": {
+    "emergency_care_first": {
+      "title": "Emergency care comes first",
+      "text": "Under the federal EMTALA law, a hospital emergency department must give you a medical screening exam and stabilizing treatment whether or not you can pay or have insurance. Cost questions can be worked out afterward. If you think you are having an emergency, call 911 or go to the nearest emergency department."
+    },
+    "two_bills": {
+      "title": "You will usually get two bills",
+      "text": "An ED visit usually produces at least two bills: one from the hospital (the facility fee, tests, imaging, supplies) and one from the emergency physician group. Radiologists or other specialists who read your scans may bill separately too. This estimate covers the hospital bill."
+    },
+    "visit_level": {
+      "title": "Why the visit level matters",
+      "text": "Hospitals bill ED visits at levels 1 through 5 based on how complex the visit turned out to be. The level is assigned after your care, not when you walk in, so it cannot be known exactly in advance. It is often the largest single line on the bill."
+    },
+    "no_surprises_act": {
+      "title": "Protection from surprise out-of-network bills",
+      "text": "The federal No Surprises Act (in effect since January 2022) applies to most private health plans. For emergency care, out-of-network hospitals and clinicians generally cannot bill you more than your plan's in-network cost-sharing. Ground ambulance rides are not covered by this protection."
+    },
+    "observation_vs_inpatient": {
+      "title": "Observation is not the same as being admitted",
+      "text": "You can stay overnight in a hospital bed and still be an outpatient 'under observation'. Observation is billed service by service under outpatient benefits, while a formal inpatient admission is usually billed as one case rate under inpatient benefits. For people on Medicare, observation falls under Part B, and observation days do not count toward the three inpatient days Medicare requires before it covers a skilled nursing facility stay. It is reasonable to ask the care team, 'Am I admitted as an inpatient or under observation?'"
+    },
+    "admission_cost_share": {
+      "title": "What an admission usually means for your share",
+      "text": "A hospital admission often costs more than a plan's remaining deductible, so many insured patients reach their deductible and sometimes their yearly out-of-pocket maximum. After you reach the out-of-pocket maximum, the plan pays covered in-network care in full for the rest of the plan year."
+    },
+    "financial_assistance": {
+      "title": "Financial assistance",
+      "text": "Nonprofit hospitals are required to have a written financial assistance policy and to tell patients about it. Depending on income, the bill may be reduced or forgiven. Ask the hospital's billing office for the financial assistance application before paying, and ask about an interest-free payment plan."
+    },
+    "itemized_bill": {
+      "title": "Ask for an itemized bill",
+      "text": "You can ask the hospital for an itemized bill that lists every charge with its billing code. Compare it with your insurer's explanation of benefits. Billing errors such as duplicate charges do happen, and you can dispute them."
+    },
+    "self_pay": {
+      "title": "If you are paying without insurance",
+      "text": "Hospitals publish a discounted cash price that is lower than the list price. If you are uninsured, ask for the self-pay discount and the financial assistance application. Uninsured patients have a right to a good faith estimate for scheduled care, but that rule does not cover emergency visits."
+    },
+    "lower_cost_settings": {
+      "title": "When a lower-cost setting is reasonable",
+      "text": "For minor problems that are clearly not emergencies, an urgent care clinic, a primary care office or a telehealth visit usually costs much less than an emergency department. Do not use this to delay care for symptoms that could be serious."
+    }
+  }
+}

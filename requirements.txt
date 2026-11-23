@@ -1,0 +1,15 @@
+# One virtual environment at the repo root:
+#   python -m venv .venv
+#   macOS/Linux: .venv/bin/pip install -r requirements.txt
+#   Windows:     .venv\Scripts\pip install -r requirements.txt
+
+# Agents: pydantic-ai-slim with the openai extra (Portkey speaks the OpenAI API). Not the full pydantic-ai package.
+pydantic-ai-slim[openai]
+python-dotenv
+
+# Web app
+fastapi
+uvicorn
+
+# Tests
+pytest
