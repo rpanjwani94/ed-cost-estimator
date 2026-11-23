@@ -152,6 +152,8 @@ To add a dollar cost to each log entry, set the model's prices in `.env` (`PRICE
 
 By default the app never stores what a user types. For user testing, put `SAVE_TEST_RUNS=1` in a `.env` file in this folder and restart. The page then shows a notice that the text is saved, and each run is also written to `output/test_runs.jsonl` (git-ignored) with what was typed, whether the emergency banner showed and why, the scenario used and the totals. `python scripts/review_runs.py` turns that file into a spreadsheet for review. Remove the setting to turn it off.
 
+Each saved run is also printed to the server log as a line starting `TEST_RUN`. A hosted copy on a free plan has no lasting disk, so its log is where those runs are kept: copy the lines into a text file and run `python scripts/review_runs.py that_file.txt`. `render.yaml` turns test mode on for the hosted copy.
+
 ## Limits
 
 - Hospital bill only. The emergency physician bills separately and is not in the totals.

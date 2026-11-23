@@ -13,5 +13,9 @@ services:
         value: 3.12.7
       - key: OPENAI_MODEL
         value: gpt-6-luna
+      # Test mode: the page says the text is saved, and each run is printed to the service log.
+      # Delete these two lines to stop saving what people type.
+      - key: SAVE_TEST_RUNS
+        value: "1"
       - key: OPENAI_API_KEY
         sync: false   # entered by hand in the dashboard; never stored in the repo

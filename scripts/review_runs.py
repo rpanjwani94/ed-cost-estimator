@@ -3,8 +3,10 @@
 Shows what each tester typed, whether the red "this may be an emergency" banner showed, why, which
 scenario was used and the most-likely figure. Two empty columns are left for your own judgment.
 
-Usage (from the repo folder):  python scripts/review_runs.py
+Usage (from the repo folder):  python scripts/review_runs.py [file]
 Reads output/test_runs.jsonl (written only when SAVE_TEST_RUNS=1) and writes output/test_runs_review.csv.
+Give a file to read something else, such as log lines copied from a hosted copy's log
+(each saved run appears there as a line containing "TEST_RUN {...}").
 """
 
 from __future__ import annotations
@@ -16,7 +18,7 @@ from datetime import datetime
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-SOURCE = ROOT / "output" / "test_runs.jsonl"
+SOURCE = Path(sys.argv[1]).expanduser() if len(sys.argv) > 1 else ROOT / "output" / "test_runs.jsonl"
 TARGET = ROOT / "output" / "test_runs_review.csv"
 
 if not SOURCE.is_file():
@@ -24,9 +26,13 @@ if not SOURCE.is_file():
 
 rows = []
 for line in SOURCE.read_text(encoding="utf-8").splitlines():
+    if "TEST_RUN " in line:  # a line copied from a server log: drop whatever the host put in front
+        line = line.split("TEST_RUN ", 1)[1]
     try:
         r = json.loads(line)
     except ValueError:
+        continue
+    if not isinstance(r, dict) or "timestamp" not in r:
         continue
     screener = r.get("screener") or {}
     share, totals = r.get("patient_share") or [], r.get("totals") or []
@@ -48,6 +54,9 @@ for line in SOURCE.read_text(encoding="utf-8").splitlines():
         "Should the red banner have shown? (you fill in)": "",
         "Notes (you fill in)": "",
     })
+
+if not rows:
+    sys.exit(f"No saved runs found in {SOURCE}.")
 
 with open(TARGET, "w", newline="", encoding="utf-8-sig") as f:
     writer = csv.DictWriter(f, fieldnames=list(rows[0].keys()))

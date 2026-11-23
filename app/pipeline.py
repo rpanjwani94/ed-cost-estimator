@@ -77,10 +77,13 @@ def save_test_run(record: dict[str, Any], req: EstimateRequest, detail: dict[str
                          "coinsurance_pct": req.coinsurance_pct, "oop_max_remaining": req.oop_max_remaining},
         **detail,
     }
+    line = json.dumps(row, ensure_ascii=False)
+    # Also to the server log: a host with no lasting disk (Render's free plan) keeps its log but wipes files.
+    print("TEST_RUN " + line, flush=True)
     try:
         config.TEST_RUNS_LOG.parent.mkdir(parents=True, exist_ok=True)
         with open(config.TEST_RUNS_LOG, "a", encoding="utf-8") as f:
-            f.write(json.dumps(row, ensure_ascii=False) + "\n")
+            f.write(line + "\n")
     except OSError:
         pass
 
