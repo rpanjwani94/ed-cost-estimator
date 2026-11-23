@@ -15,6 +15,29 @@ Feedback from people who tried the app through the shared link, in their own wor
 5. Would this be useful? "No, because you don’t want them to be influenced to seek emergency care based on pricing and can place a huge ethical conundrum"
 6. Other tips: "It’s too complicated. The first part was easy and the second part was too much to read—unless you’re a healthcare provider"
 
+## Tester 2 (23 November 2026)
+
+**What they ran:** the cut-finger example, through the hosted link (https://ed-cost-estimator.onrender.com). Their reply quotes the app's range of $805 to $1,463 and mentions Anthem. This run is in the hosted copy's log, not in the laptop's `output/test_runs.jsonl`.
+
+**Their answers** (this tester got the version of the questions written for non-clinicians)
+
+1. Role: "patient"
+2. Cases tried: "cut finger"
+3. Do the dollar figures look believable next to what patients are actually billed? "would have no idea how to answer this since I don’t know what ppl are actually billed"
+4. Today, if a patient asks "what will this cost me?", who answers, and how long does it take? "IDK— i would call the ED and idk who answer i assume the front desk receptionist. IDK if they handle billing. They probably don’t. It would prob be someone in the billing dept who calls the insurance with the procedure codes."
+5. Would this be useful? "As a patient, this would be useful if I am budgeting AFTER my visit for how much the visit would potentially cost me once I get the bill in however many weeks/months later. It might be helpful if I don’t have a severe emergency and I want to compare which place to go to (a local urgent care center or one of various ED centers if I have a choice). otherwise, if I have an emergency, I prob need to go regardless of the cost…"
+6. Other tips: "I would not trust AI unless I knew it had a proven history of accuracy and was trained on reliable data. Otherwise, I’m like… how the hell does AI know how much it would cost. Maybe if it displayed its sources (which lots of AI chats do nowadays if doing web search tool). I want to know what Anthem (insurance) list of procedure codes and costs it looked at to get the price. I also don’t really know how insurance works— is it a set price for every procedure? Some explanatory context could help about how the estimate is gotten…
+
+   Like this is helpful in your tool: “The hospital-bill estimate ranges from $805 to $1,463; your cost depends on your plan and deductible, and the actual bill may differ. The emergency physician bills separately, and the visit level is assigned after care, so it cannot be known exactly in advance.”
+
+   But then I’m like ok, what use is this? The uncertainty is too big. Like I can’t rely on this at all, because it’s too uncertain what the actual price would be differing from the estimated."
+
+### What this reply points to (not yet changed in the app)
+
+- **Trust needs the sources in view.** The app does list every billing code and the insurer's rate for each, but in a closed "More detail" row, where they were moved after Tester 1 said the page was too much to read. The two testers pull in opposite directions.
+- **The range is too wide to act on.** $805 to $1,463 for one cut finger. Narrowing it needs the patient's plan details and a check against real bills.
+- **Where a patient sees the use:** budgeting after a visit, and choosing between urgent care and an ED when it is not a severe emergency. In an emergency they would go regardless of cost.
+
 ## Runs seen in the test log on 22 November 2026 (first evening)
 
 | Time | What was typed | Insurance | Red banner | Scenario the app used | Most-likely figure shown |

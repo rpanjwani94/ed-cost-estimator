@@ -365,7 +365,7 @@ $ python -m pytest -v          (the 28 offline tests)
 <h2><span class="n">7</span>Impact</h2>
 
 <h3>Real users</h3>
-<p>On 22 and 23 November 2026 I shared the app with four colleagues through a temporary public link, with a short guide and six questions. A test mode saved what they typed, with a notice on the page saying so. The evidence is thin and I report all of it: four cases typed by colleagues, and one written reply.</p>
+<p>On 22 and 23 November 2026 I shared the app with four colleagues through a temporary public link, with a short guide and six questions. A test mode saved what they typed, with a notice on the page saying so. On 23 November I put the app online and sent it to more people; one of them answered as a patient. The evidence is thin and I report all of it: four cases typed by colleagues, and two written replies.</p>
 <table>
   <thead><tr><th style="width:36%">What a colleague typed</th><th style="width:26%">What the app did</th><th>What I learned</th></tr></thead>
   <tbody>
@@ -375,13 +375,21 @@ $ python -m pytest -v          (the 28 offline tests)
     <tr><td>A 46-year-old's full description of lightheadedness and chest pain, with UHC chosen</td><td>Chest pain scenario; red banner; up to $1,825</td><td>The flow worked as designed on a real description.</td></tr>
   </tbody>
 </table>
-<p><strong>The one written reply</strong>, from a colleague who gave their role as "Radiology Oncology Resident" and tried "Cellulitis":</p>
+<p><strong>The first written reply</strong>, from a colleague who gave their role as "Radiology Oncology Resident" and tried "Cellulitis":</p>
 <ul>
   <li><em>Were the visit level and expected tests what you would predict?</em> "Yes (didn't describe frequency or hospital admission portion)"</li>
   <li><em>What do you tell patients who ask about cost today?</em> "Won't answer"</li>
   <li><em>Would this be useful?</em> "No, because you don't want them to be influenced to seek emergency care based on pricing and can place a huge ethical conundrum"</li>
   <li><em>Other tips?</em> "It's too complicated. The first part was easy and the second part was too much to read—unless you're a healthcare provider"</li>
 </ul>
+<p><strong>The second written reply</strong>, on 23 November, from someone who gave their role as "patient" and tried the cut-finger example:</p>
+<ul>
+  <li><em>Do the dollar figures look believable?</em> "would have no idea how to answer this since I don't know what ppl are actually billed"</li>
+  <li><em>Who answers the cost question today?</em> "IDK— i would call the ED and idk who answer i assume the front desk receptionist. IDK if they handle billing. They probably don't."</li>
+  <li><em>Would this be useful?</em> "As a patient, this would be useful if I am budgeting AFTER my visit… It might be helpful if I don't have a severe emergency and I want to compare which place to go to… otherwise, if I have an emergency, I prob need to go regardless of the cost…"</li>
+  <li><em>Other tips?</em> "I would not trust AI unless I knew it had a proven history of accuracy and was trained on reliable data. Otherwise, I'm like… how the hell does AI know how much it would cost… I want to know what Anthem (insurance) list of procedure codes and costs it looked at to get the price." And on the range the app gave, $805 to $1,463: "The uncertainty is too big. Like I can't rely on this at all."</li>
+</ul>
+<p><strong>What I take from the second reply.</strong> I have not changed the app for it yet. First, trust needs the sources in view: the app does list every billing code and the insurer's rate for each, but in a closed "More detail" row, where I moved them after the first tester found the page too much to read. My two testers pull in opposite directions. Second, a range that wide is hard to act on; narrowing it takes the patient's plan details and a check against real bills (Section 8). Third, this patient sees the use in budgeting after a visit and in choosing between urgent care and an ED, and says that in an emergency they would go regardless of cost, which speaks to the first tester's worry.</p>
 
 <div class="float-r pair">
 <figure><img src="report_assets/16_before_simplify.jpg" alt="The full results page before simplifying: very long"><figcaption>Figure 9. Before: the whole page, 845 words of results.</figcaption></figure>
@@ -426,6 +434,7 @@ $ python -m pytest -v          (the 28 offline tests)
 <ol>
   <li><strong>Validation against real bills.</strong> Run published cases (for example KFF Health News "Bill of the Month" ED bills) through the app and report how far off it is, starting with the dislocation.</li>
   <li><strong>Read the insurance card.</strong> Even clinicians do not know their own plan details. In a quick test the model read a made-up card image correctly (ER copay, deductible, out-of-pocket maximum, coinsurance) for about 800 tokens. The card cannot show how much of the deductible has been met, so the app would still ask.</li>
+  <li><strong>Show where each number comes from, up front.</strong> A patient tester would not trust the figure without seeing its sources (Section 7). One line under the headline naming the insurer's rates and the number of billing codes used, opening the full list.</li>
   <li><strong>The physician's bill</strong>, from the Medicare physician fee schedule, so the estimate covers both bills.</li>
   <li><strong>More hospitals.</strong> Every hospital publishes the same file format; the page already says "a hospital's published prices".</li>
   <li><strong>"Check my bill"</strong> when it arrives, a pilot with a hospital's financial counselors, and Spanish.</li>
