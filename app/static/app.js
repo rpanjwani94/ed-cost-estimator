@@ -196,31 +196,38 @@ function renderReceipt(est) {
   const visit = (code) => est.lines.find((l) => l.likelihood === "visit" && l.code === code);
   const label = (l) => esc(l.name) + (l.quantity > 1 ? ` × ${l.quantity}` : "");
   const cents = (n) => "$" + Number(n).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });  // to the cent, so the lines add up exactly
-  const row = (name, value, cls = "") => `<tr${cls ? ` class="${cls}"` : ""}><td>${name}</td><td class="num">${value}</td></tr>`;
   const insured = est.basis.kind !== "self_pay";
-  const shareRow = (s) => (s.patient_share && insured
-    ? row("What you would pay of that, under your plan" + (s.patient_share.capped_by_oop_max ? " (your out-of-pocket max)" : ""), cents(s.patient_share.amount), "share") : "");
 
   const where = est.basis.kind === "payer" ? `${est.basis.payer}'s rates` : est.basis.kind === "self_pay" ? "The hospital's discounted cash prices" : "The middle of all insurers' rates";
   $("receipt-source").textContent = `${where}, from ${priceFile.hospital}'s published price file${priceFile.updated ? ` (updated ${priceFile.updated})` : ""}.`;
 
+  // Each line gets a thin bar sized against the biggest line, so the eye lands on what drives the bill.
   const typVisit = visit(typ.visit_level);
   const expected = est.lines.filter((l) => l.likelihood === "expected");
-  let html = `<h3>Most likely visit</h3><table class="receipt"><tbody>
-    ${row(esc(typVisit.name), cents(typVisit.rate))}
-    ${expected.map((l) => row(label(l), cents(l.rate * l.quantity))).join("")}
-    ${row("Most likely total", cents(typ.allowed_total), "total")}${shareRow(typ)}</tbody></table>`;
-
+  const likely = [[esc(typVisit.name), typVisit.rate], ...expected.map((l) => [label(l), l.rate * l.quantity])];
   const extras = [];
   if (high.visit_level !== typ.visit_level) {
     const highVisit = visit(high.visit_level);
-    extras.push(row(`A more complex visit: ${esc(highVisit.name)}`, "+ " + cents(highVisit.rate - typVisit.rate)));
+    extras.push([`A more complex visit: ${esc(highVisit.name)}`, highVisit.rate - typVisit.rate]);
   }
-  est.lines.filter((l) => l.likelihood === "possible").forEach((l) => extras.push(row(label(l), "+ " + cents(l.rate * l.quantity))));
+  est.lines.filter((l) => l.likelihood === "possible").forEach((l) => extras.push([label(l), l.rate * l.quantity]));
+  const biggest = Math.max(...likely.map((r) => r[1]), ...extras.map((r) => r[1]), 1);
+  const item = ([name, amount], plus = "") =>
+    `<li style="--w:${Math.max(0.012, amount / biggest).toFixed(3)}"><span>${name}</span><span class="num">${plus}${cents(amount)}</span></li>`;
+  const totalBlock = (text, s) => `<div class="receipt-total"><div><span>${text}</span><strong class="num">${cents(s.allowed_total)}</strong></div>${
+    s.patient_share && insured
+      ? `<div class="receipt-share"><span>What you would pay of that, under your plan${s.patient_share.capped_by_oop_max ? " (your out-of-pocket max)" : ""}</span><strong class="num">${cents(s.patient_share.amount)}</strong></div>`
+      : ""}</div>`;
+
+  let html = `<div class="receipt-grid"><section class="receipt-card likely"><h3>Most likely visit</h3>
+    <p class="hint">Ordered for most patients with this problem.</p>
+    <ul class="receipt-rows">${likely.map((r) => item(r)).join("")}</ul>${totalBlock("Most likely total", typ)}</section>`;
   if (extras.length) {
-    html += `<h3>Might be added</h3><p class="hint">Ordered for some patients. All of them together is the higher end.</p>
-      <table class="receipt extras"><tbody>${extras.join("")}${row("Higher end total", cents(high.allowed_total), "total")}${shareRow(high)}</tbody></table>`;
+    html += `<section class="receipt-card extras"><h3>Might be added</h3>
+      <p class="hint">Ordered for some patients. All of them together is the higher end.</p>
+      <ul class="receipt-rows">${extras.map((r) => item(r, "+ ")).join("")}</ul>${totalBlock("Higher end total", high)}</section>`;
   }
+  html += "</div>";
   if (low.visit_level !== typ.visit_level) {
     html += `<p class="hint receipt-low">Lower end: the same items with a simpler visit, ${esc(visit(low.visit_level).name)}: ${cents(low.allowed_total)}.</p>`;
   }
