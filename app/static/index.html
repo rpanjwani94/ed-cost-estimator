@@ -44,7 +44,7 @@
             <textarea id="complaint" name="complaint" rows="5" required
               placeholder="Example: I rolled my ankle playing soccer an hour ago. It's swollen and hurts to walk on."></textarea>
             <div class="row between"><span class="hint" id="count">0 / 1200</span></div>
-            <p class="save-notice" id="save-notice" hidden>What you type here is saved so the tool can be improved. Do not enter a name or anything else that identifies a real person.</p>
+            <p class="save-notice" id="save-notice" hidden></p>
             <p class="label" id="examples-label">Or try an example</p>
             <div class="chips" id="examples" role="group" aria-labelledby="examples-label"></div>
           </div>
@@ -85,11 +85,11 @@
                   <input id="oop" type="number" min="0" max="100000" step="1" inputmode="decimal" placeholder="4000">
                 </div>
               </div>
-              <p class="hint">These are on your insurance card or your insurer's website. Any you leave blank are treated as zero.</p>
+              <p class="hint">These are on your insurance card or your insurer's website. To see your own share, fill in the copay, deductible and coinsurance (enter 0 if your plan has none). A blank means unknown, not zero. The out-of-pocket max is optional.</p>
             </details>
 
             <button id="submit" type="submit" class="primary">Estimate my cost</button>
-            <p class="hint center" id="privacy-note">Takes about 20 seconds. Your text is not saved.</p>
+            <p class="hint center" id="privacy-note">Takes about 20 seconds.</p>
           </div>
         </div>
       </form>

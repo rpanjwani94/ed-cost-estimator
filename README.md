@@ -138,11 +138,13 @@ To point the app at a different extract without replacing the test dataset, set 
 Run the tests that show these working:
 
 ```bash
-.venv/bin/python -m pytest -v                       # 43 tests, no API key needed, 0 tokens
+.venv/bin/python -m pytest -v                       # 53 tests, no API key needed, 0 tokens
 RUN_LIVE_TESTS=1 .venv/bin/python -m pytest -v      # adds 4 tests that call the real model
 ```
 
 (On Windows use `.venv\Scripts\python`; for the live tests run `$env:RUN_LIVE_TESTS=1` first.)
+
+`python scripts/red_team_data.py` attacks the app a second way: it hides instructions inside copies of the data files the agents read (a scenario note, a service name, an insurer name, a guidance note) and runs each with the data defenses off and on. It calls the real model, about 11,000 tokens per run; results go to `output/red_team_results.json`.
 
 ## Token use
 

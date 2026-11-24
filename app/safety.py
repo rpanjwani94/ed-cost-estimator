@@ -67,6 +67,39 @@ def check_input(complaint: str, insurance: str = "") -> str | None:
     return None
 
 
+# ---- 1b. Data scrub ---------------------------------------------------------
+# The agents also read text that no user typed: service names, scenario notes, guidance, and insurer names and
+# descriptions that come from the hospital's own file. An instruction hidden there would reach a model as if
+# it were a fact. Every such text field goes through scrub_data() when the data is loaded: the text is cut
+# at the first thing that reads like an order to an AI, or a link. Clean data passes through unchanged.
+
+DATA_DEFENSES_ON = True  # scripts/red_team_data.py turns this off to measure the app with no data defenses
+
+DATA_INJECTION_PATTERNS = [
+    r"\b(attention|note|notice|message|instructions?)\b.{0,20}\b(ai|a\.i\.|llm|assistant|agent|model|chatbot)s?\b",
+    r"\b(ai|a\.i\.|llm) (agent|assistant|model|system)s?\b",
+    r"\bassistant (instruction|note)s?\b",
+    r"\bsystem (note|override|prompt|message|instruction)s?\b",
+    r"\b(new|updated|additional) instructions?\b",
+    r"\b(ignore|disregard|forget|override) (the |all |any |your )?(patient|prior|previous|above|earlier|other|rules|instructions)",
+    r"\bfor every patient\b",
+    r"\byou (must|should) (now|always)\b",
+    r"https?://|www\.",
+]
+_DATA_INJECTION = re.compile("|".join(f"(?:{p})" for p in DATA_INJECTION_PATTERNS), re.IGNORECASE)
+
+
+def scrub_data(text: str) -> tuple[str, str]:
+    """Return (text safe to show a model, the part that was cut off). The second value is "" for clean text."""
+    if not DATA_DEFENSES_ON or not isinstance(text, str):
+        return text, ""
+    cleaned = normalize(text)
+    match = _DATA_INJECTION.search(cleaned)
+    if not match:
+        return text, ""
+    return cleaned[:match.start()].rstrip(" \t\n(-:;,.\u2014") or "[text removed]", cleaned[match.start():]
+
+
 # ---- 2. Red-flag screen -----------------------------------------------------
 
 RED_FLAGS: list[tuple[str, str]] = [

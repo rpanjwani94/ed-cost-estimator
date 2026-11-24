@@ -8,7 +8,7 @@ import re
 from dataclasses import dataclass, field
 from functools import lru_cache
 
-from . import config
+from . import config, safety
 
 
 @dataclass
@@ -45,6 +45,19 @@ def _clean(text: str) -> str:
     return re.sub(r"\s+", " ", text).strip()
 
 
+# Text that reads like an order to an AI is cut out of the data as it is loaded (see safety.scrub_data),
+# so no agent ever sees it. What was cut is kept here and printed once, so a poisoned file is noticed.
+SCRUB_LOG: list[dict[str, str]] = []
+
+
+def _safe(text: str, where: str) -> str:
+    cleaned, cut = safety.scrub_data(text)
+    if cut:
+        SCRUB_LOG.append({"where": where, "kept": cleaned, "removed": cut[:200]})
+        print(f"DATA SCRUB: removed instruction-like text from {where}: {cut[:120]!r}", flush=True)
+    return cleaned
+
+
 def _money(text: str) -> float | None:
     try:
         return float(text)
@@ -65,7 +78,7 @@ def load_prices() -> PriceData:
         if len(row) < len(col):
             continue
         code, code_type = row[col["code|1"]].strip(), row[col["code|1|type"]].strip()
-        description, setting = _clean(row[col["description"]]), row[col["setting"]].strip()
+        description, setting = _safe(_clean(row[col["description"]]), "price file description"), row[col["setting"]].strip()
         gross, cash = _money(row[col["standard_charge|gross"]]), _money(row[col["standard_charge|discounted_cash"]])
         rate = _money(row[col["standard_charge|negotiated_dollar"]])
         if gross is None or cash is None or rate is None:
@@ -74,10 +87,11 @@ def load_prices() -> PriceData:
         svc = grouped.get(key)
         if svc is None:
             svc = grouped[key] = Service(code, code_type, description, "other", description, setting, gross, cash)
-        svc.rates[_clean(row[col["payer_name"]])] = rate
+        svc.rates[_safe(_clean(row[col["payer_name"]]), "price file insurer name")] = rate
 
     with open(config.CATALOG_FILE, newline="", encoding="utf-8") as f:
-        catalog = {r["code"]: r for r in csv.DictReader(f)}
+        catalog = {r["code"]: {**r, "name": _safe(r["name"], "service catalog name"), "category": _safe(r["category"], "service catalog category")}
+                   for r in csv.DictReader(f)}
 
     drgs: dict[str, Service] = {}
     variants: dict[str, list[Service]] = {}
@@ -123,13 +137,26 @@ def load_prices() -> PriceData:
 @lru_cache(maxsize=1)
 def load_workups() -> dict[str, dict]:
     with open(config.WORKUPS_FILE, encoding="utf-8") as f:
-        return {s["id"]: s for s in json.load(f)["scenarios"]}
+        scenarios = json.load(f)["scenarios"]
+    for s in scenarios:
+        s["title"], s["note"] = _safe(s["title"], "scenario title"), _safe(s.get("note", ""), "scenario note")
+        s["keywords"] = [_safe(k, "scenario keyword") for k in s.get("keywords", [])]
+        for item in s["expected"] + s["possible"]:
+            if item.get("note"):
+                item["note"] = _safe(item["note"], "scenario item note")
+        for key, value in s.get("admission", {}).items():
+            if isinstance(value, str):
+                s["admission"][key] = _safe(value, "scenario admission note")
+    return {s["id"]: s for s in scenarios}
 
 
 @lru_cache(maxsize=1)
 def load_guidance() -> dict[str, dict]:
     with open(config.GUIDANCE_FILE, encoding="utf-8") as f:
-        return json.load(f)["topics"]
+        topics = json.load(f)["topics"]
+    for topic in topics.values():
+        topic["title"], topic["text"] = _safe(topic["title"], "guidance title"), _safe(topic["text"], "guidance text")
+    return topics
 
 
 @lru_cache(maxsize=1)

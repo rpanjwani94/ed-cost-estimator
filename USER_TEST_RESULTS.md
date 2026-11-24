@@ -38,6 +38,14 @@ Feedback from people who tried the app through the shared link, in their own wor
 - **The range is too wide to act on.** $805 to $1,463 for one cut finger. Narrowing it needs the patient's plan details and a check against real bills.
 - **Where a patient sees the use:** budgeting after a visit, and choosing between urgent care and an ED when it is not a severe emergency. In an emergency they would go regardless of cost.
 
+## Other feedback (23 November 2026)
+
+- **Care management providers in the emergency department** and **lawyers** who were shown the app said they liked it. No written answers were collected from them.
+- **A review by another AI assistant**, asked by the author to evaluate the website, raised two problems that were fixed the same evening:
+  - The page's code held both "what you type is saved" and "your text is not saved". Only one was ever shown at a time, but the page now carries only the statement that applies.
+  - Blank plan details were counted as zero, which could understate what a patient owes. A blank is now unknown: "your share" appears only when copay, deductible left and coinsurance are all filled in.
+- The same review suggested showing ranges in place of exact figures. The author kept exact figures, because a user she asked preferred them; the page says throughout that these are estimates.
+
 ## Runs seen in the test log on 22 November 2026 (first evening)
 
 | Time | What was typed | Insurance | Red banner | Scenario the app used | Most-likely figure shown |

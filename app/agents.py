@@ -34,6 +34,12 @@ class RunDeps:
     estimate: Estimate | None = None
     admission_priced: bool = False
     tool_log: list[dict[str, Any]] = field(default_factory=list)
+    # Billing codes a tool handed to the clinical agent in this run, with the most of each it may order.
+    # A code that only appears inside a piece of text (a name, a note) is not here, so it cannot enter the plan.
+    offered: dict[str, int] = field(default_factory=dict)
+
+    def offer(self, code: str, quantity: int = 1) -> None:
+        self.offered[code] = max(self.offered.get(code, 0), quantity, 2)
 
     def log(self, tool: str, args: dict[str, Any], result: Any) -> None:
         text = str(result)
@@ -60,6 +66,8 @@ def get_scenario(ctx: RunContext[RunDeps], scenario_id: str) -> dict:
         scenario_id: An id returned by find_scenarios.
     """
     result = pricing.get_workup(scenario_id) or {"error": f"No scenario with id {scenario_id!r}. Use an id from find_scenarios."}
+    for item in result.get("expected", []) + result.get("possible", []):
+        ctx.deps.offer(item["code"], item["quantity"])
     ctx.deps.log("get_scenario", {"scenario_id": scenario_id}, result.get("title", result))
     return result
 
@@ -71,6 +79,8 @@ def search_services(ctx: RunContext[RunDeps], words: str) -> list[dict]:
         words: What to look for, e.g. "knee x-ray" or "tetanus".
     """
     result = pricing.search_services(words)
+    for found in result:
+        ctx.deps.offer(found["code"])
     ctx.deps.log("search_services", {"words": words}, [f"{r['code']} {r['name']}" for r in result])
     return result
 
@@ -152,14 +162,24 @@ class Team:
     advocate: Agent[RunDeps, PatientSummary]
 
 
-def check_plan(plan: WorkupPlan) -> list[str]:
-    """Reasons a clinical plan cannot be priced. Empty means it is fine."""
+def check_plan(plan: WorkupPlan, offered: dict[str, int] | None = None) -> list[str]:
+    """Reasons a clinical plan cannot be priced. Empty means it is fine.
+
+    `offered` is the set of codes the tools handed over in this run (see RunDeps.offered). When given, a
+    code the tools never returned, or more of an item than the scenario lists, is rejected: text inside
+    the data cannot add a service or multiply one.
+    """
     prices, problems = load_prices(), []
     for item in plan.expected + plan.possible:
         if item.code not in prices.services:
             problems.append(f"code {item.code!r} is not in the hospital's price list")
         elif item.code in VISIT_LEVELS:
             problems.append(f"{item.code} is a visit level; put it in the level fields, not in the item lists")
+        elif offered is not None and safety.DATA_DEFENSES_ON:
+            if item.code not in offered:
+                problems.append(f"code {item.code!r} was not returned by a tool in this run; use only codes from get_scenario or search_services results")
+            elif item.quantity > offered[item.code]:
+                problems.append(f"quantity {item.quantity} of {item.code} is more than the scenario lists ({offered[item.code]} at most)")
     order = [VISIT_LEVELS.index(lv) for lv in (plan.level_low, plan.level_typical, plan.level_high)]
     if order != sorted(order):
         problems.append("visit levels must go low <= typical <= high")
@@ -189,7 +209,7 @@ def get_team() -> Team:
 
     @clinical.output_validator
     def _valid_plan(ctx: RunContext[RunDeps], plan: WorkupPlan) -> WorkupPlan:
-        problems = check_plan(plan)
+        problems = check_plan(plan, ctx.deps.offered)
         if problems:
             ctx.deps.log("plan_check", {}, "REJECTED: " + "; ".join(problems))
             raise ModelRetry("Fix these problems, using only codes returned by the tools: " + "; ".join(problems))

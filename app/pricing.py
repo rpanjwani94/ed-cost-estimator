@@ -44,11 +44,12 @@ def patient_share(allowed: float, req: EstimateRequest, basis: Basis) -> Patient
     """Simplified plan math: copay, then deductible, then coinsurance, capped at the out-of-pocket maximum.
 
     Real plans differ (some waive the copay if admitted, some apply the copay after the deductible),
-    so the result is an estimate. Returns None when the patient gave no plan details.
+    so the result is an estimate. Returns None unless the patient gave the copay, the deductible left and
+    the coinsurance: a blank is unknown, and guessing zero would understate what the patient owes.
     """
     if basis.kind == "self_pay":
         return PatientShare(amount=round(allowed, 2))
-    if not req.has_benefits():
+    if not req.has_full_benefits():
         return None
     copay = min(req.copay or 0, allowed)
     remaining = allowed - copay
@@ -138,7 +139,11 @@ def price_admission(plan: WorkupPlan, basis: Basis, req: EstimateRequest) -> tup
     return options, observation
 
 
-def headline(estimate: Estimate) -> tuple[str, str]:
+PARTIAL_PLAN_NOTE = (" You filled in some plan details, but working out your share needs all three of copay, deductible "
+                     "left and coinsurance (enter 0 for any your plan does not have), so this is not your share yet.")
+
+
+def headline(estimate: Estimate, partial_plan: bool = False) -> tuple[str, str]:
     """The one line patients care about: what they might pay. Returns (headline, a short note under it).
 
     With plan details or no insurance the figure is the patient's own share. Without plan details the
@@ -156,11 +161,11 @@ def headline(estimate: Estimate) -> tuple[str, str]:
                 else "Based on the plan details you entered, at a typical insurer's rates." + capped)
     if basis.kind == "payer":
         return (f"You might pay up to ${typical.allowed_total:,.0f} for the hospital's bill.",
-                f"That is {basis.payer}'s full rate for the visit. You would pay less if you have already met part of your "
-                "deductible. Add your plan details above for a closer figure.")
+                f"That is {basis.payer}'s full rate for the visit. You would pay less if you have already met part of your deductible."
+                + (PARTIAL_PLAN_NOTE if partial_plan else " Add your plan details above for a closer figure."))
     return (f"You might pay up to about ${typical.allowed_total:,.0f} for the hospital's bill.",
-            "That is what a typical insurer pays this hospital for the visit. Choose your insurer and add your plan details "
-            "above for a closer figure.")
+            "That is what a typical insurer pays this hospital for the visit."
+            + (PARTIAL_PLAN_NOTE if partial_plan else " Choose your insurer and add your plan details above for a closer figure."))
 
 
 # ---- Look-ups the Clinical agent uses ---------------------------------------

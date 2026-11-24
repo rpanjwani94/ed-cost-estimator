@@ -22,7 +22,14 @@ class EstimateRequest(BaseModel):
     oop_max_remaining: float | None = Field(default=None, ge=0, le=100000)
 
     def has_benefits(self) -> bool:
+        """The patient filled in at least one plan detail."""
         return any(v is not None for v in (self.copay, self.deductible_remaining, self.coinsurance_pct, self.oop_max_remaining))
+
+    def has_full_benefits(self) -> bool:
+        """Enough to work out the patient's share: copay, deductible left and coinsurance are all filled in
+        (a real 0 counts). A blank is unknown, never zero. The out-of-pocket maximum is optional: without it
+        the share has no cap, so the estimate can only come out higher, not lower."""
+        return all(v is not None for v in (self.copay, self.deductible_remaining, self.coinsurance_pct))
 
 
 # ---- Agent outputs ---------------------------------------------------------

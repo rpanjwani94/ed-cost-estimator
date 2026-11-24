@@ -71,9 +71,13 @@ async function loadMeta() {
       });
       return b;
     }));
+    // One statement about saving, never both: the page says what this copy of the app actually does.
     if (meta.saves_text) {
+      $("save-notice").textContent = "What you type here is saved so the tool can be improved. Do not enter a name or anything else that identifies a real person.";
       show($("save-notice"));
       $("privacy-note").textContent = "Takes about 20 seconds. What you type is saved.";
+    } else {
+      $("privacy-note").textContent = "Takes about 20 seconds. Your text is not saved.";
     }
     if (!meta.api_key_found) {
       showAlert("error", "No API key found", "Put PORTKEY_API_KEY in a .env file in this folder or the folder above it, then restart the app.");
