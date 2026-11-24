@@ -12,6 +12,7 @@ const AGENTS = [
 const money = (n) => "$" + Math.round(Number(n)).toLocaleString("en-US");
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const show = (el, on = true) => { el.hidden = !on; };
+let priceFile = { hospital: "the hospital", updated: "" };  // filled in from /api/meta
 
 function fillList(el, items) {
   el.replaceChildren(...(items || []).map((text) => Object.assign(document.createElement("li"), { textContent: text })));
@@ -54,6 +55,7 @@ $("insurer").addEventListener("change", () => { syncInsurer(); if ($("insurer").
 async function loadMeta() {
   try {
     const meta = await (await fetch("/api/meta")).json();
+    priceFile = { hospital: meta.hospital, updated: meta.last_updated };
     $("source").textContent = `Prices: ${meta.hospital}, file updated ${meta.last_updated} · Model: ${meta.model}`;
     $("complaint").maxLength = meta.max_input_chars;
     $("count").textContent = `0 / ${meta.max_input_chars}`;
@@ -182,6 +184,45 @@ function renderScenarios(est) {
   }));
 }
 
+// The itemized list under the three figures: what adds up to the most-likely figure, and what could be added.
+// Every amount comes from the estimate the pricing code produced; nothing here is model text.
+function renderReceipt(est) {
+  const by = Object.fromEntries(est.scenarios.map((s) => [s.key, s]));
+  const low = by.low, typ = by.typical, high = by.high;
+  const visit = (code) => est.lines.find((l) => l.likelihood === "visit" && l.code === code);
+  const label = (l) => esc(l.name) + (l.quantity > 1 ? ` × ${l.quantity}` : "");
+  const cents = (n) => "$" + Number(n).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });  // to the cent, so the lines add up exactly
+  const row = (name, value, cls = "") => `<tr${cls ? ` class="${cls}"` : ""}><td>${name}</td><td class="num">${value}</td></tr>`;
+  const insured = est.basis.kind !== "self_pay";
+  const shareRow = (s) => (s.patient_share && insured
+    ? row("What you would pay of that, under your plan" + (s.patient_share.capped_by_oop_max ? " (your out-of-pocket max)" : ""), cents(s.patient_share.amount), "share") : "");
+
+  const where = est.basis.kind === "payer" ? `${est.basis.payer}'s rates` : est.basis.kind === "self_pay" ? "The hospital's discounted cash prices" : "The middle of all insurers' rates";
+  $("receipt-source").textContent = `${where}, from ${priceFile.hospital}'s published price file${priceFile.updated ? ` (updated ${priceFile.updated})` : ""}.`;
+
+  const typVisit = visit(typ.visit_level);
+  const expected = est.lines.filter((l) => l.likelihood === "expected");
+  let html = `<h3>Most likely visit</h3><table class="receipt"><tbody>
+    ${row(esc(typVisit.name), cents(typVisit.rate))}
+    ${expected.map((l) => row(label(l), cents(l.rate * l.quantity))).join("")}
+    ${row("Most likely total", cents(typ.allowed_total), "total")}${shareRow(typ)}</tbody></table>`;
+
+  const extras = [];
+  if (high.visit_level !== typ.visit_level) {
+    const highVisit = visit(high.visit_level);
+    extras.push(row(`A more complex visit: ${esc(highVisit.name)}`, "+ " + cents(highVisit.rate - typVisit.rate)));
+  }
+  est.lines.filter((l) => l.likelihood === "possible").forEach((l) => extras.push(row(label(l), "+ " + cents(l.rate * l.quantity))));
+  if (extras.length) {
+    html += `<h3>Might be added</h3><p class="hint">Ordered for some patients. All of them together is the higher end.</p>
+      <table class="receipt extras"><tbody>${extras.join("")}${row("Higher end total", cents(high.allowed_total), "total")}${shareRow(high)}</tbody></table>`;
+  }
+  if (low.visit_level !== typ.visit_level) {
+    html += `<p class="hint receipt-low">Lower end: the same items with a simpler visit, ${esc(visit(low.visit_level).name)}: ${cents(low.allowed_total)}.</p>`;
+  }
+  $("receipt").innerHTML = html;
+}
+
 function renderLines(est) {
   const rateHead = est.basis.kind === "self_pay" ? "Cash price" : est.basis.kind === "payer" ? `${est.basis.payer} rate` : "Median insurer rate";
   const rows = est.lines.map((l) => `
@@ -230,6 +271,7 @@ function renderResult(r) {
   fillList($("questions-doctor"), s.questions_for_doctor);
   fillList($("rights"), s.rights);
   renderAdmission(est, s);
+  renderReceipt(est);
   renderLines(est);
   $("basis-explanation").textContent = r.pricing_notes.basis_explanation;
   fillList($("caveats"), r.pricing_notes.caveats);

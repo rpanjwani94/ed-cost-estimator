@@ -134,6 +134,19 @@
           <p class="hint" id="physician"></p>
         </div>
 
+        <div class="panel receipt-panel">
+          <h2>What's in this estimate</h2>
+          <p class="hint" id="receipt-source"></p>
+          <div id="receipt"></div>
+          <details class="more receipt-codes">
+            <summary>Show billing codes and list prices</summary>
+            <div class="more-body">
+              <p class="hint">"Expected" items are ordered for most patients with this problem; "possible" items are ordered for some.</p>
+              <div class="table-wrap"><table id="lines"></table></div>
+            </div>
+          </details>
+        </div>
+
         <div class="panel">
           <h2>What this means</h2>
           <p id="summary"></p>
@@ -169,13 +182,6 @@
           <details class="more">
             <summary>Your rights</summary>
             <div class="more-body"><ul id="rights"></ul></div>
-          </details>
-          <details class="more">
-            <summary>Every line of the estimate</summary>
-            <div class="more-body">
-              <p class="hint">Hospital bill only. "Expected" items are ordered for most patients with this problem; "possible" items are ordered for some.</p>
-              <div class="table-wrap"><table id="lines"></table></div>
-            </div>
           </details>
           <details class="more">
             <summary>How this was calculated</summary>

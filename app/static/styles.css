@@ -197,6 +197,20 @@ button.primary:disabled { background: #6E8376; cursor: progress; }
 .ask-card .hint { margin: 0 0 10px; }
 .ask-card ul { margin-bottom: 0; }
 
+/* Itemized list under the figures: plain names and prices, codes behind a toggle */
+.receipt-panel > .hint { margin: -6px 0 6px; }
+.receipt-panel h3 { color: var(--ink); font-size: 0.92rem; margin: 20px 0 4px; }
+.receipt-panel h3 + .hint { margin: 0 0 4px; }
+table.receipt { max-width: 640px; font-size: 0.95rem; }
+table.receipt td { padding: 9px 12px 9px 0; }
+table.receipt td:first-child { font-weight: 400; min-width: 0; }
+table.receipt td:last-child { padding-right: 0; }
+table.receipt.extras td { color: var(--muted); }
+table.receipt tr.total td { font-weight: 650; color: var(--ink); border-top: 1px solid var(--line-strong); border-bottom: 0; }
+table.receipt tr.share td { font-weight: 650; color: var(--moss); border-bottom: 0; padding-top: 2px; }
+.receipt-low { margin: 12px 0 0; }
+details.receipt-codes { margin-top: 18px; }
+
 /* More detail: closed by default, one row each */
 .more-panel > .hint { margin: -6px 0 14px; }
 details.more { border-top: 1px solid var(--line); }
