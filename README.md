@@ -185,7 +185,6 @@ data/            test dataset and reference files
 scripts/         extract_ed_rows.py (rebuilds the test dataset), measure_runs.py, build_docs.py, make_review_sheet.py, review_runs.py
 tests/           safety and pricing tests
 output/          usage_log.jsonl (created when the app runs)
-AI_prompts.md    the prompts given to the AI coding assistant
 SCENARIOS_REVIEW.md    the clinical scenarios in readable form
 USER_TEST_GUIDE.md     what testers were asked to do
 USER_TEST_RESULTS.md   what testers said and ran

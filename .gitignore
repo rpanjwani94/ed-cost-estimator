@@ -23,3 +23,6 @@ dist/
 output/test_runs.jsonl
 output/test_runs_review.csv
 output/*.log.jsonl
+
+# The author's own log of prompts typed to the AI coding assistant (kept on her computer, not in the repo)
+AI_prompts.md
