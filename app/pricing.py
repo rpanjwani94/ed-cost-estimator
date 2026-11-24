@@ -147,8 +147,8 @@ def headline(estimate: Estimate, partial_plan: bool = False) -> tuple[str, str]:
     """The one line patients care about: what they might pay. Returns (headline, a short note under it).
 
     With plan details or no insurance the figure is the patient's own share. Without plan details the
-    insurer's rate for the visit is the most the patient could owe for the hospital's bill, so it is
-    shown as "up to".
+    figure is the insurer's rate for the visit. It is never worded as a ceiling ("up to"): the real bill
+    can be higher if the visit turns out to need more.
     """
     typical, basis = estimate.scenarios[1], estimate.basis
     if basis.kind == "self_pay":
@@ -160,11 +160,12 @@ def headline(estimate: Estimate, partial_plan: bool = False) -> tuple[str, str]:
                 f"Based on the plan details you entered, at {basis.payer}'s rates." + capped if basis.payer
                 else "Based on the plan details you entered, at a typical insurer's rates." + capped)
     if basis.kind == "payer":
-        return (f"You might pay up to ${typical.allowed_total:,.0f} for the hospital's bill.",
-                f"That is {basis.payer}'s full rate for the visit. You would pay less if you have already met part of your deductible."
+        return (f"You might pay about ${typical.allowed_total:,.0f} for the hospital's bill.",
+                f"That is {basis.payer}'s full rate for the most likely visit. You would pay less if you have already met part of "
+                "your deductible, and the bill can be higher if more care is needed."
                 + (PARTIAL_PLAN_NOTE if partial_plan else " Add your plan details above for a closer figure."))
-    return (f"You might pay up to about ${typical.allowed_total:,.0f} for the hospital's bill.",
-            "That is what a typical insurer pays this hospital for the visit."
+    return (f"You might pay about ${typical.allowed_total:,.0f} for the hospital's bill.",
+            "That is what a typical insurer pays this hospital for the most likely visit. The bill can be higher if more care is needed."
             + (PARTIAL_PLAN_NOTE if partial_plan else " Choose your insurer and add your plan details above for a closer figure."))
 
 

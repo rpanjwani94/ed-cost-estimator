@@ -197,6 +197,16 @@ button.primary:disabled { background: #6E8376; cursor: progress; }
 .ask-card .hint { margin: 0 0 10px; }
 .ask-card ul { margin-bottom: 0; }
 
+/* Insurance card photo */
+.card-reader { margin: 6px 0 14px; }
+button.secondary { width: 100%; padding: 11px 14px; font: inherit; font-weight: 600; font-size: 0.92rem; color: var(--moss); background: #fff;
+  border: 1px dashed var(--line-strong); border-radius: var(--radius); cursor: pointer; text-align: center; }
+button.secondary:hover { background: var(--sage-wash); border-style: solid; }
+button.secondary:disabled { color: var(--muted); cursor: progress; }
+.card-reader .hint { margin: 7px 0 0; font-size: 0.8rem; }
+.card-result { margin: 10px 0 0; padding: 10px 12px; border-radius: var(--radius); font-size: 0.88rem; max-width: none; background: var(--sage-wash); color: var(--ink); }
+.card-result.problem { background: var(--terracotta-wash); }
+
 /* Itemized list under the figures: two cards (what is likely, what might be added), codes behind a toggle */
 .receipt-panel > .hint { margin: -6px 0 0; }
 .receipt-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; align-items: stretch; margin-top: 16px; }

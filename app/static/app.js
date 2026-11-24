@@ -50,6 +50,70 @@ function setInsurance(text) {
 
 $("insurer").addEventListener("change", () => { syncInsurer(); if ($("insurer").value === "__other__") $("insurance").focus(); });
 
+// ---- Insurance card photo -------------------------------------------------
+// The photo is shrunk in the browser, sent once to be read, and the answer fills in the form. The patient
+// can change anything before asking for an estimate.
+
+function shrinkPhoto(file) {
+  return new Promise((resolve, reject) => {
+    const url = URL.createObjectURL(file), img = new Image();
+    img.onload = () => {
+      const scale = Math.min(1, 1600 / Math.max(img.width, img.height));
+      const canvas = Object.assign(document.createElement("canvas"), { width: Math.round(img.width * scale), height: Math.round(img.height * scale) });
+      const ctx = canvas.getContext("2d");
+      ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+      URL.revokeObjectURL(url);
+      resolve(canvas.toDataURL("image/jpeg", 0.85));
+    };
+    img.onerror = () => { URL.revokeObjectURL(url); reject(new Error("unreadable")); };
+    img.src = url;
+  });
+}
+
+function cardMessage(text, kind = "ok") {
+  const el = $("card-result");
+  el.textContent = text;
+  el.className = `card-result ${kind}`;
+  show(el);
+}
+
+async function readCard(file) {
+  const button = $("card-button"), label = button.textContent;
+  button.disabled = true; button.textContent = "Reading your card…";
+  show($("card-result"), false);
+  try {
+    let image;
+    try { image = await shrinkPhoto(file); } catch { cardMessage("That file could not be opened as a photo. Please try another one, or type the details in.", "problem"); return; }
+    const res = await fetch("/api/read-card", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ image }) });
+    const r = await res.json();
+    if (!res.ok || !r.ok) { cardMessage(r.message || "The card could not be read. Please type the details in.", "problem"); return; }
+    if (!r.is_insurance_card) { cardMessage("That does not look like an insurance card. You can type the details in instead.", "problem"); return; }
+    if (r.matched_insurer || r.insurer) setInsurance(r.matched_insurer || r.insurer);
+    const fields = [["copay", r.er_copay, "ER copay $"], ["deductible", r.deductible, "deductible $"], ["coinsurance", r.coinsurance_pct, "coinsurance "], ["oop", r.oop_max, "out-of-pocket max $"]];
+    const found = [];
+    fields.forEach(([id, value, words]) => {
+      if (value === null || value === undefined) return;
+      $(id).value = value;
+      found.push(id === "coinsurance" ? `${words}${value}%` : `${words}${Number(value).toLocaleString("en-US")}`);
+    });
+    document.querySelector("details.plan").open = true;
+    const who = r.matched_insurer || r.insurer;
+    const missing = fields.filter(([, value]) => value === null || value === undefined).length;
+    cardMessage(`Read from your card: ${[who, ...found].filter(Boolean).join(", ") || "nothing I could use"}.`
+      + (r.deductible !== null || r.oop_max !== null ? " A card shows your plan's full deductible and out-of-pocket max. If you have already paid part of them this year, lower those numbers." : "")
+      + (missing ? " What the card does not show is left blank; fill it in if you know it." : "")
+      + " Check everything before you continue.");
+  } catch {
+    cardMessage("The card could not be read right now. Please type the details in.", "problem");
+  } finally {
+    button.disabled = false; button.textContent = label; $("card-file").value = "";
+  }
+}
+
+$("card-button").addEventListener("click", () => $("card-file").click());
+$("card-file").addEventListener("change", (e) => { if (e.target.files[0]) readCard(e.target.files[0]); });
+
 // ---- Page setup -----------------------------------------------------------
 
 async function loadMeta() {
@@ -181,7 +245,7 @@ function renderScenarios(est) {
     div.innerHTML = `
       <div class="s-label">${esc(s.label)}</div>
       <p class="s-amount">${money(share ? share.amount : s.allowed_total)}</p>
-      <div class="s-what">${share ? "you might pay" : "the most you might pay"}</div>
+      <div class="s-what">${share ? "you might pay" : "at the insurer's full rate"}</div>
       <dl>${rows.map(([k, v]) => `<dt>${esc(k)}</dt><dd>${v}</dd>`).join("")}</dl>
       <p class="s-includes">${esc(s.visit_level_name)}. Includes ${esc(s.includes)}.</p>`;
     return div;

@@ -11,7 +11,7 @@ from fastapi import FastAPI, Request
 from fastapi.responses import FileResponse, JSONResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 
-from . import config, pipeline, safety
+from . import card, config, pipeline, safety
 from .data import load_physician_fees, load_prices, load_workups, validate_data
 from .models import EstimateRequest
 
@@ -51,12 +51,22 @@ def meta() -> dict:
     }
 
 
-@app.post("/api/estimate")
-async def estimate(req: EstimateRequest, request: Request) -> StreamingResponse:
+def visitor(request: Request) -> str:
     # Behind a tunnel or proxy every visitor arrives from the same local address, so use the
     # visitor's own address when the proxy passes it along. This only feeds the rate limit.
     forwarded = request.headers.get("cf-connecting-ip") or request.headers.get("x-forwarded-for", "").split(",")[0].strip()
-    client = forwarded or (request.client.host if request.client else "unknown")
+    return forwarded or (request.client.host if request.client else "unknown")
+
+
+@app.post("/api/read-card")
+async def read_card(req: card.CardRequest, request: Request) -> JSONResponse:
+    """Read plan details off a photo of an insurance card. The photo is used for one model call and never stored."""
+    return JSONResponse(await card.read_card(req.image, visitor(request)), headers={"Cache-Control": "no-store"})
+
+
+@app.post("/api/estimate")
+async def estimate(req: EstimateRequest, request: Request) -> StreamingResponse:
+    client = visitor(request)
 
     async def stream():
         async for event in pipeline.run_estimate(req, client):

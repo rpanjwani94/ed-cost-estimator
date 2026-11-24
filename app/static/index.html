@@ -65,6 +65,13 @@
               aria-label="Type your insurance" placeholder="Example: Blue Cross through my job">
             <p class="hint" id="insurer-hint">Not sure? Leave it. You will see the middle of all insurers' rates.</p>
 
+            <div class="card-reader">
+              <button type="button" id="card-button" class="secondary">Have your insurance card? Take a photo and I'll fill this in</button>
+              <input type="file" id="card-file" accept="image/*" hidden aria-label="Photo of your insurance card">
+              <p class="hint" id="card-note">The photo is sent to the AI service to be read. It is not saved, and your name and member ID are not kept. Cover them if you like.</p>
+              <p class="card-result" id="card-result" role="status" hidden></p>
+            </div>
+
             <details class="plan">
               <summary>I know my plan details <span class="optional">(for a "what you pay" estimate)</span></summary>
               <div class="grid2">
