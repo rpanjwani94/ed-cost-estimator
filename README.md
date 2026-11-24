@@ -116,7 +116,7 @@ All agents use `gpt-6-luna`, through Portkey (`PORTKEY_API_KEY`) or directly wit
 |---|---|
 | `data/ynhh_ed_standard_charges.csv` | **Test dataset (1.6 MB, 10,373 rows).** ED-relevant rows cut from Yale New Haven Hospital's public price transparency file: 240 outpatient services (including 9 common ED medicines) and 20 inpatient DRGs, each with the list price, cash price and 23 insurers' negotiated rates. |
 | `data/service_catalog.csv` | Plain-language names for the billing codes |
-| `data/workups.json` | 22 typical ED workups by presenting problem: 20 reviewed and corrected by the project's ED clinician, 2 (joint dislocation, dental pain) still drafts (readable copy: `SCENARIOS_REVIEW.md`) |
+| `data/workups.json` | 22 typical ED workups by presenting problem: 21 reviewed and corrected by the project's ED clinician, 1 (joint dislocation) still a draft (readable copy: `SCENARIOS_REVIEW.md`) |
 | `data/guidance.json` | Short patient-rights explanations the advocate may use |
 | `data/SOURCE.md` | Where the price file came from, its columns, and caveats |
 

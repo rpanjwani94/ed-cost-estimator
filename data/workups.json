@@ -1,5 +1,5 @@
 {
-  "_note": "Typical ED workups by presenting problem. Drafted with AI help, then reviewed and corrected by the ED clinician who owns this project on 22 November 2026 (17 scenarios) and 23 November 2026 (pregnancy bleeding, mental health crisis, GI bleeding). Two are unreviewed drafts and say so in their note: joint dislocation and dental pain. 'expected' items are ordered for most patients with this problem; 'possible' items are ordered for some. Visit levels are the hospital facility E/M level (99281-99285) or critical care (99291).",
+  "_note": "Typical ED workups by presenting problem. Drafted with AI help, then reviewed and corrected by the ED clinician who owns this project on 22 November 2026 (17 scenarios) and 23 November 2026 (pregnancy bleeding, mental health crisis, GI bleeding, dental pain). One is an unreviewed draft and says so in its note: joint dislocation. 'expected' items are ordered for most patients with this problem; 'possible' items are ordered for some. Visit levels are the hospital facility E/M level (99281-99285) or critical care (99291).",
   "scenarios": [
     {
       "id": "chest_pain",
@@ -1346,7 +1346,7 @@
         "drgs": [],
         "observation_possible": false
       },
-      "note": "DRAFT, not yet reviewed by the clinician. The ED treats the pain and checks for a spreading infection. The tooth itself needs a dentist. A face CT and blood work are for facial swelling, fever or trouble swallowing."
+      "note": "The ED treats the pain and checks for a spreading infection. The tooth itself needs a dentist. A face CT and blood work are for facial swelling, fever or trouble swallowing."
     },
     {
       "id": "gi_bleeding",

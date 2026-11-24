@@ -1,6 +1,6 @@
 # Clinical scenarios
 
-These 22 scenarios drive every estimate. They were drafted with AI help. The project's ED clinician reviewed and corrected 17 on 22 November 2026 and three more on 23 November 2026 (pregnancy bleeding, mental health crisis, GI bleeding). A scenario whose note starts with DRAFT has not been reviewed yet.
+These 22 scenarios drive every estimate. They were drafted with AI help. The project's ED clinician reviewed and corrected 17 on 22 November 2026 and four more on 23 November 2026 (pregnancy bleeding, mental health crisis, GI bleeding, dental pain). A scenario whose note starts with DRAFT has not been reviewed yet.
 
 To change one, describe the change in plain words (for example "chest pain: add a second ECG to possible") and the data file `data/workups.json` is updated to match. Prices shown are the hospital's list prices, only to show scale.
 
@@ -615,7 +615,7 @@ To change one, describe the change in plain words (for example "chest pain: add 
 
 **Admission:** unlikely · observation stay possible: no  
 **If admitted, priced as:** none listed  
-**Note shown to the planner:** DRAFT, not yet reviewed by the clinician. The ED treats the pain and checks for a spreading infection. The tooth itself needs a dentist. A face CT and blood work are for facial swelling, fever or trouble swallowing.
+**Note shown to the planner:** The ED treats the pain and checks for a spreading infection. The tooth itself needs a dentist. A face CT and blood work are for facial swelling, fever or trouble swallowing.
 
 ---
 

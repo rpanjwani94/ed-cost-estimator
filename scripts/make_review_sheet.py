@@ -19,7 +19,7 @@ data = json.loads((ROOT / "data" / "workups.json").read_text(encoding="utf-8"))
 out = [
     "# Clinical scenarios", "",
     f"These {len(data['scenarios'])} scenarios drive every estimate. They were drafted with AI help. The project's ED clinician reviewed and corrected 17 on "
-    "22 November 2026 and three more on 23 November 2026 (pregnancy bleeding, mental health crisis, GI bleeding). A scenario whose note starts with "
+    "22 November 2026 and four more on 23 November 2026 (pregnancy bleeding, mental health crisis, GI bleeding, dental pain). A scenario whose note starts with "
     "DRAFT has not been reviewed yet.", "",
     "To change one, describe the change in plain words (for example \"chest pain: add a second ECG to possible\") and the data file `data/workups.json` is updated to match. Prices shown are the hospital's list prices, only to show scale.", "",
 ]
