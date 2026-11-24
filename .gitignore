@@ -26,3 +26,7 @@ output/*.log.jsonl
 
 # The author's own log of prompts typed to the AI coding assistant (kept on her computer, not in the repo)
 AI_prompts.md
+
+# Backup screen recording for Canvas (uploaded there, not kept in the repo)
+*.mp4
+*.webm
