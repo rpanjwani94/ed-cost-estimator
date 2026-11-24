@@ -138,7 +138,7 @@ To point the app at a different extract without replacing the test dataset, set 
 Run the tests that show these working:
 
 ```bash
-.venv/bin/python -m pytest -v                       # 28 tests, no API key needed, 0 tokens
+.venv/bin/python -m pytest -v                       # 43 tests, no API key needed, 0 tokens
 RUN_LIVE_TESTS=1 .venv/bin/python -m pytest -v      # adds 4 tests that call the real model
 ```
 
