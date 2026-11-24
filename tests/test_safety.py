@@ -81,6 +81,9 @@ def test_overlong_and_empty_input_is_refused():
     ("worst headache of my life, came on suddenly", "Sudden, severe headache"),
     ("heavy vaginal bleeding since this morning", "Heavy bleeding"),
     ("I cut my arm and the bleeding won't stop", "Heavy bleeding"),
+    ("I'm thinking about killing myself tonight and have a plan", "Thoughts of self-harm"),
+    ("I've had black stools and feel dizzy when I stand", "Possible bleeding inside the gut"),
+    ("My son is having trouble breathing. His lips look blue", "Blue lips or skin"),
 ])
 def test_red_flags_are_caught_by_keyword_screen(text, expected):
     assert any(expected in flag for flag in safety.red_flags(text))
@@ -99,6 +102,30 @@ def test_minor_problems_do_not_raise_red_flags():
 ])
 def test_ordinary_words_do_not_set_off_the_emergency_banner(text):
     assert safety.red_flags(text) == []
+
+
+@pytest.mark.parametrize("text", [
+    "My heart sometimes races after coffee. Right now I feel normal. No chest pain, dizziness, or shortness of breath.",
+    "Vomiting and diarrhea since yesterday. I can keep water down and I don't have severe pain or blood in my stool.",
+    "I bumped my head on a cabinet. No loss of consciousness, vomiting, blood thinners, or confusion.",
+    "I twisted my ankle playing basketball. It's swollen but I can walk. No numbness or deformity.",
+    "Sore throat for two days, without trouble breathing.",
+])
+def test_warning_signs_the_patient_says_they_do_not_have_do_not_set_off_the_banner(text):
+    assert safety.red_flags(text) == []
+
+
+@pytest.mark.parametrize("text, expected", [
+    ("No fever, but I have chest pain when I breathe in", "Chest pain or pressure"),       # "but" ends the denial
+    ("I have no feeling in my arm and my face is drooping", "Possible stroke symptoms"),   # "and" ends it
+    ("No medical problems. I have crushing chest pressure.", "Chest pain or pressure"),    # a new sentence ends it
+    ("No, I have chest pain", "Chest pain or pressure"),                                   # "No," is an answer, not a denial
+    ("I do not know why, I can not breathe", "Trouble breathing"),
+    ("There is no way to stop it, the bleeding won't stop", "Heavy bleeding"),
+    ("No chest pain yesterday. Today chest pain and sweating.", "Chest pain or pressure"),  # denied once, present later
+])
+def test_a_real_warning_sign_near_a_denial_still_sets_off_the_banner(text, expected):
+    assert any(expected in flag for flag in safety.red_flags(text))
 
 
 @pytest.mark.parametrize("text, expected", [

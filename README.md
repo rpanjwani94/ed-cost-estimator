@@ -138,13 +138,15 @@ To point the app at a different extract without replacing the test dataset, set 
 Run the tests that show these working:
 
 ```bash
-.venv/bin/python -m pytest -v                       # 53 tests, no API key needed, 0 tokens
+.venv/bin/python -m pytest -v                       # 68 tests, no API key needed, 0 tokens
 RUN_LIVE_TESTS=1 .venv/bin/python -m pytest -v      # adds 4 tests that call the real model
 ```
 
 (On Windows use `.venv\Scripts\python`; for the live tests run `$env:RUN_LIVE_TESTS=1` first.)
 
 `python scripts/red_team_data.py` attacks the app a second way: it hides instructions inside copies of the data files the agents read (a scenario note, a service name, an insurer name, a guidance note) and runs each with the data defenses off and on. It calls the real model, about 11,000 tokens per run; results go to `output/red_team_results.json`.
+
+`python scripts/run_review_cases.py` runs 30 patient descriptions with a physician's expectations (`data/review_cases.json`) through the agents and scores each one: was the red banner right, does the plan include what the case calls for, and is the expected list free of what the case says should not be routine. Results are in `CASE_REVIEW.md` (about 350,000 tokens for all 30).
 
 ## Token use
 
@@ -188,6 +190,7 @@ output/          usage_log.jsonl (created when the app runs)
 SCENARIOS_REVIEW.md    the clinical scenarios in readable form
 USER_TEST_GUIDE.md     what testers were asked to do
 USER_TEST_RESULTS.md   what testers said and ran
+CASE_REVIEW.md         30 test cases scored against a physician's expectations
 report.html      the project report (single file, opens with a double-click)
 slides.html      the slide deck (reveal.js; arrow keys to move, F for full screen)
 docs_src/        the report and slides before their images are embedded

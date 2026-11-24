@@ -1,0 +1,795 @@
+{
+ "_note": "Thirty test cases with physician review expectations, supplied to the author by an outside AI review on 23 November 2026. 'input' and 'physician_review_expectations' are as supplied. 'checks' is how scripts/run_review_cases.py scores a run: whether the red emergency banner should show (null = either is acceptable), billing codes the plan should contain (one from each group, in the expected or the possible list), and codes that should not be in the expected list.",
+ "cases": [
+  {
+   "id": "01",
+   "group": "A. Chest pain and cardiovascular complaints",
+   "title": "Typical chest pain",
+   "input": "I'm a 58-year-old man with high blood pressure and diabetes. I've had chest pressure for an hour that goes into my left arm, and I'm sweating. I have Aetna.",
+   "insurance": "Aetna",
+   "physician_review_expectations": "Emergency recognition. ECG, troponin-based ACS evaluation, monitoring, other indicated testing. Do not delay care for pricing.",
+   "checks": {
+    "emergency_banner": true,
+    "plan_should_include_one_of_each": [
+     [
+      "93005"
+     ],
+     [
+      "84484"
+     ]
+    ],
+    "should_not_be_in_expected": []
+   }
+  },
+  {
+   "id": "02",
+   "group": "A. Chest pain and cardiovascular complaints",
+   "title": "Low-risk chest pain",
+   "input": "I'm a 25-year-old woman with sharp chest pain that gets worse when I move my upper body. It started yesterday after lifting weights. No shortness of breath, fainting, or medical problems.",
+   "insurance": "",
+   "physician_review_expectations": "Assessment for serious causes; ECG may be appropriate. Troponin and imaging depend on clinical assessment. Avoid automatic comprehensive testing.",
+   "checks": {
+    "emergency_banner": null,
+    "plan_should_include_one_of_each": [],
+    "should_not_be_in_expected": [
+     "84484",
+     "85379",
+     "83880",
+     "70450",
+     "70486",
+     "70491",
+     "70496",
+     "70498",
+     "72125",
+     "72131",
+     "71250",
+     "71260",
+     "71275",
+     "74176",
+     "74177",
+     "74174",
+     "73200"
+    ]
+   }
+  },
+  {
+   "id": "03",
+   "group": "A. Chest pain and cardiovascular complaints",
+   "title": "Possible pulmonary embolism",
+   "input": "I'm a 35-year-old woman with sudden chest pain when I take a deep breath. My heart is racing and I had knee surgery two weeks ago.",
+   "insurance": "",
+   "physician_review_expectations": "Urgent PE assessment, ECG, risk assessment, and appropriate imaging pathway. Do not assume a D-dimer alone excludes PE.",
+   "checks": {
+    "emergency_banner": true,
+    "plan_should_include_one_of_each": [
+     [
+      "93005"
+     ],
+     [
+      "71275"
+     ]
+    ],
+    "should_not_be_in_expected": []
+   }
+  },
+  {
+   "id": "04",
+   "group": "A. Chest pain and cardiovascular complaints",
+   "title": "Aortic dissection",
+   "input": "I'm a 67-year-old man with very sudden, severe chest pain going into my back. I have hypertension and nearly passed out.",
+   "insurance": "",
+   "physician_review_expectations": "Immediate emergency recognition, resuscitation, and consideration of CTA aorta when appropriate.",
+   "checks": {
+    "emergency_banner": true,
+    "plan_should_include_one_of_each": [
+     [
+      "93005"
+     ],
+     [
+      "71275",
+      "71260",
+      "74174"
+     ]
+    ],
+    "should_not_be_in_expected": []
+   }
+  },
+  {
+   "id": "05",
+   "group": "A. Chest pain and cardiovascular complaints",
+   "title": "Palpitations",
+   "input": "I'm a 32-year-old man. My heart sometimes races for a few minutes after coffee. Right now I feel normal. No chest pain, dizziness, or shortness of breath.",
+   "insurance": "",
+   "physician_review_expectations": "Focused assessment, ECG; electrolytes or additional tests based on clinical findings. Avoid default CT or extensive cardiac workup.",
+   "checks": {
+    "emergency_banner": false,
+    "plan_should_include_one_of_each": [
+     [
+      "93005"
+     ]
+    ],
+    "should_not_be_in_expected": [
+     "93306",
+     "84484",
+     "70450",
+     "70486",
+     "70491",
+     "70496",
+     "70498",
+     "72125",
+     "72131",
+     "71250",
+     "71260",
+     "71275",
+     "74176",
+     "74177",
+     "74174",
+     "73200"
+    ]
+   }
+  },
+  {
+   "id": "06",
+   "group": "B. Abdominal and gastrointestinal complaints",
+   "title": "Appendicitis",
+   "input": "I'm a 24-year-old man with abdominal pain that started near my belly button and moved to the lower right side. I feel nauseated and have a fever.",
+   "insurance": "",
+   "physician_review_expectations": "CBC, metabolic testing as indicated, urinalysis, consideration of CT or ultrasound and surgical consultation.",
+   "checks": {
+    "emergency_banner": null,
+    "plan_should_include_one_of_each": [
+     [
+      "85025"
+     ],
+     [
+      "81001",
+      "81003"
+     ],
+     [
+      "74177",
+      "74176",
+      "76705",
+      "76700"
+     ]
+    ],
+    "should_not_be_in_expected": []
+   }
+  },
+  {
+   "id": "07",
+   "group": "B. Abdominal and gastrointestinal complaints",
+   "title": "Biliary disease",
+   "input": "I'm a 43-year-old woman with pain in my upper right abdomen after meals. I feel nauseated and the pain has lasted five hours.",
+   "insurance": "",
+   "physician_review_expectations": "Labs including liver tests as indicated, RUQ ultrasound; assess for cholecystitis or biliary obstruction.",
+   "checks": {
+    "emergency_banner": null,
+    "plan_should_include_one_of_each": [
+     [
+      "80053",
+      "80076"
+     ],
+     [
+      "76705",
+      "76700"
+     ]
+    ],
+    "should_not_be_in_expected": []
+   }
+  },
+  {
+   "id": "08",
+   "group": "B. Abdominal and gastrointestinal complaints",
+   "title": "Gastroenteritis",
+   "input": "I'm a 28-year-old man with vomiting and diarrhea since yesterday. I can keep some water down, I'm still urinating, and I don't have severe pain or blood in my stool.",
+   "insurance": "",
+   "physician_review_expectations": "Clinical assessment, hydration; tests and IV fluids only when indicated. Potentially low resource utilization.",
+   "checks": {
+    "emergency_banner": false,
+    "plan_should_include_one_of_each": [],
+    "should_not_be_in_expected": [
+     "96360",
+     "96361",
+     "70450",
+     "70486",
+     "70491",
+     "70496",
+     "70498",
+     "72125",
+     "72131",
+     "71250",
+     "71260",
+     "71275",
+     "74176",
+     "74177",
+     "74174",
+     "73200"
+    ]
+   }
+  },
+  {
+   "id": "09",
+   "group": "B. Abdominal and gastrointestinal complaints",
+   "title": "GI bleeding",
+   "input": "I'm a 72-year-old man taking apixaban for atrial fibrillation. I've had black stools and feel dizzy when I stand.",
+   "insurance": "",
+   "physician_review_expectations": "High-risk evaluation, CBC, chemistries, type and screen as appropriate, resuscitation and possible admission or endoscopy.",
+   "checks": {
+    "emergency_banner": true,
+    "plan_should_include_one_of_each": [
+     [
+      "85025"
+     ],
+     [
+      "80048",
+      "80053"
+     ],
+     [
+      "86900",
+      "86850"
+     ]
+    ],
+    "should_not_be_in_expected": []
+   }
+  },
+  {
+   "id": "10",
+   "group": "B. Abdominal and gastrointestinal complaints",
+   "title": "Possible ectopic pregnancy",
+   "input": "I'm a 29-year-old woman with lower abdominal pain and vaginal spotting. My period is two weeks late and I feel lightheaded.",
+   "insurance": "",
+   "physician_review_expectations": "Time-sensitive pregnancy testing, hemodynamic evaluation, ultrasound and indicated labs. Urgent safety messaging.",
+   "checks": {
+    "emergency_banner": true,
+    "plan_should_include_one_of_each": [
+     [
+      "81025",
+      "84703",
+      "84702"
+     ],
+     [
+      "76830",
+      "76856",
+      "76815",
+      "76817"
+     ]
+    ],
+    "should_not_be_in_expected": []
+   }
+  },
+  {
+   "id": "11",
+   "group": "C. Neurologic complaints and trauma",
+   "title": "Possible stroke",
+   "input": "I'm a 68-year-old man. My wife noticed my speech suddenly became slurred and my right arm became weak 20 minutes ago.",
+   "insurance": "",
+   "physician_review_expectations": "Immediate stroke activation, bedside glucose, urgent neuroimaging and reperfusion eligibility assessment. No pricing-related delay.",
+   "checks": {
+    "emergency_banner": true,
+    "plan_should_include_one_of_each": [
+     [
+      "70450"
+     ],
+     [
+      "82962",
+      "82947"
+     ]
+    ],
+    "should_not_be_in_expected": []
+   }
+  },
+  {
+   "id": "12",
+   "group": "C. Neurologic complaints and trauma",
+   "title": "Migraine",
+   "input": "I'm a 26-year-old woman with a gradual headache exactly like my previous migraines. I have light sensitivity and nausea, but no weakness, fever, or neck stiffness.",
+   "insurance": "",
+   "physician_review_expectations": "Focused neurologic assessment, symptom-directed medication; imaging may be unnecessary with reassuring history and examination.",
+   "checks": {
+    "emergency_banner": false,
+    "plan_should_include_one_of_each": [],
+    "should_not_be_in_expected": [
+     "62270",
+     "70450",
+     "70486",
+     "70491",
+     "70496",
+     "70498",
+     "72125",
+     "72131",
+     "71250",
+     "71260",
+     "71275",
+     "74176",
+     "74177",
+     "74174",
+     "73200",
+     "70551",
+     "72148",
+     "73721"
+    ]
+   }
+  },
+  {
+   "id": "13",
+   "group": "C. Neurologic complaints and trauma",
+   "title": "Thunderclap headache",
+   "input": "I'm a 49-year-old man with the worst headache of my life. It reached maximum intensity within seconds while exercising.",
+   "insurance": "",
+   "physician_review_expectations": "Emergency assessment for SAH and other vascular causes. Urgent CT head, with further evaluation dependent on timing and findings.",
+   "checks": {
+    "emergency_banner": true,
+    "plan_should_include_one_of_each": [
+     [
+      "70450"
+     ]
+    ],
+    "should_not_be_in_expected": []
+   }
+  },
+  {
+   "id": "14",
+   "group": "C. Neurologic complaints and trauma",
+   "title": "Minor head injury",
+   "input": "I'm a 30-year-old man who bumped my head on a cabinet. No loss of consciousness, vomiting, blood thinners, or confusion. I feel normal except for a small bruise.",
+   "insurance": "",
+   "physician_review_expectations": "Apply validated head injury criteria as appropriate; CT not necessarily indicated.",
+   "checks": {
+    "emergency_banner": false,
+    "plan_should_include_one_of_each": [],
+    "should_not_be_in_expected": [
+     "70450",
+     "70486",
+     "70491",
+     "70496",
+     "70498",
+     "72125",
+     "72131",
+     "71250",
+     "71260",
+     "71275",
+     "74176",
+     "74177",
+     "74174",
+     "73200"
+    ]
+   }
+  },
+  {
+   "id": "15",
+   "group": "C. Neurologic complaints and trauma",
+   "title": "Anticoagulated head injury",
+   "input": "I'm a 78-year-old woman taking Eliquis. I fell and hit my head. I feel okay, but I have a headache.",
+   "insurance": "",
+   "physician_review_expectations": "Urgent assessment, CT head generally indicated; consider disposition based on findings and support.",
+   "checks": {
+    "emergency_banner": null,
+    "plan_should_include_one_of_each": [
+     [
+      "70450"
+     ]
+    ],
+    "should_not_be_in_expected": []
+   }
+  },
+  {
+   "id": "16",
+   "group": "D. Respiratory and infectious complaints",
+   "title": "Mild URI",
+   "input": "I'm a 22-year-old man with three days of runny nose, cough, and sore throat. I'm breathing normally, eating and drinking, and have no medical problems.",
+   "insurance": "",
+   "physician_review_expectations": "Symptom-directed evaluation; avoid default chest imaging, blood tests, or IV therapy.",
+   "checks": {
+    "emergency_banner": false,
+    "plan_should_include_one_of_each": [],
+    "should_not_be_in_expected": [
+     "71045",
+     "71046",
+     "85025",
+     "80048",
+     "80053",
+     "36415",
+     "96360",
+     "96374",
+     "70450",
+     "70486",
+     "70491",
+     "70496",
+     "70498",
+     "72125",
+     "72131",
+     "71250",
+     "71260",
+     "71275",
+     "74176",
+     "74177",
+     "74174",
+     "73200"
+    ]
+   }
+  },
+  {
+   "id": "17",
+   "group": "D. Respiratory and infectious complaints",
+   "title": "Pneumonia",
+   "input": "I'm a 64-year-old woman with diabetes. I've had fever, productive cough, weakness, and shortness of breath for four days.",
+   "insurance": "",
+   "physician_review_expectations": "Vital signs, oxygen assessment, chest imaging, selective labs; risk-based disposition.",
+   "checks": {
+    "emergency_banner": null,
+    "plan_should_include_one_of_each": [
+     [
+      "71045",
+      "71046"
+     ]
+    ],
+    "should_not_be_in_expected": []
+   }
+  },
+  {
+   "id": "18",
+   "group": "D. Respiratory and infectious complaints",
+   "title": "Severe asthma",
+   "input": "I'm a 40-year-old man with asthma. I'm very short of breath, my inhaler isn't helping, and I can barely speak in full sentences.",
+   "insurance": "",
+   "physician_review_expectations": "Immediate emergency treatment, respiratory monitoring, bronchodilator therapy, systemic steroids and escalation as indicated.",
+   "checks": {
+    "emergency_banner": true,
+    "plan_should_include_one_of_each": [
+     [
+      "94640"
+     ]
+    ],
+    "should_not_be_in_expected": []
+   }
+  },
+  {
+   "id": "19",
+   "group": "D. Respiratory and infectious complaints",
+   "title": "Possible sepsis",
+   "input": "I'm a 76-year-old woman with fever and confusion. My family says I'm acting very differently today, and I'm very weak.",
+   "insurance": "",
+   "physician_review_expectations": "Immediate assessment for infection, hypoperfusion and alternative causes; targeted labs, cultures, fluids, antibiotics and possible admission.",
+   "checks": {
+    "emergency_banner": true,
+    "plan_should_include_one_of_each": [
+     [
+      "85025"
+     ],
+     [
+      "87040",
+      "87086",
+      "83605"
+     ]
+    ],
+    "should_not_be_in_expected": []
+   }
+  },
+  {
+   "id": "20",
+   "group": "D. Respiratory and infectious complaints",
+   "title": "Uncomplicated cystitis",
+   "input": "I'm a 31-year-old woman with burning when I urinate and urinary frequency for two days. No fever, flank pain, vomiting, or pregnancy.",
+   "insurance": "",
+   "physician_review_expectations": "Focused urine testing as appropriate, pregnancy assessment when relevant, oral treatment if uncomplicated; no routine CT or IV antibiotics.",
+   "checks": {
+    "emergency_banner": false,
+    "plan_should_include_one_of_each": [
+     [
+      "81001",
+      "81003"
+     ]
+    ],
+    "should_not_be_in_expected": [
+     "RX-CEFTRIAXONE",
+     "96365",
+     "96374",
+     "96360",
+     "70450",
+     "70486",
+     "70491",
+     "70496",
+     "70498",
+     "72125",
+     "72131",
+     "71250",
+     "71260",
+     "71275",
+     "74176",
+     "74177",
+     "74174",
+     "73200"
+    ]
+   }
+  },
+  {
+   "id": "21",
+   "group": "E. Musculoskeletal, skin and procedural complaints",
+   "title": "Ankle sprain",
+   "input": "I'm a 27-year-old man who twisted my ankle playing basketball. It's swollen but I can walk four steps. No numbness or deformity.",
+   "insurance": "",
+   "physician_review_expectations": "Examination and Ottawa ankle rules; radiography only when criteria indicate.",
+   "checks": {
+    "emergency_banner": false,
+    "plan_should_include_one_of_each": [],
+    "should_not_be_in_expected": [
+     "73610",
+     "73630",
+     "70450",
+     "70486",
+     "70491",
+     "70496",
+     "70498",
+     "72125",
+     "72131",
+     "71250",
+     "71260",
+     "71275",
+     "74176",
+     "74177",
+     "74174",
+     "73200",
+     "70551",
+     "72148",
+     "73721"
+    ]
+   }
+  },
+  {
+   "id": "22",
+   "group": "E. Musculoskeletal, skin and procedural complaints",
+   "title": "Wrist fracture",
+   "input": "I'm a 62-year-old woman who fell onto my outstretched hand. My wrist is swollen and visibly deformed.",
+   "insurance": "",
+   "physician_review_expectations": "Radiographs, analgesia, neurovascular assessment, splinting and possible reduction.",
+   "checks": {
+    "emergency_banner": null,
+    "plan_should_include_one_of_each": [
+     [
+      "73110"
+     ],
+     [
+      "29125",
+      "29105",
+      "25600"
+     ]
+    ],
+    "should_not_be_in_expected": []
+   }
+  },
+  {
+   "id": "23",
+   "group": "E. Musculoskeletal, skin and procedural complaints",
+   "title": "Simple laceration",
+   "input": "I'm a 34-year-old man. I cut my forearm with a kitchen knife. The cut is about two centimeters long and bleeding has stopped.",
+   "insurance": "",
+   "physician_review_expectations": "Wound evaluation, irrigation, closure when indicated, tetanus assessment. Avoid unnecessary imaging.",
+   "checks": {
+    "emergency_banner": false,
+    "plan_should_include_one_of_each": [
+     [
+      "12001",
+      "12002",
+      "12032"
+     ]
+    ],
+    "should_not_be_in_expected": [
+     "73090",
+     "73110",
+     "73130",
+     "73080",
+     "70450",
+     "70486",
+     "70491",
+     "70496",
+     "70498",
+     "72125",
+     "72131",
+     "71250",
+     "71260",
+     "71275",
+     "74176",
+     "74177",
+     "74174",
+     "73200"
+    ]
+   }
+  },
+  {
+   "id": "24",
+   "group": "E. Musculoskeletal, skin and procedural complaints",
+   "title": "Abscess",
+   "input": "I'm a 38-year-old woman with a painful, swollen lump on my thigh for four days. It feels soft in the middle and I've had no fever.",
+   "insurance": "",
+   "physician_review_expectations": "Examination, possible bedside ultrasound, incision and drainage when appropriate. Antibiotics based on risk factors.",
+   "checks": {
+    "emergency_banner": false,
+    "plan_should_include_one_of_each": [
+     [
+      "10060",
+      "10061"
+     ]
+    ],
+    "should_not_be_in_expected": [
+     "70450",
+     "70486",
+     "70491",
+     "70496",
+     "70498",
+     "72125",
+     "72131",
+     "71250",
+     "71260",
+     "71275",
+     "74176",
+     "74177",
+     "74174",
+     "73200"
+    ]
+   }
+  },
+  {
+   "id": "25",
+   "group": "E. Musculoskeletal, skin and procedural complaints",
+   "title": "Back pain without red flags",
+   "input": "I'm a 45-year-old man with lower back pain after moving furniture. No fever, leg weakness, numbness, cancer history, or problems with urination.",
+   "insurance": "",
+   "physician_review_expectations": "Focused examination, symptomatic treatment; generally no routine MRI, CT, or broad laboratory panel.",
+   "checks": {
+    "emergency_banner": false,
+    "plan_should_include_one_of_each": [],
+    "should_not_be_in_expected": [
+     "85025",
+     "80048",
+     "80053",
+     "72100",
+     "70450",
+     "70486",
+     "70491",
+     "70496",
+     "70498",
+     "72125",
+     "72131",
+     "71250",
+     "71260",
+     "71275",
+     "74176",
+     "74177",
+     "74174",
+     "73200",
+     "70551",
+     "72148",
+     "73721"
+    ]
+   }
+  },
+  {
+   "id": "26",
+   "group": "F. High-impact edge cases",
+   "title": "Pediatric fever",
+   "input": "My 18-month-old daughter has a fever of 102°F, runny nose, and cough. She's playing, drinking fluids, and having normal wet diapers.",
+   "insurance": "",
+   "physician_review_expectations": "Age-specific risk assessment; no automatic comprehensive septic workup in a well-appearing toddler.",
+   "checks": {
+    "emergency_banner": false,
+    "plan_should_include_one_of_each": [],
+    "should_not_be_in_expected": [
+     "87040",
+     "62270",
+     "83605",
+     "84145",
+     "RX-CEFTRIAXONE",
+     "85025",
+     "70450",
+     "70486",
+     "70491",
+     "70496",
+     "70498",
+     "72125",
+     "72131",
+     "71250",
+     "71260",
+     "71275",
+     "74176",
+     "74177",
+     "74174",
+     "73200"
+    ]
+   }
+  },
+  {
+   "id": "27",
+   "group": "F. High-impact edge cases",
+   "title": "Pediatric emergency",
+   "input": "My 3-year-old son is having trouble breathing. His lips look blue and he's getting very sleepy.",
+   "insurance": "",
+   "physician_review_expectations": "Immediate emergency response. Do not prioritize a cost estimate.",
+   "checks": {
+    "emergency_banner": true,
+    "plan_should_include_one_of_each": [],
+    "should_not_be_in_expected": []
+   }
+  },
+  {
+   "id": "28",
+   "group": "F. High-impact edge cases",
+   "title": "Severe hyperglycemia",
+   "input": "I'm a 23-year-old man with type 1 diabetes. My glucose meter says 490, I've been vomiting, and I'm breathing unusually fast.",
+   "insurance": "",
+   "physician_review_expectations": "Immediate DKA evaluation, metabolic labs, ketones, fluids, electrolytes and insulin management as indicated; likely substantial resource use.",
+   "checks": {
+    "emergency_banner": true,
+    "plan_should_include_one_of_each": [
+     [
+      "80048",
+      "80053"
+     ],
+     [
+      "96360"
+     ]
+    ],
+    "should_not_be_in_expected": []
+   }
+  },
+  {
+   "id": "29",
+   "group": "F. High-impact edge cases",
+   "title": "Psychiatric emergency",
+   "input": "I'm a 36-year-old woman with depression. I'm thinking about killing myself tonight and have a plan.",
+   "insurance": "",
+   "physician_review_expectations": "Immediate safety and psychiatric assessment, targeted medical evaluation; no indiscriminate laboratory or toxicology testing without indication.",
+   "checks": {
+    "emergency_banner": true,
+    "plan_should_include_one_of_each": [],
+    "should_not_be_in_expected": [
+     "70450",
+     "70486",
+     "70491",
+     "70496",
+     "70498",
+     "72125",
+     "72131",
+     "71250",
+     "71260",
+     "71275",
+     "74176",
+     "74177",
+     "74174",
+     "73200"
+    ]
+   }
+  },
+  {
+   "id": "30",
+   "group": "F. High-impact edge cases",
+   "title": "Dental pain",
+   "input": "I'm a 41-year-old man with pain in a back tooth for three days. No fever, facial swelling, trouble swallowing, or breathing difficulty.",
+   "insurance": "",
+   "physician_review_expectations": "Focused oral evaluation, pain management and dental follow-up; no routine CT, CBC or IV antibiotics.",
+   "checks": {
+    "emergency_banner": false,
+    "plan_should_include_one_of_each": [],
+    "should_not_be_in_expected": [
+     "85025",
+     "RX-CEFTRIAXONE",
+     "96365",
+     "96374",
+     "70450",
+     "70486",
+     "70491",
+     "70496",
+     "70498",
+     "72125",
+     "72131",
+     "71250",
+     "71260",
+     "71275",
+     "74176",
+     "74177",
+     "74174",
+     "73200"
+    ]
+   }
+  }
+ ]
+}

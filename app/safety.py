@@ -106,9 +106,11 @@ RED_FLAGS: list[tuple[str, str]] = [
     (r"chest (pain|pressure|tightness)|pressure in (my|the) chest|heart attack", "Chest pain or pressure"),
     (r"(can'?t|cannot|can not|trouble|difficulty|hard to|struggling to) breath|short(ness)? of breath|gasping", "Trouble breathing"),
     (r"stroke|face (is )?droop|droop(ing|y) face|slurr(ed|ing)|(weak|numb)(ness)? (on|in|down) (one|my (left|right)|the (left|right)) (side|arm|leg)|can'?t speak", "Possible stroke symptoms"),
-    (r"suicid|kill myself|end my life|want to die|hurt myself|self[- ]harm", "Thoughts of self-harm (in the U.S. you can call or text 988 any time)"),
+    (r"suicid|kill(ing)? myself|end(ing)? my (own )?life|tak(e|ing) my (own )?life|want to die|(hurt|harm)(ing)? myself|self[- ]harm|end it all", "Thoughts of self-harm (in the U.S. you can call or text 988 any time)"),
     (r"overdos|took too many|(?<!food )poison(ed|ing)", "Possible overdose or poisoning (Poison Control: 1-800-222-1222)"),
     (r"(bleeding|blood).{0,25}(won'?t stop|will not stop|not stopping|a lot|heav(y|ily)|spurting|soaking)|(heav(y|ily)|severe|a lot of|lots of|soaking)\b.{0,25}bleed|hemorrhag|vomiting blood|coughing up blood", "Heavy bleeding"),
+    (r"black(,| and)? (tarry )?stools?|tarry stools?|blood in (my |the |his |her )?(stool|vomit|poop)|bloody (stool|vomit|diarrhea)", "Possible bleeding inside the gut"),
+    (r"(lips?|face|fingers?) (look|looks|are|is|turning|turned|going|went) (blue|gr[ae]y)|blue lips|turning blue", "Blue lips or skin"),
     (r"unconscious|unresponsive|not waking|won'?t wake|passed out|fainted|blacked out|seizure|convuls", "Loss of consciousness or seizure"),
     (r"throat (is )?(closing|swelling|tight)|tongue (is )?swelling|lips? (are |is )?swelling|anaphyla", "Signs of a severe allergic reaction"),
     (r"worst headache|thunderclap|sudden(ly)? severe headache", "Sudden, severe headache"),
@@ -120,9 +122,29 @@ RED_FLAGS: list[tuple[str, str]] = [
 _RED_FLAGS = [(re.compile(p, re.IGNORECASE), label) for p, label in RED_FLAGS]
 
 
+# "No chest pain, dizziness, or shortness of breath" names three warning signs the patient does NOT have.
+# A keyword is ignored only when a plain "no ..." list leads straight up to it: a denial word, then nothing
+# but list words (no "and", "but", sentence end or other turn) until the keyword. Anything less clear-cut
+# still counts, because a false alarm costs less than a missed emergency.
+_DENIAL = re.compile(r"\b(no|without|den(?:y|ies|ied)|negative for|(?:don'?t|doesn'?t|didn'?t|do not|does not|did not|haven'?t|hasn'?t|have not|has not)"
+                     r"(?: (?:have|had|feel|felt|notice|noticed|see|seen|any))+|never (?:had|have))\s+(?=\w)", re.IGNORECASE)
+_TURN = re.compile(r"[.;!?\n:]|\b(and|but|however|except|although|though|yet|now|then|since|because|when|while|after|until|so|"
+                   r"i|i'm|im|my|it|it's|he|she|we|they|his|her)\b", re.IGNORECASE)
+
+
+def _denied(text: str, start: int) -> bool:
+    """True if the keyword starting at `start` sits inside a plain list of things the patient says they do not have."""
+    for cue in _DENIAL.finditer(text, max(0, start - 90)):
+        if cue.end() > start:
+            break
+        if not _TURN.search(text, cue.end(), start):
+            return True
+    return False
+
+
 def red_flags(text: str) -> list[str]:
     text = normalize(text)
-    return [label for pattern, label in _RED_FLAGS if pattern.search(text)]
+    return [label for pattern, label in _RED_FLAGS if any(not _denied(text, m.start()) for m in pattern.finditer(text))]
 
 
 EMERGENCY_MESSAGE = (
