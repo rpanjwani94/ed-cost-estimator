@@ -1,5 +1,5 @@
 {
-  "_note": "Typical ED workups by presenting problem. Drafted with AI help, then reviewed and corrected by the ED clinician who owns this project on 22 November 2026. 'expected' items are ordered for most patients with this problem; 'possible' items are ordered for some. Visit levels are the hospital facility E/M level (99281-99285) or critical care (99291).",
+  "_note": "Typical ED workups by presenting problem. Drafted with AI help, then reviewed and corrected by the ED clinician who owns this project on 22 November 2026 (17 scenarios) and 23 November 2026 (pregnancy bleeding, mental health crisis, GI bleeding). Two are unreviewed drafts and say so in their note: joint dislocation and dental pain. 'expected' items are ordered for most patients with this problem; 'possible' items are ordered for some. Visit levels are the hospital facility E/M level (99281-99285) or critical care (99291).",
   "scenarios": [
     {
       "id": "chest_pain",
@@ -1153,6 +1153,291 @@
         "observation_possible": true
       },
       "note": "DRAFT, not yet reviewed by the clinician. A dislocated joint is X-rayed, put back under sedation, X-rayed again and splinted. If it cannot be put back in the ED it is done under anesthesia, which costs several times more and is not in this estimate."
+    },
+    {
+      "id": "pregnancy_bleeding",
+      "title": "Vaginal bleeding or pain in early pregnancy",
+      "keywords": [
+        "vaginal bleeding",
+        "spotting",
+        "pregnant",
+        "pregnancy",
+        "period is late",
+        "missed period",
+        "miscarriage",
+        "ectopic",
+        "pelvic pain"
+      ],
+      "levels": {
+        "low": "99284",
+        "typical": "99284",
+        "high": "99285"
+      },
+      "expected": [
+        {
+          "code": "84702",
+          "quantity": 1
+        },
+        {
+          "code": "85025",
+          "quantity": 1
+        },
+        {
+          "code": "86900",
+          "quantity": 1
+        },
+        {
+          "code": "86901",
+          "quantity": 1
+        },
+        {
+          "code": "81001",
+          "quantity": 1
+        },
+        {
+          "code": "76817",
+          "quantity": 1
+        },
+        {
+          "code": "36415",
+          "quantity": 1
+        }
+      ],
+      "possible": [
+        {
+          "code": "80048",
+          "quantity": 1
+        },
+        {
+          "code": "86850",
+          "quantity": 1
+        },
+        {
+          "code": "76815",
+          "quantity": 1
+        },
+        {
+          "code": "96360",
+          "quantity": 1
+        },
+        {
+          "code": "87491",
+          "quantity": 1
+        },
+        {
+          "code": "87591",
+          "quantity": 1
+        }
+      ],
+      "admission": {
+        "likelihood": "possible",
+        "drgs": [],
+        "observation_possible": true
+      },
+      "note": "This is an emergency until an ectopic pregnancy is ruled out. Bleeding or pain in early pregnancy is checked for an ectopic pregnancy with a pregnancy hormone level, a blood type and an ultrasound. Surgery or medicine for an ectopic pregnancy is not in this estimate."
+    },
+    {
+      "id": "mental_health_crisis",
+      "title": "Mental health crisis or thoughts of self-harm",
+      "keywords": [
+        "suicidal",
+        "suicide",
+        "kill myself",
+        "killing myself",
+        "self-harm",
+        "hurt myself",
+        "depression",
+        "depressed",
+        "panic attack",
+        "psychiatric",
+        "mental health",
+        "hearing voices"
+      ],
+      "levels": {
+        "low": "99284",
+        "typical": "99285",
+        "high": "99285"
+      },
+      "expected": [],
+      "possible": [
+        {
+          "code": "85025",
+          "quantity": 1
+        },
+        {
+          "code": "80048",
+          "quantity": 1
+        },
+        {
+          "code": "36415",
+          "quantity": 1
+        },
+        {
+          "code": "80307",
+          "quantity": 1
+        },
+        {
+          "code": "82077",
+          "quantity": 1
+        },
+        {
+          "code": "93005",
+          "quantity": 1
+        },
+        {
+          "code": "81025",
+          "quantity": 1
+        },
+        {
+          "code": "84443",
+          "quantity": 1
+        }
+      ],
+      "admission": {
+        "likelihood": "likely",
+        "drgs": [],
+        "observation_possible": true
+      },
+      "note": "Thoughts of self-harm are an emergency. The expected list is empty on purpose: what is ordered varies from patient to patient, so do not add anything to it; choose from the possible list only. Safety comes first: staff stay with the patient and a psychiatric evaluation is arranged. Tests are ordered only when something points to a medical cause. The psychiatric evaluation and any psychiatric hospital stay are billed separately and are not in this estimate."
+    },
+    {
+      "id": "dental_pain",
+      "title": "Tooth or dental pain",
+      "keywords": [
+        "tooth",
+        "toothache",
+        "dental",
+        "teeth",
+        "gum",
+        "wisdom tooth",
+        "abscessed tooth"
+      ],
+      "levels": {
+        "low": "99281",
+        "typical": "99282",
+        "high": "99283"
+      },
+      "expected": [
+        {
+          "code": "RX-ACETAMINOPHEN",
+          "quantity": 1
+        }
+      ],
+      "possible": [
+        {
+          "code": "96372",
+          "quantity": 1
+        },
+        {
+          "code": "70486",
+          "quantity": 1
+        },
+        {
+          "code": "85025",
+          "quantity": 1
+        },
+        {
+          "code": "36415",
+          "quantity": 1
+        }
+      ],
+      "admission": {
+        "likelihood": "unlikely",
+        "drgs": [],
+        "observation_possible": false
+      },
+      "note": "DRAFT, not yet reviewed by the clinician. The ED treats the pain and checks for a spreading infection. The tooth itself needs a dentist. A face CT and blood work are for facial swelling, fever or trouble swallowing."
+    },
+    {
+      "id": "gi_bleeding",
+      "title": "Vomiting blood, or black or bloody stools",
+      "keywords": [
+        "black stool",
+        "black stools",
+        "tarry",
+        "blood in my stool",
+        "blood in stool",
+        "bloody stool",
+        "bloody stools",
+        "vomiting blood",
+        "throwing up blood",
+        "rectal bleeding"
+      ],
+      "levels": {
+        "low": "99284",
+        "typical": "99285",
+        "high": "99291"
+      },
+      "expected": [
+        {
+          "code": "85025",
+          "quantity": 1
+        },
+        {
+          "code": "80053",
+          "quantity": 1
+        },
+        {
+          "code": "85610",
+          "quantity": 1
+        },
+        {
+          "code": "86900",
+          "quantity": 1
+        },
+        {
+          "code": "86901",
+          "quantity": 1
+        },
+        {
+          "code": "86850",
+          "quantity": 1
+        },
+        {
+          "code": "93005",
+          "quantity": 1
+        },
+        {
+          "code": "96360",
+          "quantity": 1
+        },
+        {
+          "code": "36415",
+          "quantity": 1
+        }
+      ],
+      "possible": [
+        {
+          "code": "83605",
+          "quantity": 1
+        },
+        {
+          "code": "84484",
+          "quantity": 1
+        },
+        {
+          "code": "85730",
+          "quantity": 1
+        },
+        {
+          "code": "96374",
+          "quantity": 1
+        },
+        {
+          "code": "96361",
+          "quantity": 1
+        },
+        {
+          "code": "74177",
+          "quantity": 1
+        }
+      ],
+      "admission": {
+        "likelihood": "likely",
+        "drgs": [],
+        "observation_possible": true
+      },
+      "note": "Bleeding inside the gut is treated as an emergency: blood counts, clotting tests, a blood type in case a transfusion is needed, and IV fluids. Most patients are admitted or watched. The hospital stay, any transfusion and an endoscopy are not in this estimate."
     }
   ]
 }

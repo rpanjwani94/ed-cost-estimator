@@ -85,6 +85,14 @@ def test_overlong_and_empty_input_is_refused():
     ("I'm thinking about killing myself tonight and have a plan", "Thoughts of self-harm"),
     ("I've had black stools and feel dizzy when I stand", "Possible bleeding inside the gut"),
     ("My son is having trouble breathing. His lips look blue", "Blue lips or skin"),
+    ("Lower abdominal pain and vaginal spotting. My period is two weeks late and I feel lightheaded.", "possible ectopic pregnancy"),
+    ("I'm 8 weeks pregnant and have cramping on one side", "possible ectopic pregnancy"),
+    ("I missed my period and now I have sharp pelvic pain", "possible ectopic pregnancy"),
+    ("I want to end my life", "Thoughts of self-harm"),
+    ("37-year-old female with acute onset right lower quadrant abdominal pain", "possible appendicitis or a twisted ovary"),
+    ("Sharp pain in the lower right side of my belly since last night, with nausea.", "possible appendicitis or a twisted ovary"),
+    ("abdominal pain that started near my belly button and moved to the lower right side", "possible appendicitis or a twisted ovary"),
+    ("sudden severe belly pain an hour ago", "possible appendicitis or a twisted ovary"),
 ])
 def test_red_flags_are_caught_by_keyword_screen(text, expected):
     assert any(expected in flag for flag in safety.red_flags(text))
@@ -111,6 +119,12 @@ def test_ordinary_words_do_not_set_off_the_emergency_banner(text):
     "I bumped my head on a cabinet. No loss of consciousness, vomiting, blood thinners, or confusion.",
     "I twisted my ankle playing basketball. It's swollen but I can walk. No numbness or deformity.",
     "Sore throat for two days, without trouble breathing.",
+    "Burning when I urinate for two days. No fever, flank pain, vomiting, or pregnancy.",
+    "I'm not pregnant. I rolled my ankle and it hurts.",
+    "My period is late but I feel fine",
+    "I'm a 43-year-old woman with pain in my upper right abdomen after meals. I feel nauseated.",
+    "Mild stomach ache on and off for a month",
+    "I hurt my lower right leg playing soccer",
 ])
 def test_warning_signs_the_patient_says_they_do_not_have_do_not_set_off_the_banner(text):
     assert safety.red_flags(text) == []

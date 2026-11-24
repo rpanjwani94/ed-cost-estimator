@@ -37,9 +37,9 @@
    "86140"
   ],
   "admission": "possible",
-  "headline": "You might pay up to $1,820 for the hospital's bill.",
+  "headline": "You might pay about $1,820 for the hospital's bill.",
   "most_likely": 1820.08,
-  "tokens": 12164,
+  "tokens": 12290,
   "banner_ok": true,
   "includes_ok": true,
   "missing": [],
@@ -73,7 +73,7 @@
   "banner_from": "keyword screen",
   "flags": [
    "Chest pain or pressure",
-   "sharp chest pain"
+   "Chest pain"
   ],
   "scenario": "chest_pain",
   "levels": [
@@ -98,9 +98,9 @@
    "86140"
   ],
   "admission": "possible",
-  "headline": "You might pay up to about $1,814 for the hospital's bill.",
+  "headline": "You might pay about $1,814 for the hospital's bill.",
   "most_likely": 1814.07,
-  "tokens": 11020,
+  "tokens": 11263,
   "banner_ok": null,
   "includes_ok": null,
   "missing": [],
@@ -136,9 +136,9 @@
   "banner_from": "keyword screen",
   "flags": [
    "Chest pain or pressure",
-   "Sudden chest pain when taking a deep breath",
-   "Racing heart",
-   "Recent knee surgery"
+   "sudden chest pain with deep breaths",
+   "racing heart",
+   "recent knee surgery"
   ],
   "scenario": "chest_pain",
   "levels": [
@@ -152,17 +152,21 @@
    "85025",
    "80048",
    "71046",
-   "36415"
+   "36415",
+   "81025"
   ],
   "possible": [
-   "71275",
    "85379",
-   "96374"
+   "71275",
+   "83880",
+   "96374",
+   "85652",
+   "86140"
   ],
   "admission": "possible",
-  "headline": "You might pay up to about $1,814 for the hospital's bill.",
-  "most_likely": 1814.07,
-  "tokens": 11009,
+  "headline": "You might pay about $1,837 for the hospital's bill.",
+  "most_likely": 1836.57,
+  "tokens": 12912,
   "banner_ok": true,
   "includes_ok": true,
   "missing": [],
@@ -174,12 +178,16 @@
    "Complete blood count (CBC)",
    "Basic metabolic panel (electrolytes and kidney function)",
    "Chest X-ray (2 views)",
-   "Blood draw"
+   "Blood draw",
+   "Urine pregnancy test"
   ],
   "possible_names": [
-   "CT angiogram of the chest (checks for lung blood clots)",
    "D-dimer (blood clot screening test)",
-   "IV medication push (first)"
+   "CT angiogram of the chest (checks for lung blood clots)",
+   "BNP (heart failure blood test)",
+   "IV medication push (first)",
+   "Sedimentation rate (inflammation marker)",
+   "C-reactive protein (inflammation marker)"
   ]
  },
  {
@@ -213,13 +221,13 @@
    "71275"
   ],
   "possible": [
-   "85379",
-   "96374"
+   "96374",
+   "74174"
   ],
   "admission": "possible",
-  "headline": "You might pay up to about $2,589 for the hospital's bill.",
+  "headline": "You might pay about $2,589 for the hospital's bill.",
   "most_likely": 2589.37,
-  "tokens": 12771,
+  "tokens": 12946,
   "banner_ok": true,
   "includes_ok": true,
   "missing": [],
@@ -235,8 +243,8 @@
    "CT angiogram of the chest (checks for lung blood clots)"
   ],
   "possible_names": [
-   "D-dimer (blood clot screening test)",
-   "IV medication push (first)"
+   "IV medication push (first)",
+   "CT angiogram of the abdomen and pelvis"
   ]
  },
  {
@@ -258,17 +266,16 @@
   "expected": [
    "93005",
    "80048",
+   "85025",
    "36415"
   ],
   "possible": [
-   "85025",
-   "84484",
-   "71046"
+   "84443"
   ],
   "admission": "unlikely",
-  "headline": "You might pay up to about $955 for the hospital's bill.",
-  "most_likely": 954.74,
-  "tokens": 12587,
+  "headline": "You might pay about $971 for the hospital's bill.",
+  "most_likely": 970.88,
+  "tokens": 11816,
   "banner_ok": true,
   "includes_ok": true,
   "missing": [],
@@ -277,12 +284,11 @@
   "expected_names": [
    "ECG (heart tracing)",
    "Basic metabolic panel (electrolytes and kidney function)",
+   "Complete blood count (CBC)",
    "Blood draw"
   ],
   "possible_names": [
-   "Complete blood count (CBC)",
-   "Troponin (heart damage blood test)",
-   "Chest X-ray (2 views)"
+   "Thyroid test (TSH)"
   ]
  },
  {
@@ -293,8 +299,9 @@
   "expectation": "CBC, metabolic testing as indicated, urinalysis, consideration of CT or ultrasound and surgical consultation.",
   "outcome": "estimate",
   "banner": true,
-  "banner_from": "AI screener",
+  "banner_from": "keyword screen",
   "flags": [
+   "Sudden or lower-right belly pain (possible appendicitis or a twisted ovary)",
    "Abdominal pain moved to the lower right side",
    "Fever",
    "Nausea"
@@ -321,9 +328,9 @@
    "96375"
   ],
   "admission": "possible",
-  "headline": "You might pay up to about $1,156 for the hospital's bill.",
+  "headline": "You might pay about $1,156 for the hospital's bill.",
   "most_likely": 1155.59,
-  "tokens": 10916,
+  "tokens": 12179,
   "banner_ok": null,
   "includes_ok": true,
   "missing": [],
@@ -366,21 +373,21 @@
    "80053",
    "83690",
    "81001",
-   "36415"
+   "36415",
+   "76705",
+   "81025"
   ],
   "possible": [
-   "76705",
-   "84703",
+   "74177",
    "96360",
    "96374",
    "RX-ONDANSETRON",
-   "96375",
-   "74177"
+   "96375"
   ],
   "admission": "possible",
-  "headline": "You might pay up to about $1,156 for the hospital's bill.",
-  "most_likely": 1155.59,
-  "tokens": 11234,
+  "headline": "You might pay about $1,405 for the hospital's bill.",
+  "most_likely": 1405.4,
+  "tokens": 13163,
   "banner_ok": null,
   "includes_ok": true,
   "missing": [],
@@ -391,16 +398,16 @@
    "Comprehensive metabolic panel (adds liver tests)",
    "Lipase (pancreas test)",
    "Urinalysis with microscope exam",
-   "Blood draw"
+   "Blood draw",
+   "Ultrasound of the abdomen (limited)",
+   "Urine pregnancy test"
   ],
   "possible_names": [
-   "Ultrasound of the abdomen (limited)",
-   "Blood pregnancy test (yes/no)",
+   "CT scan of the abdomen and pelvis (with contrast)",
    "IV fluids (first hour)",
    "IV medication push (first)",
    "Ondansetron 4 mg IV (anti-nausea medicine)",
-   "IV medication push (each additional drug)",
-   "CT scan of the abdomen and pelvis (with contrast)"
+   "IV medication push (each additional drug)"
   ]
  },
  {
@@ -429,12 +436,13 @@
    "96374",
    "96361",
    "83690",
-   "81001"
+   "81001",
+   "74177"
   ],
   "admission": "unlikely",
-  "headline": "You might pay up to about $1,422 for the hospital's bill.",
+  "headline": "You might pay about $1,422 for the hospital's bill.",
   "most_likely": 1422.44,
-  "tokens": 10743,
+  "tokens": 10931,
   "banner_ok": true,
   "includes_ok": null,
   "missing": [],
@@ -452,7 +460,8 @@
    "IV medication push (first)",
    "IV fluids (each extra hour)",
    "Lipase (pancreas test)",
-   "Urinalysis with microscope exam"
+   "Urinalysis with microscope exam",
+   "CT scan of the abdomen and pelvis (with contrast)"
   ]
  },
  {
@@ -468,9 +477,9 @@
    "Possible bleeding inside the gut",
    "Black stools",
    "Dizziness when standing",
-   "Taking apixaban"
+   "Taking apixaban, a blood thinner"
   ],
-  "scenario": null,
+  "scenario": "gi_bleeding",
   "levels": [
    "99284",
    "99285",
@@ -482,16 +491,23 @@
    "85610",
    "86900",
    "86901",
-   "36415",
-   "96360"
+   "86850",
+   "93005",
+   "96360",
+   "36415"
   ],
   "possible": [
-   "96361"
+   "83605",
+   "84484",
+   "85730",
+   "96374",
+   "96361",
+   "74177"
   ],
   "admission": "likely",
-  "headline": "You might pay up to about $1,896 for the hospital's bill.",
-  "most_likely": 1895.68,
-  "tokens": 24818,
+  "headline": "You might pay about $2,036 for the hospital's bill.",
+  "most_likely": 2035.77,
+  "tokens": 11095,
   "banner_ok": true,
   "includes_ok": true,
   "missing": [],
@@ -503,11 +519,18 @@
    "Prothrombin time / INR (clotting test)",
    "Blood type (ABO)",
    "Blood type (Rh)",
-   "Blood draw",
-   "IV fluids (first hour)"
+   "Antibody screen (before transfusion)",
+   "ECG (heart tracing)",
+   "IV fluids (first hour)",
+   "Blood draw"
   ],
   "possible_names": [
-   "IV fluids (each extra hour)"
+   "Lactate (lactic acid)",
+   "Troponin (heart damage blood test)",
+   "PTT (clotting test)",
+   "IV medication push (first)",
+   "IV fluids (each extra hour)",
+   "CT scan of the abdomen and pelvis (with contrast)"
   ]
  },
  {
@@ -518,61 +541,60 @@
   "expectation": "Time-sensitive pregnancy testing, hemodynamic evaluation, ultrasound and indicated labs. Urgent safety messaging.",
   "outcome": "estimate",
   "banner": true,
-  "banner_from": "AI screener",
+  "banner_from": "keyword screen",
   "flags": [
+   "Pain or bleeding in pregnancy (possible ectopic pregnancy)",
    "Lower abdominal pain and vaginal spotting with a period two weeks late",
    "Lightheadedness"
   ],
-  "scenario": "abdominal_pain",
+  "scenario": "pregnancy_bleeding",
   "levels": [
    "99284",
    "99284",
    "99285"
   ],
   "expected": [
+   "84702",
    "85025",
-   "80053",
-   "83690",
+   "86900",
+   "86901",
    "81001",
-   "36415",
-   "81025",
-   "76817"
+   "76817",
+   "36415"
   ],
   "possible": [
-   "84703",
-   "74177",
-   "76705",
+   "80048",
+   "86850",
+   "76815",
    "96360",
-   "96374",
-   "RX-ONDANSETRON",
-   "96375"
+   "87491",
+   "87591"
   ],
   "admission": "possible",
-  "headline": "You might pay up to about $1,386 for the hospital's bill.",
-  "most_likely": 1385.62,
-  "tokens": 13129,
+  "headline": "You might pay about $1,393 for the hospital's bill.",
+  "most_likely": 1393.42,
+  "tokens": 12113,
   "banner_ok": true,
   "includes_ok": true,
   "missing": [],
   "restraint_ok": null,
   "over_ordered": [],
   "expected_names": [
+   "Blood pregnancy hormone level (hCG)",
    "Complete blood count (CBC)",
-   "Comprehensive metabolic panel (adds liver tests)",
-   "Lipase (pancreas test)",
+   "Blood type (ABO)",
+   "Blood type (Rh)",
    "Urinalysis with microscope exam",
-   "Blood draw",
-   "Urine pregnancy test",
-   "Pregnancy ultrasound (transvaginal)"
+   "Pregnancy ultrasound (transvaginal)",
+   "Blood draw"
   ],
   "possible_names": [
-   "Blood pregnancy test (yes/no)",
-   "CT scan of the abdomen and pelvis (with contrast)",
-   "Ultrasound of the abdomen (limited)",
+   "Basic metabolic panel (electrolytes and kidney function)",
+   "Antibody screen (before transfusion)",
+   "Pregnancy ultrasound (limited)",
    "IV fluids (first hour)",
-   "IV medication push (first)",
-   "Ondansetron 4 mg IV (anti-nausea medicine)",
-   "IV medication push (each additional drug)"
+   "Chlamydia test",
+   "Gonorrhea test"
   ]
  },
  {
@@ -587,7 +609,7 @@
   "flags": [
    "Possible stroke symptoms",
    "Sudden slurred speech",
-   "Sudden weakness in the right arm"
+   "Sudden right arm weakness"
   ],
   "scenario": "stroke_symptoms",
   "levels": [
@@ -611,9 +633,9 @@
    "70551"
   ],
   "admission": "likely",
-  "headline": "You might pay up to about $3,635 for the hospital's bill.",
+  "headline": "You might pay about $3,635 for the hospital's bill.",
   "most_likely": 3634.6,
-  "tokens": 11101,
+  "tokens": 11200,
   "banner_ok": true,
   "includes_ok": true,
   "missing": [],
@@ -652,6 +674,7 @@
    "99285"
   ],
   "expected": [
+   "70450",
    "96374",
    "96360",
    "85025",
@@ -659,20 +682,22 @@
    "36415"
   ],
   "possible": [
-   "70450",
    "70496",
    "70498"
   ],
   "admission": "unlikely",
-  "headline": "You might pay up to about $1,688 for the hospital's bill.",
-  "most_likely": 1688.17,
-  "tokens": 9602,
+  "headline": "You might pay about $2,085 for the hospital's bill.",
+  "most_likely": 2084.96,
+  "tokens": 9749,
   "banner_ok": true,
   "includes_ok": null,
   "missing": [],
-  "restraint_ok": true,
-  "over_ordered": [],
+  "restraint_ok": false,
+  "over_ordered": [
+   "CT scan of the head (no contrast)"
+  ],
   "expected_names": [
+   "CT scan of the head (no contrast)",
    "IV medication push (first)",
    "IV fluids (first hour)",
    "Complete blood count (CBC)",
@@ -680,7 +705,6 @@
    "Blood draw"
   ],
   "possible_names": [
-   "CT scan of the head (no contrast)",
    "CT angiogram of the head (brain blood vessels)",
    "CT angiogram of the neck (neck blood vessels)"
   ]
@@ -696,9 +720,8 @@
   "banner_from": "keyword screen",
   "flags": [
    "Sudden, severe headache",
-   "Worst headache of his life",
-   "Headache reached maximum intensity within seconds",
-   "Headache began during exercise"
+   "Worst headache of life",
+   "Reached maximum intensity within seconds during exercise"
   ],
   "scenario": "headache",
   "levels": [
@@ -718,10 +741,10 @@
    "70496",
    "70498"
   ],
-  "admission": "unlikely",
-  "headline": "You might pay up to about $2,085 for the hospital's bill.",
+  "admission": "possible",
+  "headline": "You might pay about $2,085 for the hospital's bill.",
   "most_likely": 2084.96,
-  "tokens": 9687,
+  "tokens": 9815,
   "banner_ok": true,
   "includes_ok": true,
   "missing": [],
@@ -769,9 +792,9 @@
    "90471"
   ],
   "admission": "unlikely",
-  "headline": "You might pay up to about $1,078 for the hospital's bill.",
+  "headline": "You might pay about $1,078 for the hospital's bill.",
   "most_likely": 1078.41,
-  "tokens": 10661,
+  "tokens": 10815,
   "banner_ok": true,
   "includes_ok": null,
   "missing": [],
@@ -801,7 +824,8 @@
   "banner_from": "AI screener",
   "flags": [
    "Head injury after a fall while taking Eliquis (a blood thinner)",
-   "Headache after hitting her head"
+   "Headache after hitting head",
+   "Age 78"
   ],
   "scenario": "head_injury",
   "levels": [
@@ -820,9 +844,9 @@
    "RX-ACETAMINOPHEN"
   ],
   "admission": "unlikely",
-  "headline": "You might pay up to about $1,475 for the hospital's bill.",
+  "headline": "You might pay about $1,475 for the hospital's bill.",
   "most_likely": 1475.2,
-  "tokens": 10667,
+  "tokens": 10982,
   "banner_ok": null,
   "includes_ok": true,
   "missing": [],
@@ -863,9 +887,9 @@
    "86308"
   ],
   "admission": "unlikely",
-  "headline": "You might pay up to about $432 for the hospital's bill.",
+  "headline": "You might pay about $432 for the hospital's bill.",
   "most_likely": 432.48,
-  "tokens": 9495,
+  "tokens": 9571,
   "banner_ok": true,
   "includes_ok": null,
   "missing": [],
@@ -890,8 +914,9 @@
   "banner_from": "keyword screen",
   "flags": [
    "Trouble breathing",
-   "shortness of breath",
-   "fever"
+   "Shortness of breath",
+   "Fever",
+   "Weakness"
   ],
   "scenario": "cough_fever",
   "levels": [
@@ -914,9 +939,9 @@
    "36415"
   ],
   "admission": "possible",
-  "headline": "You might pay up to about $1,489 for the hospital's bill.",
+  "headline": "You might pay about $1,489 for the hospital's bill.",
   "most_likely": 1488.65,
-  "tokens": 11217,
+  "tokens": 11406,
   "banner_ok": null,
   "includes_ok": true,
   "missing": [],
@@ -948,8 +973,8 @@
   "banner_from": "keyword screen",
   "flags": [
    "Trouble breathing",
-   "Very short of breath",
-   "Inhaler isn't helping",
+   "Severe shortness of breath",
+   "Inhaler is not helping",
    "Can barely speak in full sentences"
   ],
   "scenario": "shortness_of_breath",
@@ -975,9 +1000,9 @@
    "71275"
   ],
   "admission": "possible",
-  "headline": "You might pay up to about $2,296 for the hospital's bill.",
+  "headline": "You might pay about $2,296 for the hospital's bill.",
   "most_likely": 2296.13,
-  "tokens": 11342,
+  "tokens": 11600,
   "banner_ok": true,
   "includes_ok": true,
   "missing": [],
@@ -1017,7 +1042,7 @@
   ],
   "scenario": "cough_fever",
   "levels": [
-   "99283",
+   "99284",
    "99285",
    "99285"
   ],
@@ -1027,20 +1052,19 @@
    "85025",
    "80048",
    "81001",
-   "87086"
+   "87086",
+   "87040"
   ],
   "possible": [
    "83605",
-   "87040",
    "96360",
    "96365",
-   "70450",
-   "93005"
+   "84145"
   ],
   "admission": "possible",
-  "headline": "You might pay up to about $1,977 for the hospital's bill.",
-  "most_likely": 1977.44,
-  "tokens": 13395,
+  "headline": "You might pay about $2,044 for the hospital's bill.",
+  "most_likely": 2043.9,
+  "tokens": 14970,
   "banner_ok": true,
   "includes_ok": true,
   "missing": [],
@@ -1052,15 +1076,14 @@
    "Complete blood count (CBC)",
    "Basic metabolic panel (electrolytes and kidney function)",
    "Urinalysis with microscope exam",
-   "Urine culture"
+   "Urine culture",
+   "Blood culture"
   ],
   "possible_names": [
    "Lactate (lactic acid)",
-   "Blood culture",
    "IV fluids (first hour)",
    "IV medication infusion (first hour)",
-   "CT scan of the head (no contrast)",
-   "ECG (heart tracing)"
+   "Procalcitonin (bacterial infection marker)"
   ]
  },
  {
@@ -1076,18 +1099,26 @@
   "scenario": "urinary_flank",
   "levels": [
    "99283",
-   "99284",
+   "99283",
    "99284"
   ],
   "expected": [
    "81001",
    "87086"
   ],
-  "possible": [],
+  "possible": [
+   "85025",
+   "80048",
+   "74176",
+   "76770",
+   "96374",
+   "96360",
+   "36415"
+  ],
   "admission": "unlikely",
-  "headline": "You might pay up to about $1,114 for the hospital's bill.",
-  "most_likely": 1113.72,
-  "tokens": 9530,
+  "headline": "You might pay about $874 for the hospital's bill.",
+  "most_likely": 874.27,
+  "tokens": 9918,
   "banner_ok": true,
   "includes_ok": true,
   "missing": [],
@@ -1097,7 +1128,15 @@
    "Urinalysis with microscope exam",
    "Urine culture"
   ],
-  "possible_names": []
+  "possible_names": [
+   "Complete blood count (CBC)",
+   "Basic metabolic panel (electrolytes and kidney function)",
+   "CT scan of the abdomen and pelvis (no contrast)",
+   "Ultrasound of the kidneys",
+   "IV medication push (first)",
+   "IV fluids (first hour)",
+   "Blood draw"
+  ]
  },
  {
   "id": "21",
@@ -1119,14 +1158,16 @@
    "73610"
   ],
   "possible": [
+   "73630",
    "29515",
    "27786",
-   "73630"
+   "73721",
+   "97161"
   ],
   "admission": "unlikely",
-  "headline": "You might pay up to about $953 for the hospital's bill.",
+  "headline": "You might pay about $953 for the hospital's bill.",
   "most_likely": 953.01,
-  "tokens": 10553,
+  "tokens": 10626,
   "banner_ok": true,
   "includes_ok": null,
   "missing": [],
@@ -1138,9 +1179,11 @@
    "Ankle X-ray"
   ],
   "possible_names": [
+   "Foot X-ray",
    "Lower leg or ankle splint",
    "Ankle fracture care (no setting needed)",
-   "Foot X-ray"
+   "MRI of a leg joint such as the ankle or knee (no contrast)",
+   "Physical therapy evaluation"
   ]
  },
  {
@@ -1154,7 +1197,7 @@
   "banner_from": "keyword screen",
   "flags": [
    "Serious injury",
-   "Wrist is visibly deformed and swollen after a fall"
+   "Wrist is visibly deformed and swollen after a fall."
   ],
   "scenario": "arm_wrist_injury",
   "levels": [
@@ -1171,9 +1214,9 @@
    "25600"
   ],
   "admission": "unlikely",
-  "headline": "You might pay up to about $953 for the hospital's bill.",
+  "headline": "You might pay about $953 for the hospital's bill.",
   "most_likely": 953.01,
-  "tokens": 9536,
+  "tokens": 9713,
   "banner_ok": null,
   "includes_ok": true,
   "missing": [],
@@ -1205,27 +1248,23 @@
    "99283"
   ],
   "expected": [
-   "12001",
-   "73090"
+   "12001"
   ],
   "possible": [
    "90715",
    "90471"
   ],
   "admission": "unlikely",
-  "headline": "You might pay up to about $1,216 for the hospital's bill.",
-  "most_likely": 1215.98,
-  "tokens": 9811,
+  "headline": "You might pay about $1,102 for the hospital's bill.",
+  "most_likely": 1101.93,
+  "tokens": 11805,
   "banner_ok": true,
   "includes_ok": true,
   "missing": [],
-  "restraint_ok": false,
-  "over_ordered": [
-   "Forearm X-ray"
-  ],
+  "restraint_ok": true,
+  "over_ordered": [],
   "expected_names": [
-   "Stitches, simple cut up to 2.5 cm (body, scalp, hands, feet)",
-   "Forearm X-ray"
+   "Stitches, simple cut up to 2.5 cm (body, scalp, hands, feet)"
   ],
   "possible_names": [
    "Tetanus booster (Tdap) vaccine",
@@ -1256,9 +1295,9 @@
    "76882"
   ],
   "admission": "unlikely",
-  "headline": "You might pay up to about $839 for the hospital's bill.",
+  "headline": "You might pay about $839 for the hospital's bill.",
   "most_likely": 839.49,
-  "tokens": 10546,
+  "tokens": 10606,
   "banner_ok": true,
   "includes_ok": true,
   "missing": [],
@@ -1292,11 +1331,13 @@
    "RX-ACETAMINOPHEN",
    "RX-LIDOCAINE-PATCH"
   ],
-  "possible": [],
+  "possible": [
+   "72148"
+  ],
   "admission": "unlikely",
-  "headline": "You might pay up to about $841 for the hospital's bill.",
+  "headline": "You might pay about $841 for the hospital's bill.",
   "most_likely": 841.08,
-  "tokens": 9461,
+  "tokens": 9787,
   "banner_ok": true,
   "includes_ok": null,
   "missing": [],
@@ -1306,7 +1347,9 @@
    "Acetaminophen 500 mg tablet",
    "Lidocaine 4% patch"
   ],
-  "possible_names": []
+  "possible_names": [
+   "MRI of the lower spine (no contrast)"
+  ]
  },
  {
   "id": "26",
@@ -1338,10 +1381,10 @@
    "96365",
    "36415"
   ],
-  "admission": "unlikely",
-  "headline": "You might pay up to about $1,489 for the hospital's bill.",
+  "admission": "possible",
+  "headline": "You might pay about $1,489 for the hospital's bill.",
   "most_likely": 1488.65,
-  "tokens": 9728,
+  "tokens": 11155,
   "banner_ok": true,
   "includes_ok": null,
   "missing": [],
@@ -1380,7 +1423,7 @@
   "scenario": "shortness_of_breath",
   "levels": [
    "99285",
-   "99285",
+   "99291",
    "99291"
   ],
   "expected": [
@@ -1398,9 +1441,9 @@
    "96365"
   ],
   "admission": "likely",
-  "headline": "You might pay up to about $2,365 for the hospital's bill.",
-  "most_likely": 2365.0,
-  "tokens": 11281,
+  "headline": "You might pay about $3,024 for the hospital's bill.",
+  "most_likely": 3023.65,
+  "tokens": 11434,
   "banner_ok": true,
   "includes_ok": null,
   "missing": [],
@@ -1431,7 +1474,7 @@
   "banner": true,
   "banner_from": "AI screener",
   "flags": [
-   "Very high blood glucose (490)",
+   "Very high blood sugar (490)",
    "Vomiting",
    "Unusually fast breathing"
   ],
@@ -1443,22 +1486,22 @@
   ],
   "expected": [
    "80048",
-   "85025",
-   "36415",
-   "96360",
    "82962",
-   "82803",
-   "81001"
+   "96360",
+   "36415",
+   "85025"
   ],
   "possible": [
    "96374",
    "96361",
-   "93005"
+   "82947",
+   "81001",
+   "80053"
   ],
   "admission": "likely",
-  "headline": "You might pay up to about $1,926 for the hospital's bill.",
-  "most_likely": 1925.97,
-  "tokens": 13262,
+  "headline": "You might pay about $1,851 for the hospital's bill.",
+  "most_likely": 1850.52,
+  "tokens": 12808,
   "banner_ok": true,
   "includes_ok": true,
   "missing": [],
@@ -1466,17 +1509,17 @@
   "over_ordered": [],
   "expected_names": [
    "Basic metabolic panel (electrolytes and kidney function)",
-   "Complete blood count (CBC)",
-   "Blood draw",
-   "IV fluids (first hour)",
    "Fingerstick blood sugar",
-   "Blood gas",
-   "Urinalysis with microscope exam"
+   "IV fluids (first hour)",
+   "Blood draw",
+   "Complete blood count (CBC)"
   ],
   "possible_names": [
    "IV medication push (first)",
    "IV fluids (each extra hour)",
-   "ECG (heart tracing)"
+   "Blood sugar (lab)",
+   "Urinalysis with microscope exam",
+   "Comprehensive metabolic panel (adds liver tests)"
   ]
  },
  {
@@ -1490,46 +1533,44 @@
   "banner_from": "keyword screen",
   "flags": [
    "Thoughts of self-harm (in the U.S. you can call or text 988 any time)",
-   "Thoughts of killing herself tonight with a plan"
+   "Thoughts of suicide tonight with a plan"
   ],
-  "scenario": null,
+  "scenario": "mental_health_crisis",
   "levels": [
    "99284",
    "99285",
    "99285"
   ],
-  "expected": [
-   "93005",
-   "85025",
-   "80053",
-   "81025",
-   "80305"
-  ],
+  "expected": [],
   "possible": [
-   "84703",
+   "85025",
    "80048",
-   "80076"
+   "36415",
+   "80307",
+   "82077",
+   "93005",
+   "81025",
+   "84443"
   ],
   "admission": "likely",
-  "headline": "You might pay up to about $1,675 for the hospital's bill.",
-  "most_likely": 1675.17,
-  "tokens": 14647,
+  "headline": "You might pay about $1,498 for the hospital's bill.",
+  "most_likely": 1498.18,
+  "tokens": 10713,
   "banner_ok": true,
   "includes_ok": null,
   "missing": [],
   "restraint_ok": true,
   "over_ordered": [],
-  "expected_names": [
-   "ECG (heart tracing)",
-   "Complete blood count (CBC)",
-   "Comprehensive metabolic panel (adds liver tests)",
-   "Urine pregnancy test",
-   "HC DRUG TEST PRESUMPTIVE DIRECT OPT OBS"
-  ],
+  "expected_names": [],
   "possible_names": [
-   "Blood pregnancy test (yes/no)",
+   "Complete blood count (CBC)",
    "Basic metabolic panel (electrolytes and kidney function)",
-   "Liver function panel"
+   "Blood draw",
+   "Urine drug screen",
+   "Blood alcohol level",
+   "ECG (heart tracing)",
+   "Urine pregnancy test",
+   "Thyroid test (TSH)"
   ]
  },
  {
@@ -1542,24 +1583,28 @@
   "banner": false,
   "banner_from": "",
   "flags": [],
-  "scenario": null,
+  "scenario": "dental_pain",
   "levels": [
    "99281",
    "99282",
    "99283"
   ],
-  "expected": [],
+  "expected": [
+   "RX-ACETAMINOPHEN"
+  ],
   "possible": [],
   "admission": "unlikely",
-  "headline": "You might pay up to about $390 for the hospital's bill.",
-  "most_likely": 389.91,
-  "tokens": 9410,
+  "headline": "You might pay about $390 for the hospital's bill.",
+  "most_likely": 389.95,
+  "tokens": 9449,
   "banner_ok": true,
   "includes_ok": null,
   "missing": [],
   "restraint_ok": true,
   "over_ordered": [],
-  "expected_names": [],
+  "expected_names": [
+   "Acetaminophen 500 mg tablet"
+  ],
   "possible_names": []
  }
 ]

@@ -1,6 +1,6 @@
 # Clinical scenarios
 
-These 17 scenarios drive every estimate. They were drafted with AI help, then reviewed and corrected by the project's ED clinician on 22 November 2026.
+These 22 scenarios drive every estimate. They were drafted with AI help. The project's ED clinician reviewed and corrected 17 on 22 November 2026 and three more on 23 November 2026 (pregnancy bleeding, mental health crisis, GI bleeding). A scenario whose note starts with DRAFT has not been reviewed yet.
 
 To change one, describe the change in plain words (for example "chest pain: add a second ECG to possible") and the data file `data/workups.json` is updated to match. Prices shown are the hospital's list prices, only to show scale.
 
@@ -528,5 +528,129 @@ To change one, describe the change in plain words (for example "chest pain: add 
 **Admission:** unlikely · observation stay possible: yes  
 **If admitted, priced as:** none listed  
 **Note shown to the planner:** DRAFT, not yet reviewed by the clinician. A dislocated joint is X-rayed, put back under sedation, X-rayed again and splinted. If it cannot be put back in the ED it is done under anesthesia, which costs several times more and is not in this estimate.
+
+---
+
+## 19. Vaginal bleeding or pain in early pregnancy
+
+**Visit level:** low 99284 · typical 99284 · high 99285  
+**Matched when the patient says:** vaginal bleeding, spotting, pregnant, pregnancy, period is late, missed period, miscarriage, ectopic, pelvic pain
+
+**Expected (most patients)**
+
+| Service | Code | Qty | List price each | Note |
+|---|---|---|---|---|
+| Blood pregnancy hormone level (hCG) | 84702 | 1 | $120.00 |  |
+| Complete blood count (CBC) | 85025 | 1 | $46.62 |  |
+| Blood type (ABO) | 86900 | 1 | $24.90 |  |
+| Blood type (Rh) | 86901 | 1 | $77.00 |  |
+| Urinalysis with microscope exam | 81001 | 1 | $19.02 |  |
+| Pregnancy ultrasound (transvaginal) | 76817 | 1 | $414.32 |  |
+| Blood draw | 36415 | 1 | $23.00 |  |
+
+**Possible (some patients)**
+
+| Service | Code | Qty | List price each | Note |
+|---|---|---|---|---|
+| Basic metabolic panel (electrolytes and kidney function) | 80048 | 1 | $50.76 |  |
+| Antibody screen (before transfusion) | 86850 | 1 | $144.00 |  |
+| Pregnancy ultrasound (limited) | 76815 | 1 | $414.32 |  |
+| IV fluids (first hour) | 96360 | 1 | $660.48 |  |
+| Chlamydia test | 87491 | 1 | $361.00 |  |
+| Gonorrhea test | 87591 | 1 | $361.00 |  |
+
+**Admission:** possible · observation stay possible: yes  
+**If admitted, priced as:** none listed  
+**Note shown to the planner:** This is an emergency until an ectopic pregnancy is ruled out. Bleeding or pain in early pregnancy is checked for an ectopic pregnancy with a pregnancy hormone level, a blood type and an ultrasound. Surgery or medicine for an ectopic pregnancy is not in this estimate.
+
+---
+
+## 20. Mental health crisis or thoughts of self-harm
+
+**Visit level:** low 99284 · typical 99285 · high 99285  
+**Matched when the patient says:** suicidal, suicide, kill myself, killing myself, self-harm, hurt myself, depression, depressed, panic attack, psychiatric, mental health, hearing voices
+
+**Expected (most patients)**
+
+- none
+
+**Possible (some patients)**
+
+| Service | Code | Qty | List price each | Note |
+|---|---|---|---|---|
+| Complete blood count (CBC) | 85025 | 1 | $46.62 |  |
+| Basic metabolic panel (electrolytes and kidney function) | 80048 | 1 | $50.76 |  |
+| Blood draw | 36415 | 1 | $23.00 |  |
+| Urine drug screen | 80307 | 1 | $372.84 |  |
+| Blood alcohol level | 82077 | 1 | $103.62 |  |
+| ECG (heart tracing) | 93005 | 1 | $243.92 |  |
+| Urine pregnancy test | 81025 | 1 | $65.00 |  |
+| Thyroid test (TSH) | 84443 | 1 | $173.00 |  |
+
+**Admission:** likely · observation stay possible: yes  
+**If admitted, priced as:** none listed  
+**Note shown to the planner:** Thoughts of self-harm are an emergency. The expected list is empty on purpose: what is ordered varies from patient to patient, so do not add anything to it; choose from the possible list only. Safety comes first: staff stay with the patient and a psychiatric evaluation is arranged. Tests are ordered only when something points to a medical cause. The psychiatric evaluation and any psychiatric hospital stay are billed separately and are not in this estimate.
+
+---
+
+## 21. Tooth or dental pain
+
+**Visit level:** low 99281 · typical 99282 · high 99283  
+**Matched when the patient says:** tooth, toothache, dental, teeth, gum, wisdom tooth, abscessed tooth
+
+**Expected (most patients)**
+
+| Service | Code | Qty | List price each | Note |
+|---|---|---|---|---|
+| Acetaminophen 500 mg tablet | RX-ACETAMINOPHEN | 1 | $0.09 |  |
+
+**Possible (some patients)**
+
+| Service | Code | Qty | List price each | Note |
+|---|---|---|---|---|
+| Injection (shot in the muscle or under the skin) | 96372 | 1 | $195.51 |  |
+| CT scan of the face (no contrast) | 70486 | 1 | $792.17 |  |
+| Complete blood count (CBC) | 85025 | 1 | $46.62 |  |
+| Blood draw | 36415 | 1 | $23.00 |  |
+
+**Admission:** unlikely · observation stay possible: no  
+**If admitted, priced as:** none listed  
+**Note shown to the planner:** DRAFT, not yet reviewed by the clinician. The ED treats the pain and checks for a spreading infection. The tooth itself needs a dentist. A face CT and blood work are for facial swelling, fever or trouble swallowing.
+
+---
+
+## 22. Vomiting blood, or black or bloody stools
+
+**Visit level:** low 99284 · typical 99285 · high 99291  
+**Matched when the patient says:** black stool, black stools, tarry, blood in my stool, blood in stool, bloody stool, bloody stools, vomiting blood, throwing up blood, rectal bleeding
+
+**Expected (most patients)**
+
+| Service | Code | Qty | List price each | Note |
+|---|---|---|---|---|
+| Complete blood count (CBC) | 85025 | 1 | $46.62 |  |
+| Comprehensive metabolic panel (adds liver tests) | 80053 | 1 | $63.36 |  |
+| Prothrombin time / INR (clotting test) | 85610 | 1 | $40.00 |  |
+| Blood type (ABO) | 86900 | 1 | $24.90 |  |
+| Blood type (Rh) | 86901 | 1 | $77.00 |  |
+| Antibody screen (before transfusion) | 86850 | 1 | $144.00 |  |
+| ECG (heart tracing) | 93005 | 1 | $243.92 |  |
+| IV fluids (first hour) | 96360 | 1 | $660.48 |  |
+| Blood draw | 36415 | 1 | $23.00 |  |
+
+**Possible (some patients)**
+
+| Service | Code | Qty | List price each | Note |
+|---|---|---|---|---|
+| Lactate (lactic acid) | 83605 | 1 | $110.00 |  |
+| Troponin (heart damage blood test) | 84484 | 1 | $101.00 |  |
+| PTT (clotting test) | 85730 | 1 | $62.00 |  |
+| IV medication push (first) | 96374 | 1 | $580.45 |  |
+| IV fluids (each extra hour) | 96361 | 1 | $127.64 |  |
+| CT scan of the abdomen and pelvis (with contrast) | 74177 | 1 | $2,201.25 |  |
+
+**Admission:** likely · observation stay possible: yes  
+**If admitted, priced as:** none listed  
+**Note shown to the planner:** Bleeding inside the gut is treated as an emergency: blood counts, clotting tests, a blood type in case a transfusion is needed, and IV fluids. Most patients are admitted or watched. The hospital stay, any transfusion and an endoscopy are not in this estimate.
 
 ---

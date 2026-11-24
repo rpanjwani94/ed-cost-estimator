@@ -114,7 +114,16 @@ RED_FLAGS: list[tuple[str, str]] = [
     (r"unconscious|unresponsive|not waking|won'?t wake|passed out|fainted|blacked out|seizure|convuls", "Loss of consciousness or seizure"),
     (r"throat (is )?(closing|swelling|tight)|tongue (is )?swelling|lips? (are |is )?swelling|anaphyla", "Signs of a severe allergic reaction"),
     (r"worst headache|thunderclap|sudden(ly)? severe headache", "Sudden, severe headache"),
-    (r"(pregnan).{0,40}(bleed|severe pain)|(bleed|severe pain).{0,40}pregnan", "Bleeding or severe pain in pregnancy"),
+    # Lower-right or sudden belly pain can be appendicitis or a twisted ovary; sudden testicle pain a twisted testicle.
+    (r"right lower quadrant|\brlq\b|(lower right|right lower)( side| part)?( of)?( my| the| her| his)? (belly|abdom\w*|stomach|tummy|pelvi\w*|side)"
+     r"|(belly|abdom\w*|stomach|tummy)\b.{0,60}(lower right|right lower)"
+     r"|(sudden\w*|acute)( onset)?( of)?( severe| sharp| bad)?.{0,25}(abdom\w*|belly|stomach|pelvic|testic\w*|groin) pain"
+     r"|(abdom\w*|belly|stomach|pelvic|testic\w*) pain.{0,40}(came on suddenly|started suddenly|sudden onset|acute onset|all of a sudden)",
+     "Sudden or lower-right belly pain (possible appendicitis or a twisted ovary)"),
+    # Pain or bleeding in pregnancy, or with a late or missed period, can be an ectopic pregnancy.
+    (r"(?<!not )(?<!n't )(?<!non)(pregnan\w*|(period|menstrua\w*)\b.{0,25}\blate\b|late\b.{0,15}\bperiod|missed (my |a |her )?period|miscarr\w*|ectopic).{0,90}(bleed|spotting|pain|cramp|lightheaded|dizzy|faint)"
+     r"|(bleed\w*|spotting|pain|cramp\w*).{0,90}((?<!not )(?<!n't )pregnan|(period|menstrua\w*)\b.{0,25}\blate\b|missed (my |a |her )?period|miscarr|ectopic)",
+     "Pain or bleeding in pregnancy (possible ectopic pregnancy)"),
     (r"(newborn|infant|baby|[0-9] ?(week|month)s?[- ]old).{0,40}fever|fever.{0,40}(newborn|infant|baby)", "Fever in a young infant"),
     (r"stiff neck.{0,40}fever|fever.{0,40}stiff neck|confus(ed|ion)|disoriented", "Confusion, or fever with a stiff neck"),
     (r"severe (burn|pain)|bone (is )?(sticking|showing)|deform|car (accident|crash)|fell (off|from) (a |the )?(roof|ladder)|gunshot|\bstabbed\b|stab wound", "Serious injury"),

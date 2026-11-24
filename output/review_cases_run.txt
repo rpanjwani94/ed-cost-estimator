@@ -1,0 +1,35 @@
+- **Red banner right** (shown when the case is an emergency, not shown when it is minor): 24 of 24
+- **Plan includes what the case calls for**: 19 of 19
+- **Restraint** (nothing the case says should not be routine is in the expected list): 10 of 14
+- **Cases with no failed check**: 26 of 30
+01 Typical chest pain         estimate  banner=Y(yes) inc=yes restr=n/a chest_pain           4/5/5 | miss:  | over: 
+02 Low-risk chest pain        estimate  banner=Y(n/a) inc=n/a restr=NO  chest_pain           4/5/5 | miss:  | over: Troponin (heart damage blood test)
+03 Possible pulmonary embolis estimate  banner=Y(yes) inc=yes restr=n/a chest_pain           4/5/5 | miss:  | over: 
+04 Aortic dissection          estimate  banner=Y(yes) inc=yes restr=n/a chest_pain           4/5/5 | miss:  | over: 
+05 Palpitations               estimate  banner=n(yes) inc=yes restr=yes chest_pain           2/3/4 | miss:  | over: 
+06 Appendicitis               estimate  banner=Y(n/a) inc=yes restr=n/a abdominal_pain       4/4/5 | miss:  | over: 
+07 Biliary disease            estimate  banner=n(n/a) inc=yes restr=n/a abdominal_pain       4/4/5 | miss:  | over: 
+08 Gastroenteritis            estimate  banner=n(yes) inc=n/a restr=NO  vomiting_diarrhea    3/4/4 | miss:  | over: IV fluids (first hour)
+09 GI bleeding                estimate  banner=Y(yes) inc=yes restr=n/a gi_bleeding          4/5/CC | miss:  | over: 
+10 Possible ectopic pregnancy estimate  banner=Y(yes) inc=yes restr=n/a pregnancy_bleeding   4/4/5 | miss:  | over: 
+11 Possible stroke            estimate  banner=Y(yes) inc=yes restr=n/a stroke_symptoms      5/5/CC | miss:  | over: 
+12 Migraine                   estimate  banner=n(yes) inc=n/a restr=NO  headache             3/4/5 | miss:  | over: CT scan of the head (no contrast)
+13 Thunderclap headache       estimate  banner=Y(yes) inc=yes restr=n/a headache             3/4/5 | miss:  | over: 
+14 Minor head injury          estimate  banner=n(yes) inc=n/a restr=yes head_injury          3/4/5 | miss:  | over: 
+15 Anticoagulated head injury estimate  banner=Y(n/a) inc=yes restr=n/a head_injury          3/4/5 | miss:  | over: 
+16 Mild URI                   estimate  banner=n(yes) inc=n/a restr=yes sore_throat          1/2/3 | miss:  | over: 
+17 Pneumonia                  estimate  banner=Y(n/a) inc=yes restr=n/a cough_fever          3/4/5 | miss:  | over: 
+18 Severe asthma              estimate  banner=Y(yes) inc=yes restr=n/a shortness_of_breath  4/5/CC | miss:  | over: 
+19 Possible sepsis            estimate  banner=Y(yes) inc=yes restr=n/a cough_fever          4/5/5 | miss:  | over: 
+20 Uncomplicated cystitis     estimate  banner=n(yes) inc=yes restr=yes urinary_flank        3/3/4 | miss:  | over: 
+21 Ankle sprain               estimate  banner=n(yes) inc=n/a restr=NO  ankle_injury         2/3/3 | miss:  | over: Ankle X-ray
+22 Wrist fracture             estimate  banner=Y(n/a) inc=yes restr=n/a arm_wrist_injury     2/3/4 | miss:  | over: 
+23 Simple laceration          estimate  banner=n(yes) inc=yes restr=yes laceration           2/3/3 | miss:  | over: 
+24 Abscess                    estimate  banner=n(yes) inc=yes restr=yes skin_infection       2/3/4 | miss:  | over: 
+25 Back pain without red flag estimate  banner=n(yes) inc=n/a restr=yes back_pain            2/3/4 | miss:  | over: 
+26 Pediatric fever            estimate  banner=n(yes) inc=n/a restr=yes cough_fever          3/4/5 | miss:  | over: 
+27 Pediatric emergency        estimate  banner=Y(yes) inc=n/a restr=n/a shortness_of_breath  5/CC/CC | miss:  | over: 
+28 Severe hyperglycemia       estimate  banner=Y(yes) inc=yes restr=n/a vomiting_diarrhea    4/5/5 | miss:  | over: 
+29 Psychiatric emergency      estimate  banner=Y(yes) inc=n/a restr=yes mental_health_crisis 4/5/5 | miss:  | over: 
+30 Dental pain                estimate  banner=n(yes) inc=n/a restr=yes dental_pain          1/2/3 | miss:  | over: 
+tokens: 338830
