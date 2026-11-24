@@ -10,9 +10,27 @@ from __future__ import annotations
 
 import re
 import time
+import unicodedata
 from collections import defaultdict, deque
 
 from . import config
+
+# ---- 0. Clean the text before anything reads it -------------------------------
+# Phones type curly apostrophes ("can’t"), and an attacker can hide invisible characters inside a word
+# ("ig<zero-width space>nore") or use look-alike letters. Both slip past keyword checks, so every check
+# below, and every agent, sees the cleaned text.
+
+_QUOTES = str.maketrans({"\u2018": "'", "\u2019": "'", "\u201b": "'", "\u02bc": "'", "\u2032": "'", "`": "'",
+                         "\u201c": '"', "\u201d": '"', "\u2033": '"'})
+
+
+def normalize(text: str) -> str:
+    """Fold look-alike characters to plain ones, drop invisible characters, straighten quotes, tidy spaces."""
+    text = unicodedata.normalize("NFKC", text or "")
+    text = "".join(ch for ch in text if unicodedata.category(ch) != "Cf")  # zero-width spaces, soft hyphens, direction marks
+    text = text.translate(_QUOTES)
+    return re.sub(r"[^\S\n]+", " ", text).strip()
+
 
 # ---- 1. Input checks --------------------------------------------------------
 
@@ -34,7 +52,7 @@ _INJECTION = re.compile("|".join(f"(?:{p})" for p in INJECTION_PATTERNS), re.IGN
 
 def check_input(complaint: str, insurance: str = "") -> str | None:
     """Return a refusal message if the request should not reach the model, else None."""
-    text = complaint.strip()
+    text, insurance = normalize(complaint), normalize(insurance)
     if len(text) < 3:
         return "Please describe what is going on in a few words, for example 'twisted my ankle playing soccer'."
     if len(text) > config.MAX_INPUT_CHARS:
@@ -56,7 +74,7 @@ RED_FLAGS: list[tuple[str, str]] = [
     (r"(can'?t|cannot|can not|trouble|difficulty|hard to|struggling to) breath|short(ness)? of breath|gasping", "Trouble breathing"),
     (r"stroke|face (is )?droop|droop(ing|y) face|slurr(ed|ing)|(weak|numb)(ness)? (on|in|down) (one|my (left|right)|the (left|right)) (side|arm|leg)|can'?t speak", "Possible stroke symptoms"),
     (r"suicid|kill myself|end my life|want to die|hurt myself|self[- ]harm", "Thoughts of self-harm (in the U.S. you can call or text 988 any time)"),
-    (r"overdos|took too many|poison(ed|ing)", "Possible overdose or poisoning (Poison Control: 1-800-222-1222)"),
+    (r"overdos|took too many|(?<!food )poison(ed|ing)", "Possible overdose or poisoning (Poison Control: 1-800-222-1222)"),
     (r"(bleeding|blood).{0,25}(won'?t stop|will not stop|not stopping|a lot|heav(y|ily)|spurting|soaking)|(heav(y|ily)|severe|a lot of|lots of|soaking)\b.{0,25}bleed|hemorrhag|vomiting blood|coughing up blood", "Heavy bleeding"),
     (r"unconscious|unresponsive|not waking|won'?t wake|passed out|fainted|blacked out|seizure|convuls", "Loss of consciousness or seizure"),
     (r"throat (is )?(closing|swelling|tight)|tongue (is )?swelling|lips? (are |is )?swelling|anaphyla", "Signs of a severe allergic reaction"),
@@ -64,12 +82,13 @@ RED_FLAGS: list[tuple[str, str]] = [
     (r"(pregnan).{0,40}(bleed|severe pain)|(bleed|severe pain).{0,40}pregnan", "Bleeding or severe pain in pregnancy"),
     (r"(newborn|infant|baby|[0-9] ?(week|month)s?[- ]old).{0,40}fever|fever.{0,40}(newborn|infant|baby)", "Fever in a young infant"),
     (r"stiff neck.{0,40}fever|fever.{0,40}stiff neck|confus(ed|ion)|disoriented", "Confusion, or fever with a stiff neck"),
-    (r"severe (burn|pain)|bone (is )?(sticking|showing)|deform|car (accident|crash)|fell (off|from) (a |the )?(roof|ladder)|gunshot|stab", "Serious injury"),
+    (r"severe (burn|pain)|bone (is )?(sticking|showing)|deform|car (accident|crash)|fell (off|from) (a |the )?(roof|ladder)|gunshot|\bstabbed\b|stab wound", "Serious injury"),
 ]
 _RED_FLAGS = [(re.compile(p, re.IGNORECASE), label) for p, label in RED_FLAGS]
 
 
 def red_flags(text: str) -> list[str]:
+    text = normalize(text)
     return [label for pattern, label in _RED_FLAGS if pattern.search(text)]
 
 

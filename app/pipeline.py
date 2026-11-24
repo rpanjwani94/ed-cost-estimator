@@ -152,6 +152,9 @@ async def run_estimate(req: EstimateRequest, client: str = "local") -> AsyncIter
         if config.SAVE_TEST_RUNS:
             save_test_run(record, req, detail)
 
+    # 0. Clean the text (curly quotes, invisible and look-alike characters) so the checks and the agents read the same thing.
+    req = req.model_copy(update={"complaint": safety.normalize(req.complaint), "insurance": safety.normalize(req.insurance)})
+
     # 1. Checks in plain code: no tokens spent on a request that fails them.
     refusal = safety.check_input(req.complaint, req.insurance)
     if refusal:
