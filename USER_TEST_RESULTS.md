@@ -75,4 +75,4 @@ Three risks that were not written down before: blame when the real bill differs 
 ### What these runs changed
 
 - **"Emphysema"** was a diagnosis with no description of what was happening, and the app priced a full flare-up workup. The safety screener now asks "what is happening today?" when the text is only the name of a long-term condition, and stops there.
-- **"Elbow dislocation"** was priced as an arm X-ray visit ($953; list price about $1,700). The project author reports that this patient's real bill was **$17,000, with $0 out of pocket**. A draft "dislocated joint" scenario was added (X-rays before and after, putting the joint back under sedation, splint); with it the app's list price is $4,734 most likely and $6,686 at the high end, still far below the real bill. What the real bill included is not yet known.
+- **"Elbow dislocation"** was priced as an arm X-ray visit ($953; list price about $1,700). That is too low for a dislocation. A draft "dislocated joint" scenario was added (X-rays before and after, putting the joint back under sedation, splint); with it the app's list price is $4,734 most likely and $6,686 at the high end.

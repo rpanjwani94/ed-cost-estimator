@@ -57,7 +57,7 @@
   .src { font-size: 7pt; line-height: 1.2; color: var(--muted); columns: 3; column-gap: 16pt; margin-bottom: 4pt; } .src li { margin-bottom: 2pt; word-break: break-word; break-inside: avoid; }
   sup a { text-decoration: none; }
   svg text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; }
-  @page { size: letter; margin: 0.6in 0.7in; }
+  @page { size: letter; margin: 0.5in 0.7in; }
   @media print { body { background: #FFFFFF; font-size: 10pt; line-height: 1.45; } h2 { font-size: 14.5pt; } figure { margin: 6pt 0 9pt; } td { padding: 4pt 8pt 4pt 0; } main { max-width: none; padding: 0; } h2 { margin-top: 10pt; padding-top: 8pt; } .card, .big div, pre { background: #F1F5EC; } .big div.dark { background: var(--moss); -webkit-print-color-adjust: exact; print-color-adjust: exact; } * { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
 </style>
 </head>
@@ -108,6 +108,7 @@
 
 <h3>Why it matters</h3>
 <p>A range with reasons is far better than no number. If a patient knows that an ankle injury will cost them about $985 at their insurer's rate, and could reach $2,791 if a fracture, an MRI and a physical therapy evaluation are all needed, they can decide, plan and ask better questions. Patients have a right to this information; today the hospital publishes it in a form they cannot use.</p>
+<p>This is extremely important in bringing to light how much our healthcare system costs, both to insurance and patients, and brings to light a bigger problem that we need to address in our country about the cost of healthcare. This project is one step forward towards my larger goal (sort of my reason for doing the emergency medicine administration fellowship here at Yale) of trying to make healthcare more equitable and more palatable for every single person in the country.</p>
 
 <!-- ===================== 3. WHAT IS NEW ===================== -->
 <h2><span class="n">3</span>What is new here</h2>
@@ -375,7 +376,7 @@ test_live_card_reader_reads_a_made_up_card_and_keeps_no_personal_details PASSED
   <tbody>
     <tr><td>"Cellulitis"</td><td>Skin infection scenario; about $839; no red banner</td><td>The tester (below) said the workup was right.</td></tr>
     <tr><td>"Emphysema"</td><td>Priced a full flare-up workup, about $2,296</td><td>Wrong to guess. The app now asks what is happening today.</td></tr>
-    <tr><td>"Elbow dislocation"</td><td>Priced an arm X-ray visit, $953</td><td>Far too low; see the real bill below.</td></tr>
+    <tr><td>"Elbow dislocation"</td><td>Priced an arm X-ray visit, $953</td><td>Too low for a dislocation. I added a draft dislocation scenario.</td></tr>
     <tr><td>A 46-year-old's full description of lightheadedness and chest pain, with UHC chosen</td><td>Chest pain scenario; red banner; about $1,825</td><td>The flow worked as designed on a real description.</td></tr>
   </tbody>
 </table>
@@ -411,13 +412,12 @@ test_live_card_reader_reads_a_made_up_card_and_keeps_no_personal_details PASSED
       <li><strong>"Elbow dislocation."</strong> I added a draft dislocation scenario (X-rays before and after, putting the joint back under sedation, a splint).</li>
       <li><strong>The ethical objection.</strong> The "Care first" card and the discussion in Section 6.</li>
     </ul>
-    <h3>One real bill, and the app was far off</h3>
-    <p>I know the real bill for the elbow dislocation: <strong>$17,000, of which the patient paid $0</strong>. The app first showed $953. With the new scenario its list-price estimate is $4,734 most likely and $6,686 at the high end, still well under half the real charges. I do not know what that bill included: anesthesia, a trauma activation, physician fees or a different hospital would each explain part of the gap. It is the only real bill I have, and the app missed.</p>
-<div class="clear"></div>
 
-<p><strong>A colleague in administration</strong>, by text on 23 November, called it "pretty cool", then raised three risks I had not written down. Blame: "what would happen if patients hold unto your your pricing estimate and they get something completely different? Will they blame your app for misleading them?" A menu: "Will patients try to dictate their care even more by trying to pick tests of the menu like it's McDonald's?" And who should offer it: "it's always better for the patient to sue the hospital than you lol". The page says "estimate, not a quote" and that the doctor decides the care; none of the three is solved.</p>
+<p><strong>A colleague in hospital administration</strong> reviewed the app on 23 November, found it promising, and raised three risks I had not documented. Liability: if a patient relies on the estimate and the final bill is substantially different, they may hold the tool responsible for misleading them. Patient-directed ordering: an itemized list could encourage patients to select or decline tests as if from a menu. Ownership: the risk is better carried by a hospital than by an individual clinician. The page states that the figures are an estimate, not a quote, and that the clinician decides the care, but none of the three is resolved.</p>
 <p><strong>What my own tests add.</strong> An itemized, insurer-specific estimate takes about 22 seconds (median of five runs; 15 to 50). A general AI model asked the same price question was never right in three tries (Section 3).</p>
 <p><strong>Thirty test cases.</strong> An outside AI review gave me 30 patient descriptions with a physician's expectations (<code>CASE_REVIEW.md</code>). The plan included every service called for in 19 of 19. The red banner was right in 20 of 24, then 24 of 24 after I taught the keyword screen that "No chest pain" is a denial. Restraint is the weak spot: in 4 of 14 low-risk cases the plan lists as expected a test that should depend on the exam (a troponin, IV fluids, an X-ray, a head CT; the four vary a little by run), because my scenarios are templates.</p>
+
+<div class="clear"></div>
 
 <h3>Who it could help</h3>
 <ul>
@@ -431,7 +431,7 @@ test_live_card_reader_reads_a_made_up_card_and_keeps_no_personal_details PASSED
 
 <h3>What does not work yet</h3>
 <ul>
-  <li><strong>It was checked against one real bill and missed by a wide margin</strong> (Section 7).</li>
+  <li><strong>It has not been checked against real bills.</strong> I do not have access to patient bills.</li>
   <li><strong>Hospital bill only.</strong> The emergency physician, and often the radiologist, bill separately. The page says so.</li>
   <li><strong>One hospital.</strong> Yale New Haven Hospital and its St. Raphael campus.</li>
   <li><strong>Only nine common ED medicines are itemized.</strong> Other medications and all supplies are not.</li>
