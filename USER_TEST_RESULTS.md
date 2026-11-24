@@ -38,6 +38,23 @@ Feedback from people who tried the app through the shared link, in their own wor
 - **The range is too wide to act on.** $805 to $1,463 for one cut finger. Narrowing it needs the patient's plan details and a check against real bills.
 - **Where a patient sees the use:** budgeting after a visit, and choosing between urgent care and an ED when it is not a severe emergency. In an emergency they would go regardless of cost.
 
+## Tester 3: a colleague in administration (23 November 2026, by text message)
+
+Not answers to the six questions: a text conversation after they tried the app. Their messages are quoted as sent; the author's replies are summarized.
+
+- "This is pretty cool" and "So what do you plan to do with this?"
+- Asked whether any problems screamed out immediately: "Not yet but wanna keep playing with it lol"
+- The author said her biggest ethical concern is that patients will not come in for care, but that they also have the right to make an informed decision, and that $1,500 for a chest pain visit with "reasonably good insurance" is jarring. Reply: "Yea the prices are insane!!" and "I mean there are pros and cons right"
+- "As you mentioned, now patients have some type of knowledge on prices for transparency. Will that knowledge really stop them from coming? Or Will some people argue that it will stop those that don't need to come to come lol"
+- "What comes to mind what would happen if patients hold unto your your pricing estimate and they get something completely different? Will they blame your app for misleading them?"
+- The author asked whether they can, if it is listed as "this is just an estimate". Reply: "Agreed but doesn't mean that you won't get a couple that will try to complain or argue that you mislead them. Just the nature of this country and sue culture. Lol I'm not saying you gonna get sued. But it's the damn if you do damn if you don't situation."
+- "Will patients try to dictate their care even more by trying to pick tests of the menu like it's McDonald's? Lol"
+- The author wondered whether it would be better not rolled out by the hospital itself, or by a non-physician. Reply: "Exactly, it's always better for the patient to sue the hospital than you lol"
+
+### What this conversation adds
+
+Three risks that were not written down before: blame when the real bill differs from the estimate, patients treating the itemized list as a menu, and who should be the one to offer a tool like this. None is solved in the app. The page already says the figures are an estimate and not a quote, and that the doctor or nurse decides the care.
+
 ## Other feedback (23 November 2026)
 
 - **Care management providers in the emergency department** and **lawyers** who were shown the app said they liked it. No written answers were collected from them.

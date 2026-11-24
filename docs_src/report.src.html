@@ -367,7 +367,7 @@ test_live_falls_back_to_the_openai_key_when_portkey_rejects_its_key PASSED
 <h2><span class="n">7</span>Impact</h2>
 
 <h3>Real users</h3>
-<p>On 22 and 23 November 2026 I shared the app with four colleagues through a temporary public link, with a short guide and six questions. A test mode saved what they typed, with a notice on the page saying so. On 23 November I put the app online and sent it to more people; one of them answered as a patient. The evidence is thin and I report all of it: four cases typed by colleagues, and two written replies. Care management providers in the emergency department, and lawyers I showed it to, also told me they liked the app; I did not collect written answers from them.</p>
+<p>On 22 and 23 November 2026 I shared the app with four colleagues through a temporary public link, with a short guide and six questions. A test mode saved what they typed, with a notice on the page saying so. On 23 November I put the app online and sent it to more people; one of them answered as a patient. The evidence is thin and I report all of it: four cases typed by colleagues, two written replies and one text conversation. Care management providers in the emergency department, and lawyers I showed it to, also told me they liked the app; I did not collect written answers from them.</p>
 <table>
   <thead><tr><th style="width:36%">What a colleague typed</th><th style="width:26%">What the app did</th><th>What I learned</th></tr></thead>
   <tbody>
@@ -413,7 +413,8 @@ test_live_falls_back_to_the_openai_key_when_portkey_rejects_its_key PASSED
     <p>I know the real bill for the elbow dislocation: <strong>$17,000, of which the patient paid $0</strong>. The app first showed $953. With the new scenario its list-price estimate is $4,734 most likely and $6,686 at the high end, still well under half the real charges. I do not know what that bill included: anesthesia, a trauma activation, physician fees or a different hospital would each explain part of the gap. It is the only real bill I have, and the app missed.</p>
 <div class="clear"></div>
 
-<p><strong>What my own tests add.</strong> An itemized, insurer-specific estimate takes about 22 seconds (median of five runs; 15 to 50). By hand it means finding 6 to 14 billing codes among 724,913 rows for the right insurer; I did not time that. A general AI model asked the same price question was never right in three tries (Section 3).</p>
+<p><strong>A colleague in administration</strong>, by text on 23 November, called it "pretty cool", then raised three risks I had not written down. Blame: "what would happen if patients hold unto your your pricing estimate and they get something completely different? Will they blame your app for misleading them?" A menu: "Will patients try to dictate their care even more by trying to pick tests of the menu like it's McDonald's?" And who should offer it: "it's always better for the patient to sue the hospital than you lol". The page says "estimate, not a quote" and that the doctor decides the care; none of the three is solved.</p>
+<p><strong>What my own tests add.</strong> An itemized, insurer-specific estimate takes about 22 seconds (median of five runs; 15 to 50). A general AI model asked the same price question was never right in three tries (Section 3).</p>
 <p><strong>Thirty test cases.</strong> An outside AI review gave me 30 patient descriptions with a physician's expectations (<code>CASE_REVIEW.md</code>). The plan included every service called for in 19 of 19. The red banner was right in 20 of 24, then 24 of 24 after I taught the keyword screen that "No chest pain" is a denial. Restraint is the weak spot: in 4 of 14 low-risk cases the plan lists as expected a test that should depend on the exam (a troponin, IV fluids, two X-rays), because my scenarios are templates.</p>
 
 <h3>Who it could help</h3>
@@ -433,15 +434,15 @@ test_live_falls_back_to_the_openai_key_when_portkey_rejects_its_key PASSED
   <li><strong>One hospital.</strong> Yale New Haven Hospital and its St. Raphael campus.</li>
   <li><strong>Only nine common ED medicines are itemized.</strong> Other medications and all supplies are not. Where the file lists several packages, the app uses the middle-priced one.</li>
   <li><strong>Traditional Medicare and Medicaid are not in the hospital's file.</strong> Those patients see the median insurer rate, which is not their rate.</li>
-  <li><strong>The plan math is simplified</strong> to copay, then deductible, then coinsurance, capped at the out-of-pocket maximum. Without the copay, the deductible left and the coinsurance, the app can only say "up to".</li>
+  <li><strong>The plan math is simplified</strong> to copay, then deductible, then coinsurance, up to the out-of-pocket maximum. Without the first three the app can only say "up to".</li>
   <li><strong>The workup is a template, not a prediction.</strong> 18 scenarios cover common problems (Section 7 shows where that over-orders); an unusual complaint gets a small, conservative plan.</li>
   </ul>
-<p><strong>About the clinical scenarios.</strong> They were drafted with AI help. I reviewed 17 as an ED clinician on 22 November 2026 and changed 15: for headache, for example, I moved the head CT and blood work to "expected" and removed the lumbar puncture. The eighteenth (joint dislocation) is an unreviewed draft. The set is in <code>SCENARIOS_REVIEW.md</code>. One clinician's review is a start, not a validation.</p>
+<p><strong>About the clinical scenarios.</strong> They were drafted with AI help. I reviewed 17 as an ED clinician on 22 November 2026 and changed 15. The eighteenth (joint dislocation) is an unreviewed draft. The set is in <code>SCENARIOS_REVIEW.md</code>. One clinician's review is a start, not a validation.</p>
 
 <h3>What I would build with another month</h3>
 <ol>
-  <li><strong>Validation against real bills.</strong> Run published cases (for example KFF Health News "Bill of the Month" ED bills) through the app and report how far off it is, starting with the dislocation.</li>
-  <li><strong>Read the insurance card.</strong> Even clinicians do not know their own plan details. In a quick test the model read a made-up card image correctly for about 800 tokens. The card cannot show how much of the deductible has been met.</li>
+  <li><strong>Validation against real bills.</strong> Run published ED bills (for example KFF Health News "Bill of the Month") through the app and report how far off it is.</li>
+  <li><strong>Read the insurance card.</strong> In a quick test the model read a made-up card image correctly for about 800 tokens. The card cannot show how much of the deductible has been met.</li>
   <li><strong>The physician's bill</strong>, from the Medicare physician fee schedule, so the estimate covers both bills.</li>
   <li><strong>More hospitals.</strong> Every hospital publishes the same file format. Some give a percentage or formula in place of a dollar rate; this file has dollars on all 724,913 rows, and the app skips any row without one.</li>
   <li><strong>"Check my bill"</strong> when it arrives, a pilot with a hospital's financial counselors, and Spanish.</li>
